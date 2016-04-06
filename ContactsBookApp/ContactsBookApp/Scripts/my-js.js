@@ -5,6 +5,9 @@ $(document).ready(function () {
     currentPage = 1;
 
     LoadData();
+    $("#newContact").click(function () {
+        OpenPopUp("/contacts/save");
+    });
     $(document).on("click", "a.popup", function (e) {
         e.preventDefault();
         var page = $(this).attr("href");
@@ -57,6 +60,8 @@ function LoadData(page) {
             } else {
                 currentPage -= 1;
             }
+
+            $('#currentPage').html(currentPage);
         }
     });
 
@@ -111,7 +116,7 @@ function SaveContact() {
     $.post('/contacts/save/', contact, function (response) {
         if (response.status) {
             alert(response.message);
-            LoadData();
+            LoadData(currentPage);
             $dialog.dialog('close');
         } else {
             $('#msg').html('<div class="failed">' + response.message + '</div>');
@@ -124,7 +129,7 @@ function DeleteContact() {
     $.post('/contacts/delete/', { 'id': $('#Id').val(), '__RequestVerificationToken': $('input[name=__RequestVerificationToken]').val() }, function (response) {
         if (response.status) {
             alert(response.message);
-            LoadData();
+            LoadData(currentPage);
             $dialog.dialog('close');
         } else {
             alert(respond.message);

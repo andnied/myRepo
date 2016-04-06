@@ -44,12 +44,7 @@
 </table>
 <div id="paging">
     <input class="btn btn-primary" type="button" id="prev" value="<" />
+    <p style="display:inline" id="currentPage"></p>
     <input class="btn btn-primary" type="button" id="next" value=">" />
 </div><br />
-Total contacts: <p id="total">0</p>
-
-<script>
-    $("#newContact").click(function () {
-        OpenPopUp("/contacts/save");
-    });
-</script>
+Total contacts: <p style="display:inline" id="total">0</p>
