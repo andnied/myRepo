@@ -1,6 +1,9 @@
 ﻿var $dialog;
+var currentPage;
 
 $(document).ready(function () {
+    currentPage = 1;
+
     LoadData();
     $(document).on("click", "a.popup", function (e) {
         e.preventDefault();
@@ -15,33 +18,45 @@ $(document).ready(function () {
         e.preventDefault();
         DeleteContact();
     });
+    $('#next').click(function () {
+        currentPage += 1;
+        LoadData(currentPage);
+    });
+    $('#prev').click(function () {
+        currentPage = currentPage == 1 ? 1 : currentPage -= 1;
+        LoadData(currentPage);
+    });
 });
 
 function LoadData(page) {
+    var pg = page === undefined ? '' : '?page=' + page;
     $.ajax({
-        url: '/contacts/GetAll',
+        url: '/contacts/GetAll' + pg,
         type: 'GET',
         async: true,
         dataType: 'json',
         success: function (data) {
-            var len = data.length;
-            var $data = $('<b></b>');
+            if (data.length > 0) {
+                var $data = $('<b></b>');
 
-            $.each(data, function (i, row) {
-                var $row = $('<tr/>');
-                $row.append($('<td/>').html(row.FirstName));
-                $row.append($('<td/>').html(row.LastName));
-                $row.append($('<td/>').html(row.PhoneNumber));
-                $row.append($('<td/>').html(row.Email));
-                $row.append($('<td/>').html(row.Address));
-                $row.append($('<td/>').html(row.City));
-                $row.append($('<td/>').html(row.Zip));
-                $row.append($('<td/>').html(row.IsFriend));
-                $row.append($('<td/>').html("<a href='/contacts/save/" + row.Id + "' class='popup'>Edit</a>&nbsp|&nbsp<a href='/contacts/delete/" + row.Id + "' class='popup'>Delete</a>"));
-                $data.append($row);
-            });
+                $.each(data, function (i, row) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(row.FirstName));
+                    $row.append($('<td/>').html(row.LastName));
+                    $row.append($('<td/>').html(row.PhoneNumber));
+                    $row.append($('<td/>').html(row.Email));
+                    $row.append($('<td/>').html(row.Address));
+                    $row.append($('<td/>').html(row.City));
+                    $row.append($('<td/>').html(row.Zip));
+                    $row.append($('<td/>').html(row.IsFriend));
+                    $row.append($('<td/>').html("<a href='/contacts/save/" + row.Id + "' class='popup'>Edit</a>&nbsp|&nbsp<a href='/contacts/delete/" + row.Id + "' class='popup'>Delete</a>"));
+                    $data.append($row);
+                });
 
-            $('#tbody').html($data.get(0).innerHTML);
+                $('#tbody').html($data.get(0).innerHTML);
+            } else {
+                currentPage -= 1;
+            }
         }
     });
 
