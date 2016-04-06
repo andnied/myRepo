@@ -1,0 +1,92 @@
+﻿@model ContactsBookApp.Models.Contact
+
+@using (@Html.BeginForm("Delete", "Contacts", FormMethod.Post, new { role = "form", id = "deleteForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Contact</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @Html.HiddenFor(model => model.Id)
+            <dt>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.User.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Zip)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Zip)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsFriend)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsFriend)
+            </dd>
+        </dl>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+                <input type="submit" value="Delete contact" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}

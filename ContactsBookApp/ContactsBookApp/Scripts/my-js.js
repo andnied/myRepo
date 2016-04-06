@@ -11,12 +11,17 @@ $(document).ready(function () {
         e.preventDefault();
         SaveContact();
     });
+    $(document).on("submit", "#deleteForm", function (e) {
+        e.preventDefault();
+        DeleteContact();
+    });
 });
 
-function LoadData() {
+function LoadData(page) {
     $.ajax({
         url: '/contacts/GetAll',
         type: 'GET',
+        async: true,
         dataType: 'json',
         success: function (data) {
             var len = data.length;
@@ -32,13 +37,17 @@ function LoadData() {
                 $row.append($('<td/>').html(row.City));
                 $row.append($('<td/>').html(row.Zip));
                 $row.append($('<td/>').html(row.IsFriend));
-                $row.append($('<td/>').html("<a href='/contacts/save/" + row.Id + "' class='popup'>Edit</a>&nbsp|&nbsp<a href='/contacts/save/" + row.Id + "' class='popup'>Delete</a>"));
+                $row.append($('<td/>').html("<a href='/contacts/save/" + row.Id + "' class='popup'>Edit</a>&nbsp|&nbsp<a href='/contacts/delete/" + row.Id + "' class='popup'>Delete</a>"));
                 $data.append($row);
             });
 
             $('#tbody').html($data.get(0).innerHTML);
         }
     });
+
+    $.get('/contacts/getcount/', '', function (response) {
+        $('#total').html(response);
+    }, 'json');
 }
 
 function OpenPopUp(page) {
@@ -91,6 +100,19 @@ function SaveContact() {
             $dialog.dialog('close');
         } else {
             $('#msg').html('<div class="failed">' + response.message + '</div>');
+            return false;
+        }
+    }, 'json');
+}
+
+function DeleteContact() {
+    $.post('/contacts/delete/', { 'id': $('#Id').val(), '__RequestVerificationToken': $('input[name=__RequestVerificationToken]').val() }, function (response) {
+        if (response.status) {
+            alert(response.message);
+            LoadData();
+            $dialog.dialog('close');
+        } else {
+            alert(respond.message);
             return false;
         }
     }, 'json');

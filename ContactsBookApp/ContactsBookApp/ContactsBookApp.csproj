@@ -313,6 +313,7 @@
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Contacts\_partialContacts.cshtml" />
     <Content Include="Views\Contacts\_Save.cshtml" />
+    <Content Include="Views\Contacts\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
