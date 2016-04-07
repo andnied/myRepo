@@ -17,7 +17,10 @@ namespace ContactsBookApp.Helpers
             var property = typeof(Contact).GetProperties()
                 .Where(p => p.GetCustomAttributes().Count() > 0)
                 .FirstOrDefault(p => ((DisplayAttribute)p.GetCustomAttribute(typeof(DisplayAttribute))).Name.Trim() == orderBy);
-            
+            var result = db.Contacts
+                .Where(c => c.UserId == userId)
+                .OrderBy(c => property.GetValue(c));
+
             return null;
         }
     }
