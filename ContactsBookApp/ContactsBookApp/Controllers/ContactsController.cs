@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using ContactsBookApp.Models;
 using Microsoft.AspNet.Identity;
 using System.Reflection;
+using ContactsBookApp.Helpers;
 
 namespace ContactsBookApp.Controllers
 {
@@ -18,6 +19,7 @@ namespace ContactsBookApp.Controllers
     {
         private const int RecordsPerPage = 3;
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private readonly ContactsHelper _helper = new ContactsHelper() { RecordsPerPage = RecordsPerPage };
 
         #region Load
 
@@ -33,10 +35,10 @@ namespace ContactsBookApp.Controllers
             return PartialView("_partialContacts", await _db.Contacts.Where(c => c.UserId == id).ToListAsync());
         }
         
-        public async Task<JsonResult> GetAll(int page = 1)
+        public async Task<JsonResult> GetAll(int page = 1, string orderBy = null, int ascDesc = 0)
         {
             string id = User.Identity.GetUserId();
-            
+            var test = _helper.FindContacts(_db, id, page, orderBy, ascDesc);
             return Json(await _db.Contacts
                 .Where(c => c.UserId == id)
                 .Select(c => new

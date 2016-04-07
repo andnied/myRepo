@@ -1,5 +1,7 @@
 ﻿var $dialog;
 var currentPage;
+var lastVal;
+var lastValCounter;
 
 $(document).ready(function () {
     currentPage = 1;
@@ -29,12 +31,23 @@ $(document).ready(function () {
         currentPage = currentPage == 1 ? 1 : currentPage -= 1;
         LoadData(currentPage);
     });
+    $(document).on("click", "th", function (e) {
+        var val = $(this).html().trim();
+        lastValCounter = val == lastVal ? lastValCounter + 1 : 0;
+        var ascDesc = val == lastVal ? lastValCounter % 2 : 0;
+        lastVal = val;
+        currentPage = 1;
+        LoadData(currentPage, val, ascDesc);
+    });
 });
 
-function LoadData(page) {
-    var pg = page === undefined ? '' : '?page=' + page;
+function LoadData(page, orderBy, ascDesc) {
+    var pg = page === undefined ? '?page=1' : '?page=' + page;
+    var order = orderBy === undefined ? '' : '&orderBy=' + orderBy;
+    var ad = ascDesc === undefined ? '' : '&ascDesc=' + ascDesc;
+
     $.ajax({
-        url: '/contacts/GetAll' + pg,
+        url: '/contacts/GetAll' + pg + order + ad,
         type: 'GET',
         async: true,
         dataType: 'json',
