@@ -1,7 +1,15 @@
 ﻿var $dialog;
+var currentPage;
+var lastVal;
+var lastValCounter;
 
 $(document).ready(function () {
+    currentPage = 1;
+
     LoadData();
+    $("#newContact").click(function () {
+        OpenPopUp("/contacts/save");
+    });
     $(document).on("click", "a.popup", function (e) {
         e.preventDefault();
         var page = $(this).attr("href");
@@ -11,34 +19,68 @@ $(document).ready(function () {
         e.preventDefault();
         SaveContact();
     });
+    $(document).on("submit", "#deleteForm", function (e) {
+        e.preventDefault();
+        DeleteContact();
+    });
+    $('#next').click(function () {
+        currentPage += 1;
+        LoadData(currentPage);
+    });
+    $('#prev').click(function () {
+        currentPage = currentPage == 1 ? 1 : currentPage -= 1;
+        LoadData(currentPage);
+    });
+    $(document).on("click", "th", function (e) {
+        var val = $(this).html().trim();
+        lastValCounter = val == lastVal ? lastValCounter + 1 : 0;
+        var ascDesc = val == lastVal ? lastValCounter % 2 : 0;
+        lastVal = val;
+        currentPage = 1;
+        LoadData(currentPage, val, ascDesc);
+    });
 });
 
-function LoadData() {
+function LoadData(page, orderBy, ascDesc) {
+    var pg = page === undefined ? '?page=1' : '?page=' + page;
+    var order = orderBy === undefined ? '' : '&orderBy=' + orderBy;
+    var ad = ascDesc === undefined ? '' : '&ascDesc=' + ascDesc;
+
     $.ajax({
-        url: '/contacts/GetAll',
+        url: '/contacts/GetAll' + pg + order + ad,
         type: 'GET',
+        async: true,
         dataType: 'json',
         success: function (data) {
-            var len = data.length;
-            var $data = $('<b></b>');
+            if (data.length > 0) {
+                var $data = $('<b></b>');
 
-            $.each(data, function (i, row) {
-                var $row = $('<tr/>');
-                $row.append($('<td/>').html(row.FirstName));
-                $row.append($('<td/>').html(row.LastName));
-                $row.append($('<td/>').html(row.PhoneNumber));
-                $row.append($('<td/>').html(row.Email));
-                $row.append($('<td/>').html(row.Address));
-                $row.append($('<td/>').html(row.City));
-                $row.append($('<td/>').html(row.Zip));
-                $row.append($('<td/>').html(row.IsFriend));
-                $row.append($('<td/>').html("<a href='/contacts/save/" + row.Id + "' class='popup'>Edit</a>&nbsp|&nbsp<a href='/contacts/save/" + row.Id + "' class='popup'>Delete</a>"));
-                $data.append($row);
-            });
+                $.each(data, function (i, row) {
+                    var $row = $('<tr/>');
+                    $row.append($('<td/>').html(row.FirstName));
+                    $row.append($('<td/>').html(row.LastName));
+                    $row.append($('<td/>').html(row.PhoneNumber));
+                    $row.append($('<td/>').html(row.Email));
+                    $row.append($('<td/>').html(row.Address));
+                    $row.append($('<td/>').html(row.City));
+                    $row.append($('<td/>').html(row.Zip));
+                    $row.append($('<td/>').html(row.IsFriend));
+                    $row.append($('<td/>').html("<a href='/contacts/save/" + row.Id + "' class='popup'>Edit</a>&nbsp|&nbsp<a href='/contacts/delete/" + row.Id + "' class='popup'>Delete</a>"));
+                    $data.append($row);
+                });
 
-            $('#tbody').html($data.get(0).innerHTML);
+                $('#tbody').html($data.get(0).innerHTML);
+            } else {
+                currentPage -= 1;
+            }
+
+            $('#currentPage').html(currentPage);
         }
     });
+
+    $.get('/contacts/getcount/', '', function (response) {
+        $('#total').html(response);
+    }, 'json');
 }
 
 function OpenPopUp(page) {
@@ -87,10 +129,23 @@ function SaveContact() {
     $.post('/contacts/save/', contact, function (response) {
         if (response.status) {
             alert(response.message);
-            LoadData();
+            LoadData(currentPage);
             $dialog.dialog('close');
         } else {
             $('#msg').html('<div class="failed">' + response.message + '</div>');
+            return false;
+        }
+    }, 'json');
+}
+
+function DeleteContact() {
+    $.post('/contacts/delete/', { 'id': $('#Id').val(), '__RequestVerificationToken': $('input[name=__RequestVerificationToken]').val() }, function (response) {
+        if (response.status) {
+            alert(response.message);
+            LoadData(currentPage);
+            $dialog.dialog('close');
+        } else {
+            alert(respond.message);
             return false;
         }
     }, 'json');

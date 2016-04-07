@@ -41,34 +41,10 @@
         </tr>
     </thead>
     <tbody id="tbody"></tbody>
-
 </table>
-Total contacts: <p id="total">0</p>
-
-<script>
-    //$(document).ready(function () {
-    //    $("#dialog").dialog({ 'autoOpen': false });
-        //$.get("Contacts/LoadData", '', function (data) {
-        //    $('#tbody').html(data);
-        //});
-    //});
-    //$(document).on('click', '.glyphicon-remove', function () {
-    //    var contactId = $(this).parent().parent().children('td:eq(0)').text().trim();        
-    //    $.post("Contacts/RemoveContact",
-    //        {
-    //            id: contactId
-    //        },
-    //        function (data) {
-    //            $('#tbody').html(data);
-    //        });
-    //    return false;
-    //});
-
-    $("#newContact").click(function () {
-        OpenPopUp("/contacts/save");
-        //$("#dialog").dialog("open");
-        //$.get("Contacts/GetForm", '', function (data) {
-        //    $('#divpopup').html(data);
-        //});
-    });
-</script>
+<div id="paging">
+    <input class="btn btn-primary" type="button" id="prev" value="<" />
+    <p style="display:inline" id="currentPage"></p>
+    <input class="btn btn-primary" type="button" id="next" value=">" />
+</div><br />
+Total contacts: <p style="display:inline" id="total">0</p>

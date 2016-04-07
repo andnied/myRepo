@@ -202,6 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ContactsHelper.cs" />
     <Compile Include="Migrations\201603231715191_InitialCreate.cs" />
     <Compile Include="Migrations\201603231715191_InitialCreate.Designer.cs">
       <DependentUpon>201603231715191_InitialCreate.cs</DependentUpon>
@@ -313,6 +314,7 @@
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Contacts\_partialContacts.cshtml" />
     <Content Include="Views\Contacts\_Save.cshtml" />
+    <Content Include="Views\Contacts\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

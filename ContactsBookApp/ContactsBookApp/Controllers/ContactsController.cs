@@ -10,13 +10,18 @@ using System.Web.Mvc;
 using ContactsBookApp.Models;
 using Microsoft.AspNet.Identity;
 using System.Reflection;
+using ContactsBookApp.Helpers;
 
 namespace ContactsBookApp.Controllers
 {
     [Authorize]
     public class ContactsController : Controller
     {
+        private const int RecordsPerPage = 3;
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private readonly ContactsHelper _helper = new ContactsHelper() { RecordsPerPage = RecordsPerPage };
+
+        #region Load
 
         // GET: Contacts
         public ActionResult Index()
@@ -29,10 +34,11 @@ namespace ContactsBookApp.Controllers
             string id = User.Identity.GetUserId();
             return PartialView("_partialContacts", await _db.Contacts.Where(c => c.UserId == id).ToListAsync());
         }
-
-        public async Task<JsonResult> GetAll()
+        
+        public async Task<JsonResult> GetAll(int page = 1, string orderBy = null, int ascDesc = 0)
         {
             string id = User.Identity.GetUserId();
+            var test = _helper.FindContacts(_db, id, page, orderBy, ascDesc);
             return Json(await _db.Contacts
                 .Where(c => c.UserId == id)
                 .Select(c => new
@@ -46,8 +52,22 @@ namespace ContactsBookApp.Controllers
                     c.City,
                     c.Zip,
                     c.IsFriend
-                }).ToListAsync(), JsonRequestBehavior.AllowGet);
+                })
+                .OrderBy(c => c.Id)
+                .Skip(RecordsPerPage * (page - 1))
+                .Take(RecordsPerPage)
+                .ToListAsync(), JsonRequestBehavior.AllowGet);
         }
+
+        public async Task<JsonResult> GetCount()
+        {
+            string id = User.Identity.GetUserId();
+            return Json(await _db.Contacts.CountAsync(), JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+        #region Save
 
         public ActionResult Save(int id = 0)
         {
@@ -110,119 +130,60 @@ namespace ContactsBookApp.Controllers
             return new JsonResult() { Data = new { status = status, message = msg } };
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> RemoveContact(string id)
-        //{
-        //    int cId = 0;
-        //    if (Int32.TryParse(id, out cId))
-        //    {
-        //        var contact = _db.Contacts.FirstOrDefault(c => c.Id == cId);
-        //        if (contact != null)
-        //        {
-        //            _db.Contacts.Remove(contact);
-        //            await _db.SaveChangesAsync();
-        //        }
-        //    }
+        #endregion
 
-        //    return RedirectToAction("LoadData");
-        //}
+        #region Delete
 
-        //// GET: Contacts/Details/5
-        //public async Task<ActionResult> Details(long? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Contact contact = await _db.Contacts.FindAsync(id);
-        //    if (contact == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(contact);
-        //}
+        public async Task<ActionResult> Delete(int id)
+        {
+            string userId = User.Identity.GetUserId();
 
-        //// GET: Contacts/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+            if (id > 0)
+            {
+                var contact = _db.Contacts.FirstOrDefaultAsync(c => c.Id == id);
+                if (contact == null)
+                    return HttpNotFound();
 
-        //// POST: Contacts/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,FirstName,LastName,PhoneNumber,Email,Address,City,Zip,IsFriend")] Contact contact)
-        //{
-        //    string id = User.Identity.GetUserId();
-        //    if (ModelState.IsValid)
-        //    {
-        //        contact.UserId = id;
-        //        _db.Contacts.Add(contact);
-        //        await _db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
+                return PartialView("_Delete", await contact);
+            }
+            else
+                return HttpNotFound();
+        }
 
-        //    return View(contact);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public async Task<ActionResult> DeleteContact(int id)
+        {
+            string userId = User.Identity.GetUserId();
+            var msg = string.Empty;
+            var status = false;
 
-        //// GET: Contacts/Edit/5
-        //public async Task<ActionResult> Edit(long? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Contact contact = await _db.Contacts.FindAsync(id);
-        //    if (contact == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(contact);
-        //}
+            if (id > 0)
+            {
+                var contact = _db.Contacts.FirstOrDefault(x => x.Id == id);
+                if (contact == null)
+                    return HttpNotFound();
 
-        //// POST: Contacts/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include = "Id,FirstName,LastName,PhoneNumber,Email,Address,City,Zip,IsFriend")] Contact contact)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _db.Entry(contact).State = EntityState.Modified;
-        //        await _db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(contact);
-        //}
+                try
+                {
+                    _db.Contacts.Remove(contact);
+                    await _db.SaveChangesAsync();
+                    msg = "Contact created successfully.";
+                    status = true;
+                }
+                catch
+                {
+                    msg = "Error";
+                }
+            }
+            else
+                return HttpNotFound();
 
-        //// GET: Contacts/Delete/5
-        //public async Task<ActionResult> Delete(long? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Contact contact = await _db.Contacts.FindAsync(id);
-        //    if (contact == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(contact);
-        //}
+            return new JsonResult() { Data = new { status = status, message = msg } };
+        }
 
-        //// POST: Contacts/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(long id)
-        //{
-        //    Contact contact = await _db.Contacts.FindAsync(id);
-        //    _db.Contacts.Remove(contact);
-        //    await _db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+        #endregion
 
         protected override void Dispose(bool disposing)
         {
