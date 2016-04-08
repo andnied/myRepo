@@ -19,7 +19,7 @@ namespace ContactsBookApp.Controllers
     {
         private const int RecordsPerPage = 3;
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
-        private readonly ContactsHelper _helper = new ContactsHelper() { RecordsPerPage = RecordsPerPage };
+        private readonly ContactsHelper _helper = new ContactsHelper();
 
         #region Load
 
@@ -38,25 +38,25 @@ namespace ContactsBookApp.Controllers
         public async Task<JsonResult> GetAll(int page = 1, string orderBy = null, int ascDesc = 0)
         {
             string id = User.Identity.GetUserId();
-            var test = _helper.FindContacts(_db, id, page, orderBy, ascDesc);
-            return Json(await _db.Contacts
-                .Where(c => c.UserId == id)
-                .Select(c => new
-                {
-                    c.Id,
-                    c.FirstName,
-                    c.LastName,
-                    c.PhoneNumber,
-                    c.Email,
-                    c.Address,
-                    c.City,
-                    c.Zip,
-                    c.IsFriend
-                })
-                .OrderBy(c => c.Id)
+            var orderedContacts = _helper.FindContacts(_db, id, orderBy, ascDesc);
+
+            return Json(await orderedContacts
+                    .Select(c => new
+                    {
+                        c.Id,
+                        c.FirstName,
+                        c.LastName,
+                        c.PhoneNumber,
+                        c.Email,
+                        c.Address,
+                        c.City,
+                        c.Zip,
+                        c.IsFriend
+                    })
                 .Skip(RecordsPerPage * (page - 1))
                 .Take(RecordsPerPage)
                 .ToListAsync(), JsonRequestBehavior.AllowGet);
+
         }
 
         public async Task<JsonResult> GetCount()

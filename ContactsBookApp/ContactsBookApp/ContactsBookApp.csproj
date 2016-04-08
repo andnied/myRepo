@@ -203,6 +203,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ContactsHelper.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Migrations\201603231715191_InitialCreate.cs" />
     <Compile Include="Migrations\201603231715191_InitialCreate.Designer.cs">
       <DependentUpon>201603231715191_InitialCreate.cs</DependentUpon>
