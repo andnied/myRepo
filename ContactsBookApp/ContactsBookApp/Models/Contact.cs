@@ -37,6 +37,7 @@ namespace ContactsBookApp.Models
         [Display(Name = "Zip Code: ")]
         public string Zip { get; set; }
         public bool IsFriend { get; set; }
+        public int Value { get; set; }
         public virtual ApplicationUser User { get; set; }
         public string UserId { get; set; }
     }

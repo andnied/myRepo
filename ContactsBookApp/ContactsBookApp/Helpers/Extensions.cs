@@ -15,7 +15,7 @@ namespace ContactsBookApp.Helpers
             var parameter = Expression.Parameter(type, "p");
             var propertyAccess = Expression.MakeMemberAccess(parameter, property);
             var orderByExp = Expression.Lambda(propertyAccess, parameter);
-            MethodCallExpression resultExp = Expression.Call(typeof(Queryable), Convert.ToInt32(values[0]) == 0 ? "OrderBy" : "OrderByDesc", new Type[] { type, property.PropertyType }, source.Expression, Expression.Quote(orderByExp));
+            MethodCallExpression resultExp = Expression.Call(typeof(Queryable), Convert.ToInt32(values[0]) == 0 ? "OrderBy" : "OrderByDescending", new Type[] { type, property.PropertyType }, source.Expression, Expression.Quote(orderByExp));
 
             return (IOrderedQueryable<T>)source.Provider.CreateQuery<T>(resultExp);
         }
