@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BazaMvp", "BazaMvp\BazaMvp.csproj", "{D6238B91-105B-4B7A-9B84-01C0DFB13CBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BazaIF", "BazaIF\BazaIF.csproj", "{FE7ACA98-3351-48D3-A7CB-0B18CF384A6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6238B91-105B-4B7A-9B84-01C0DFB13CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6238B91-105B-4B7A-9B84-01C0DFB13CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6238B91-105B-4B7A-9B84-01C0DFB13CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6238B91-105B-4B7A-9B84-01C0DFB13CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7ACA98-3351-48D3-A7CB-0B18CF384A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7ACA98-3351-48D3-A7CB-0B18CF384A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7ACA98-3351-48D3-A7CB-0B18CF384A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7ACA98-3351-48D3-A7CB-0B18CF384A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
