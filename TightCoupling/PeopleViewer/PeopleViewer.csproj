@@ -101,6 +101,10 @@
       <Project>{9a15c37c-4143-4d18-95de-930f91976f77}</Project>
       <Name>PeopleViewer.View</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PersonRepository.Caching\PersonRepository.Caching.csproj">
+      <Project>{b733988b-8db1-4008-80be-011eab0bc59a}</Project>
+      <Name>PersonRepository.Caching</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PersonRepository.CSV\PersonRepository.CSV.csproj">
       <Project>{22d242eb-8113-49e3-8cc9-03a41e3b185e}</Project>
       <Name>PersonRepository.CSV</Name>

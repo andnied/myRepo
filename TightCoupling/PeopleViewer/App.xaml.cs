@@ -1,4 +1,6 @@
-﻿using PersonRepository.CSV;
+﻿using PeopleViewer.Presentation;
+using PersonRepository.Caching;
+using PersonRepository.CSV;
 using PersonRepository.Service;
 using System.Windows;
 
@@ -15,9 +17,10 @@ namespace PeopleViewer
 
         private static void ComposeObjects()
         {
-            Current.MainWindow = new PeopleViewerWindow(
-                new Presentation.PeopleViewerViewModel(
-                    new CSVRepository()));
+            var repo = new CachingRepository(new CSVRepository());
+            var peopleVM = new PeopleViewerViewModel(repo);
+
+            Current.MainWindow = new PeopleViewerWindow(peopleVM);
             Current.MainWindow.Title = "Loose Coupling App";
         }
     }
