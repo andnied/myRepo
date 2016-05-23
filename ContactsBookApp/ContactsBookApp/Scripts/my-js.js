@@ -7,6 +7,7 @@ $(document).ready(function () {
     currentPage = 1;
 
     LoadData();
+
     $("#newContact").click(function () {
         OpenPopUp("/contacts/save");
     });
@@ -38,6 +39,19 @@ $(document).ready(function () {
         lastVal = val;
         currentPage = 1;
         LoadData(currentPage, val, ascDesc);
+    });
+
+    $("#search").autocomplete({
+        source: function (request, response) {
+            $.get('/api/contacts', { term: request.term }, function (data) {
+                response($.map(data, function (item) {
+                    return { label: item.FirstName, value: item.FirstName };
+                }))
+            }, 'json')
+        },
+        select: function (event, selected) {
+            alert('Selected ' + selected.item.value);
+        }
     });
 });
 
@@ -148,5 +162,5 @@ function DeleteContact() {
             alert(respond.message);
             return false;
         }
-    }, 'json');
+    });
 }

@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using PeopleViewer.SharedObjects;
 using PersonRepository.Interface;
+using PersonRepository.Service;
+using PersonRepository.Service.MyService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,17 +27,18 @@ namespace PeopleRepository.Service.Test
                 new Person { FirstName = "bf", LastName = "bl", Rating = 1, StartDate = DateTime.UtcNow }
             };
 
-            var mock = new Mock<IPersonRepository>();
+            var mock = new Mock<IPersonService>();
             mock.Setup(r => r.GetPeople()).Returns(ppl);
             mock.Setup(r => r.AddPerson(It.IsAny<Person>())).Callback((Person p) => ppl.Add(p));
 
             var container = new UnityContainer();
-            container.RegisterInstance<IPersonRepository>(mock.Object);
-            _repo = container.Resolve<IPersonRepository>();
+            container.RegisterInstance<IPersonService>(mock.Object);
+            container.RegisterType<ServiceRepository>(new InjectionProperty("ServiceProxy"));
+            _repo = container.Resolve<ServiceRepository>();
         }
 
         [TestMethod]
-        public void GetPeople_OnCall_ReturnsAll()
+        public void UnityGetPeople_OnCall_ReturnsAll()
         {
             var test = _repo.GetPeople();
 
@@ -43,7 +46,7 @@ namespace PeopleRepository.Service.Test
         }
 
         [TestMethod]
-        public void AddPerson_OnCall_CountIncremented()
+        public void UnityAddPerson_OnCall_CountIncremented()
         {
             var startCount = _repo.GetPeople().Count();
             _repo.AddPerson(new Person { FirstName = "cf", LastName = "cl", Rating = 2, StartDate = DateTime.UtcNow });
