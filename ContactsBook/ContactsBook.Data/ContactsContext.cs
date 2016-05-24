@@ -5,9 +5,9 @@ namespace ContactsBook.Data
     using System.Data.Entity;
     using System.Linq;
 
-    public class ContactsModel : DbContext
+    public class ContactsContext : DbContext
     {
-        public ContactsModel()
+        public ContactsContext()
             : base("name=ContactsModel")
         {
         }

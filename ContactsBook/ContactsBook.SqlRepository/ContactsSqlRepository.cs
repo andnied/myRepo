@@ -6,12 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using ContactsBook.Data.Models;
 using ContactsBook.Data;
+using System.Reflection;
 
 namespace ContactsBook.SqlRepository
 {
     public class ContactsSqlRepository : IContactsRepository
     {
-        private ContactsModel _context = new ContactsModel();
+        private ContactsContext _context;
+
+        public ContactsSqlRepository(Data.ContactsContext context)
+        {
+            _context = context;
+        }
 
         public IEnumerable<Contact> GetAll()
         {
@@ -40,15 +46,25 @@ namespace ContactsBook.SqlRepository
 
             //TODO: if == null
 
-            //foreach (var prop in collection)
-            //{
+            foreach (var prop in contact.GetType().GetProperties())
+            {
+                if (prop.Name != "Id")
+                    toBeUpdated.GetType().GetProperty(prop.Name).GetValue(contact);
+            }
 
-            //}
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var toBeDeleted = (from c in _context.Contacts
+                               where c.Id == id
+                               select c).FirstOrDefault();
+
+            //TODO: if == null
+
+            _context.Contacts.Remove(toBeDeleted);
+            _context.SaveChanges();
         }
 
         #region IDisposable

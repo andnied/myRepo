@@ -6,14 +6,14 @@ namespace ContactsBook.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ContactsBook.Data.ContactsModel>
+    internal sealed class Configuration : DbMigrationsConfiguration<ContactsBook.Data.ContactsContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(ContactsBook.Data.ContactsModel context)
+        protected override void Seed(ContactsBook.Data.ContactsContext context)
         {
             context.Contacts.AddOrUpdate(c => c.Id,
                 new Contact { FirstName = "John", LastName = "Doe", Email = "johndoe@gmail.com" },

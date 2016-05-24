@@ -25,9 +25,9 @@ namespace ContactsBook.Controllers
         }
 
         // GET: api/Contacts/5
-        public string Get(int id)
+        public Contact Get(int id)
         {
-            return "value";
+            return _repo.GetById(id);
         }
 
         [HttpPost]
@@ -46,6 +46,7 @@ namespace ContactsBook.Controllers
         // DELETE: api/Contacts/5
         public void Delete(int id)
         {
+            _repo.Delete(id);
         }
     }
 }
