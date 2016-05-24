@@ -15,7 +15,7 @@ namespace ContactsBook.Data.Migrations
 
         protected override void Seed(ContactsBook.Data.ContactsContext context)
         {
-            context.Contacts.AddOrUpdate(c => c.Id,
+            context.Contacts.AddOrUpdate(c => c.FirstName,
                 new Contact { FirstName = "John", LastName = "Doe", Email = "johndoe@gmail.com" },
                 new Contact { FirstName = "Andrew", LastName = "Smith", Email = "andrewsmith@gmail.com" },
                 new Contact { FirstName = "Kate", LastName = "Morgan", Address = "abc street 5" },

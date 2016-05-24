@@ -19,15 +19,44 @@ namespace ContactsBook.Controllers
         }
 
         // GET: api/Contacts
-        public IEnumerable<Contact> Get()
+        public HttpResponseMessage Get()
         {
-            return _repo.GetAll();
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, _repo.GetAll());
+            }
+            catch
+            {
+                //TODO: log error
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Items not found.");
+            }
         }
 
         // GET: api/Contacts/5
-        public Contact Get(int id)
+        public HttpResponseMessage Get(int id)
         {
-            return _repo.GetById(id);
+            try
+            {
+                var contact = _repo.GetById(id);
+
+                return contact == null ?
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item not found.") :
+                    Request.CreateResponse(HttpStatusCode.OK, contact);
+            }
+            catch 
+            {
+                //TODO: log error
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item not found.");
+            }
+        }
+
+        public HttpResponseMessage Get(string value)
+        {
+            var contact = _repo.GetByText(value);
+
+            return contact == null ?
+                Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item not found.") :
+                Request.CreateResponse(HttpStatusCode.OK, contact);
         }
 
         [HttpPost]

@@ -32,6 +32,11 @@ namespace ContactsBook.SqlRepository
                     select c).FirstOrDefault();
         }
 
+        public Contact GetByText(string text)
+        {
+            return null;
+        }
+
         public void Add(Contact contact)
         {
             _context.Contacts.Add(contact);

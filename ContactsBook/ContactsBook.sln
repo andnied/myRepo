@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsBook.Interface", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsBook.SqlRepository", "ContactsBook.SqlRepository\ContactsBook.SqlRepository.csproj", "{CC88EEEF-06CC-4E5C-9A2A-75FE9B8EB278}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsBook.Client", "ContactsBook.Client\ContactsBook.Client.csproj", "{C1EC2422-B9E5-43BF-A524-AE21EF997332}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{CC88EEEF-06CC-4E5C-9A2A-75FE9B8EB278}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC88EEEF-06CC-4E5C-9A2A-75FE9B8EB278}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC88EEEF-06CC-4E5C-9A2A-75FE9B8EB278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1EC2422-B9E5-43BF-A524-AE21EF997332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1EC2422-B9E5-43BF-A524-AE21EF997332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1EC2422-B9E5-43BF-A524-AE21EF997332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1EC2422-B9E5-43BF-A524-AE21EF997332}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
