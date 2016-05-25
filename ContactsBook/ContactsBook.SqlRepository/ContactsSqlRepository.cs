@@ -37,16 +37,21 @@ namespace ContactsBook.SqlRepository
             return null;
         }
 
+        public bool ContactExists(int id)
+        {
+            return _context.Contacts.Any(c => c.Id == id);
+        }
+
         public void Add(Contact contact)
         {
             _context.Contacts.Add(contact);
             _context.SaveChanges();
         }
 
-        public void Update(Contact contact)
+        public void Update(int id, Contact contact)
         {
             var toBeUpdated = (from c in _context.Contacts
-                               where c.Id == contact.Id
+                               where c.Id == id
                                select c).FirstOrDefault();
 
             //TODO: if == null

@@ -43,19 +43,19 @@ namespace ContactsBook.Tests
         }
 
         [TestMethod]
-        public void GetAllReturnsCount()
+        public void SqlRepositoryGetAllReturnsCount()
         {
             Assert.AreEqual(4, _repo.GetAll().Count());
         }
 
         [TestMethod]
-        public void GetByIdReturnsContact()
+        public void SqlRepositoryGetByIdReturnsContact()
         {
             Assert.IsNotNull(_repo.GetById(1));
         }
 
         [TestMethod]
-        public void AddIncrementsCount()
+        public void SqlRepositoryAddIncrementsCount()
         {
             var startingCount = _repo.GetAll().Count();
             var toBeAdded = new Contact { Id = 5, FirstName = "Artur", LastName = "Kor", Phone = "000 000 000" };
@@ -65,19 +65,19 @@ namespace ContactsBook.Tests
         }
 
         [TestMethod]
-        public void UpdateChangesEntity()
+        public void SqlRepositoryUpdateChangesEntity()
         {
             var contact = _repo.GetById(1);
             Assert.IsNotNull(contact);
 
             contact.FirstName = "test";
-            _repo.Update(contact);
+            _repo.Update(1, contact);
 
             Assert.AreEqual(_repo.GetById(1).FirstName, "test");
         }
 
         [TestMethod]
-        public void DeleteDecrementsCount()
+        public void SqlRepositoryDeleteDecrementsCount()
         {
             var startingCount = _repo.GetAll().Count();
             _repo.Delete(1);

@@ -32,6 +32,8 @@ namespace ContactsBook.Tests
 
             var mock = new Mock<IContactsRepository>();
             mock.Setup(m => m.GetAll()).Returns(contacts);
+            mock.Setup(m => m.GetById(It.IsAny<int>())).Returns((int id) => contacts.FirstOrDefault(c => c.Id == id));
+            mock.Setup(m => m.Add(It.IsAny<Contact>())).Callback<Contact>(contacts.Add);
 
             _controller = new ContactsController(mock.Object)
             {
@@ -53,9 +55,41 @@ namespace ContactsBook.Tests
         }
 
         [TestMethod]
-        public void ControllerGetContactByTextReturnsRecord()
+        public void ControllerGetByIdReturnsContact()
         {
-            var response = _controller.Get("mi");
+            var response = _controller.Get(1);
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+
+            var result = response.Content.ReadAsAsync<Contact>().Result;
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Id);
+        }
+
+        [TestMethod]
+        public void ControllerAddContactIncrementsCount()
+        {
+            var toBeAdded = new Contact
+            {
+                FirstName = "Artur", LastName = "Tester", Email = "fake@gmail.com"
+            };
+
+            var response = _controller.Get();
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var startingCount = response.Content.ReadAsAsync<IEnumerable<Contact>>().Result.Count();
+
+            response = _controller.Post(toBeAdded);
+
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+
+            response = _controller.Get();
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var thenCount = response.Content.ReadAsAsync<IEnumerable<Contact>>().Result.Count();
+
+            Assert.AreEqual(startingCount + 1, thenCount);
         }
     }
 }

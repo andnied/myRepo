@@ -52,32 +52,90 @@ namespace ContactsBook.Controllers
 
         public HttpResponseMessage Get(string value)
         {
-            var contact = _repo.GetByText(value);
+            try
+            {
+                var contact = _repo.GetByText(value);
 
-            return contact == null ?
-                Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item not found.") :
-                Request.CreateResponse(HttpStatusCode.OK, contact);
+                return contact == null ?
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item not found.") :
+                    Request.CreateResponse(HttpStatusCode.OK, contact);
+            }
+            catch
+            {
+                //TODO: log error
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item not found.");
+            }
         }
 
         [HttpPost]
-        //[Route("api/Contacts/contact")]
         // POST: api/Contacts
-        public void Post([FromBody]Contact contact)
+        public HttpResponseMessage Post([FromBody]Contact contact)
         {
-            
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _repo.Add(contact);
+                    return Request.CreateResponse(HttpStatusCode.Created);
+                }
+                else
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Object invalid.");
+            }
+            catch
+            {
+                //TODO: log error
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Contact could not be added.");
+            }
         }
 
-        [HttpPut]
+        [HttpPost]
+        [Route("api/contacts/update/{id}")]
         // PUT: api/Contacts/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Post(int id, [FromBody]Contact contact)
         {
+            try
+            {
+                if (id < 1)
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Id.");
+
+                if (!(_repo.ContactExists(id)))
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Contact does not exist.");
+
+                if (ModelState.IsValid)
+                {
+                    _repo.Update(id, contact);
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                else
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Object invalid.");
+            }
+            catch
+            {
+                //TODO: log error
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Contact could not be updated.");
+            }
         }
 
         [HttpPost]
         // DELETE: api/Contacts/5
-        public void Post(int id)
+        public HttpResponseMessage Post(int id)
         {
-            //_repo.Delete(id);
+            try
+            {
+                if (id < 1)
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Id.");
+
+                if (!(_repo.ContactExists(id)))
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Contact does not exist.");
+
+                _repo.Delete(id);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch
+            {
+                //TODO: log error
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Contact could not be deleted.");
+            }
         }
     }
 }
