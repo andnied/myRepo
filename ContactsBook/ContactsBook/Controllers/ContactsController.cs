@@ -60,9 +60,11 @@ namespace ContactsBook.Controllers
         }
 
         [HttpPost]
+        //[Route("api/Contacts/contact")]
         // POST: api/Contacts
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Contact contact)
         {
+            
         }
 
         [HttpPut]
@@ -71,11 +73,11 @@ namespace ContactsBook.Controllers
         {
         }
 
-        [HttpDelete]
+        [HttpPost]
         // DELETE: api/Contacts/5
-        public void Delete(int id)
+        public void Post(int id)
         {
-            _repo.Delete(id);
+            //_repo.Delete(id);
         }
     }
 }
