@@ -59,9 +59,14 @@ namespace ContactsBook.SqlRepository
             foreach (var prop in contact.GetType().GetProperties())
             {
                 if (prop.Name != "Id")
-                    toBeUpdated.GetType().GetProperty(prop.Name).GetValue(contact);
+                {
+                    var value = toBeUpdated.GetType().GetProperty(prop.Name).GetValue(contact);
+                    toBeUpdated.GetType().GetProperty(prop.Name).SetValue(toBeUpdated, value);
+                }
             }
 
+            _context.Contacts.Attach(toBeUpdated);
+            _context.Entry<Contact>(toBeUpdated).State = System.Data.Entity.EntityState.Modified;
             _context.SaveChanges();
         }
 

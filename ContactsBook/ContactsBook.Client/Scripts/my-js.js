@@ -13,25 +13,45 @@ cbApp.controller('cbCtrl', function ($scope, $http) {
     }
 
     function addContact(contact) {
-        $.post(
-            'http://localhost:50523/api/contacts/',
-            contact,
-            function (response) {
-                //alert('ok');
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:50523/api/contacts/',
+            data: contact,
+            success: function (response) {
+                
             },
-            'json'
-            );
+            function(jqXHR, textStatus, errorThrown) {
+                alert("Error, status = " + textStatus + ", " +
+                      "error thrown: " + errorThrown
+                );
+            }
+        });
     }
 
     function updateContact(id, contact) {
-        $.post(
-            'http://localhost:50523/api/contacts/update/' + id,
-            contact,
-            function (response) {
-                //alert('ok');
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:50523/api/contacts/update/' + id,
+            data: contact,
+            success: function (response) {
+
             },
-            'json'
-            );
+            function(jqXHR, textStatus, errorThrown) {
+                alert("Error, status = " + textStatus + ", " +
+                      "error thrown: " + errorThrown
+                );
+            }
+        });
+
+        //$http.post('http://localhost:50523/api/contacts/update/' + id, contact).success(function (response) {
+        //    var index = getSelectedIndex(id);
+
+        //    $scope.result[index].FirstName = contact.FirstName;
+        //    $scope.result[index].LastName = contact.LastName;
+        //    $scope.result[index].Email = contact.Email;
+        //    $scope.result[index].Address = contact.Address;
+        //    $scope.result[index].Phone = contact.Phone;
+        //})
     }
 
     $http.get('http://localhost:50523/api/contacts/').success(function (response) {
@@ -68,6 +88,8 @@ cbApp.controller('cbCtrl', function ($scope, $http) {
         };
 
         addContact(contact);
+
+        $scope.result.push(contact);
     }
 
     $scope.update = function () {
@@ -81,5 +103,13 @@ cbApp.controller('cbCtrl', function ($scope, $http) {
         };
 
         updateContact($scope.Id, contact);
+
+        var index = getSelectedIndex($scope.Id);
+
+        $scope.result[index].FirstName = contact.FirstName;
+        $scope.result[index].LastName = contact.LastName;
+        $scope.result[index].Email = contact.Email;
+        $scope.result[index].Address = contact.Address;
+        $scope.result[index].Phone = contact.Phone;
     }
 });
