@@ -9,6 +9,9 @@
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body ng-controller="cbCtrl">
+    <input type="text" ng-model="textSearch" />
+    <input type="button" ng-click="search()" value="Search" />
+    <input type="button" ng-click="refresh()" value="Clear" />
     <table class="table-bordered">
         <tr>
             <!--<th>Id</th>-->

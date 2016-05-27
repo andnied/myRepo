@@ -11,7 +11,7 @@ namespace ContactsBook.Interface
     {
         IEnumerable<Contact> GetAll();
         Contact GetById(int id);
-        Contact GetByText(string text);
+        IEnumerable<Contact> GetByText(string text);
         bool ContactExists(int id);
         void Add(Contact contact);
         void Update(int id, Contact contact);

@@ -56,11 +56,11 @@ namespace ContactsBook.Controllers
             {
                 var contact = _repo.GetByText(value);
 
-                return contact == null ?
+                return contact.Count() == 0 ?
                     Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item not found.") :
                     Request.CreateResponse(HttpStatusCode.OK, contact);
             }
-            catch
+            catch (Exception ex)
             {
                 //TODO: log error
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Item not found.");

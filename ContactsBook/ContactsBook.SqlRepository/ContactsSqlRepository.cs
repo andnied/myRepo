@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using ContactsBook.Data.Models;
 using ContactsBook.Data;
 using System.Reflection;
+using ContactsBook.Data.Utils;
+using System.Linq.Expressions;
 
 namespace ContactsBook.SqlRepository
 {
@@ -32,9 +34,20 @@ namespace ContactsBook.SqlRepository
                     select c).FirstOrDefault();
         }
 
-        public Contact GetByText(string text)
+        public IEnumerable<Contact> GetByText(string text)
         {
-            return null;
+            var records = new List<Contact>();
+            var type = typeof(Contact);
+
+            foreach (var property in typeof(Contact).GetProperties().Where(p => p.Name != "Id" && p.PropertyType == typeof(string)))
+            {
+                var conditionExpression = Helper.GetExpression<Contact>(property.Name, text);
+                var call = Expression.Call(typeof(Queryable), "Where", new Type[] { type }, (_context.Contacts.AsQueryable()).Expression, Expression.Quote(conditionExpression));
+                var result = (_context.Contacts.AsQueryable()).Provider.CreateQuery(call);
+                records.AddRange(result.Cast<Contact>().ToList());
+            }
+
+            return records.Distinct();
         }
 
         public bool ContactExists(int id)

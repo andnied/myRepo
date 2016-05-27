@@ -58,6 +58,20 @@ cbApp.controller('cbCtrl', function ($scope, $http) {
         $scope.result = response;
     });
 
+    $scope.search = function () {
+        var text = $scope.textSearch;
+
+        $http.get('http://localhost:50523/api/contacts/?value=' + text).success(function (response) {
+            $scope.result = response;
+        });
+    }
+
+    $scope.refresh = function () {
+        $http.get('http://localhost:50523/api/contacts/').success(function (response) {
+            $scope.result = response;
+        });
+    }
+
     $scope.delete = function (id) {
         $http.post('http://localhost:50523/api/contacts/' + id).success(function (response) {
             var index = getSelectedIndex(id);
