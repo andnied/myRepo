@@ -1,4 +1,5 @@
 ﻿using CarRental.Business.Entities;
+using CarRental.Data.Contracts.Repository_Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.Data.Repositories
 {
-    public class AccountRepository : DataRepositoryBase<Account>
+    public class AccountRepository : DataRepositoryBase<Account>, IAccountRepository
     {
         protected override Account AddEntity(CarRentalContext context, Account entity)
         {
@@ -26,8 +27,15 @@ namespace CarRental.Data.Repositories
 
         protected override Account UpdateEntity(CarRentalContext context, Account entity)
         {
-            context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
-            return entity;   
+            return GetEntity(context, entity.AccountId);  
+        }
+
+        public Account GetByLogin(string login)
+        {
+            using (var context = new CarRentalContext())
+            {
+                return context.AccountSet.FirstOrDefault(a => a.LoginEmail == login);
+            }
         }
     }
 }
