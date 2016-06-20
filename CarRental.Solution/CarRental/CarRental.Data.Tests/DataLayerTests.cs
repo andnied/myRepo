@@ -36,7 +36,7 @@ namespace CarRental.Data.Tests
         }
 
         [TestMethod]
-        public void MyTestMethod()
+        public void CarRepo_gets_2_cars()
         {
             var test = _carRepoTestClass.GetCars();
 
