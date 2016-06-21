@@ -21,9 +21,9 @@ namespace CarRental.Business.Services
             _factory = factory;
         }
 
-        public IEnumerable<Car> GetAllCars()
+        public IEnumerable<Car> GetAllRentedCars()
         {
-            //var cars = _factory.GetRepo<ICarRepository>().Get();
+            
             return null;
         }
 

@@ -10,10 +10,10 @@ namespace CarRental.Data
 {
     public class CarRentalContext : DbContext
     {
-        public DbSet<Account> AccountSet { get; set; }
-        public DbSet<Car> CarSet { get; set; }
-        public DbSet<Rental> RentalSet { get; set; }
-        public DbSet<Reservation> ReservationSet { get; set; }
+        public virtual DbSet<Account> AccountSet { get; set; }
+        public virtual DbSet<Car> CarSet { get; set; }
+        public virtual DbSet<Rental> RentalSet { get; set; }
+        public virtual DbSet<Reservation> ReservationSet { get; set; }
 
         public CarRentalContext()
             : base("name=CarRental")

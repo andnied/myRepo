@@ -15,6 +15,6 @@ namespace CarRental.Business.Contracts
         Car GetCar(int id);
 
         [OperationContract]
-        IEnumerable<Car> GetAllCars();
+        IEnumerable<Car> GetAllRentedCars();
     }
 }

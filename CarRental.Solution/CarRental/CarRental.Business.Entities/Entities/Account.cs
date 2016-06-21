@@ -42,6 +42,9 @@ namespace CarRental.Business.Entities
         [DataMember]
         public string ExpDate { get; set; }
 
+        public virtual ICollection<Rental> Rentals { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
+
         public int EntityId { get { return AccountId; } }
     }
 }

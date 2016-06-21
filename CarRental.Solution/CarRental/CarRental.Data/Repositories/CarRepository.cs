@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using CarRental.Business.Entities;
 using CarRental.Data.Contracts;
 using Core.Common.Extensions;
@@ -9,6 +10,18 @@ namespace CarRental.Data
 {
     public class CarRepository : DataRepositoryBase<Car>, ICarRepository
     {
+        public CarRepository()
+            : base()
+        {
+
+        }
+
+        public CarRepository(DbContext context)
+            : base(context)
+        {
+
+        }
+
         protected override Car AddEntity(CarRentalContext entityContext, Car entity)
         {
             return entityContext.CarSet.Add(entity);
@@ -36,6 +49,16 @@ namespace CarRental.Data
             var results = query.FirstOrDefault();
 
             return results;
+        }
+
+        public IEnumerable<Car> GetRentedCars()
+        {
+            using (var context = (CarRentalContext)_injectedContext ?? new CarRentalContext())
+            {
+                //var cars = context.RentalSet.Include(r => r.Car).Where(r => r.DateReturned == null).Select(r => r.Car.FirstOrDefault());
+                var cars = context.CarSet.Where(c => c.Rentals.Any(r => r.DateReturned == null));
+                return cars.ToList();
+            }
         }
     }
 }

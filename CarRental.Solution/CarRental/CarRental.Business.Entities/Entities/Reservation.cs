@@ -2,6 +2,7 @@
 using Core.Common.Core;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -21,6 +22,9 @@ namespace CarRental.Business.Entities
         public DateTime RentalDate { get; set; }
 
         public DateTime ReturnDate { get; set; }
+
+        public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<Car> Car { get; set; }
 
         public int EntityId { get { return ReservationId; } }
 
