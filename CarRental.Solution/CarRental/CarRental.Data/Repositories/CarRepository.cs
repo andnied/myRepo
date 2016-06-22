@@ -55,8 +55,22 @@ namespace CarRental.Data
         {
             using (var context = (CarRentalContext)_injectedContext ?? new CarRentalContext())
             {
-                //var cars = context.RentalSet.Include(r => r.Car).Where(r => r.DateReturned == null).Select(r => r.Car.FirstOrDefault());
-                var cars = context.CarSet.Where(c => c.Rentals.Any(r => r.DateReturned == null));
+                var cars = context.CarSet.Include(c => c.Rentals)
+                    .Where(c => c.Rentals.Any(r => r.DateReturned == null));
+                return cars.ToList();
+            }
+        }
+        //TODO: to be tested!!
+        public IEnumerable<Car> GetAvailableCars(DateTime pickupDate, DateTime returnDate)
+        {
+            using (var context = (CarRentalContext)_injectedContext ?? new CarRentalContext())
+            {
+                var cars = context.CarSet
+                    .Include(c => c.Rentals)
+                    .Include(c => c.Reservations)
+                    .Where(c => c.Rentals.Any(r => r.DateDue < pickupDate) && 
+                        c.Reservations.Any(r => r.RentalDate > pickupDate || r.ReturnDate < pickupDate &&
+                            r.ReturnDate > returnDate || r.ReturnDate < returnDate));
                 return cars.ToList();
             }
         }

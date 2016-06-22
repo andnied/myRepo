@@ -48,6 +48,7 @@ namespace CarRental.Business.Services
             });
         }
 
+        [OperationBehavior(TransactionScopeRequired = true)]
         public Car UpdateCar(Car car)
         {
             return ExecuteFaultHandledOperations(() =>
@@ -59,6 +60,7 @@ namespace CarRental.Business.Services
             });
         }
 
+        [OperationBehavior(TransactionScopeRequired = true)]
         public void DeleteCar(int id)
         {
             ExecuteFaultHandledOperations(() =>
