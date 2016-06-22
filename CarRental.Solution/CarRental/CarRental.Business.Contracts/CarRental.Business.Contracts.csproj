@@ -46,6 +46,10 @@
     <Compile Include="Service Contracts\IInventoryService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.Common\Core.Common.csproj">
+      <Project>{9F9B8822-B7CE-4DF0-9BA3-0809ECC2A39C}</Project>
+      <Name>Core.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CarRental.Business.Entities\CarRental.Business.Entities.csproj">
       <Project>{357990A0-B52E-43B4-BC60-933BD19E383F}</Project>
       <Name>CarRental.Business.Entities</Name>

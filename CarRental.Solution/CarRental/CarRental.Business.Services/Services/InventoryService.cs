@@ -12,24 +12,31 @@ using System.ServiceModel;
 
 namespace CarRental.Business.Services
 {
-    public class InventoryService : IInventoryService
+    [ServiceBehavior(
+        InstanceContextMode = InstanceContextMode.PerCall,
+        ConcurrencyMode = ConcurrencyMode.Multiple,
+        ReleaseServiceInstanceOnTransactionComplete = false)]
+    public class InventoryService : ServiceBase, IInventoryService
     {
-        private readonly IDataRepositoryFactory _factory;
-
         public InventoryService(IDataRepositoryFactory factory)
-        {
-            _factory = factory;
-        }
+            : base(factory)
+        { }
 
         public IEnumerable<Car> GetAllRentedCars()
         {
-            
-            return null;
+            return ExecuteFaultHandledOperations(() =>
+            {
+                var cars = _factory.GetRepo<ICarRepository>().GetRentedCars();
+
+                cars.ToList().ForEach(c => c.CurrentlyRented = true);
+
+                return cars;
+            });
         }
 
         public Car GetCar(int id)
         {
-            try
+            return ExecuteFaultHandledOperations(() =>
             {
                 var car = _factory.GetRepo<ICarRepository>().Get(id);
 
@@ -38,15 +45,31 @@ namespace CarRental.Business.Services
 
                 var ex = new NotFoundException(string.Format("Car with id = {0} not found.", id));
                 throw new FaultException<NotFoundException>(ex, ex.Message);
-            }
-            catch (FaultException ex)
+            });
+        }
+
+        public Car UpdateCar(Car car)
+        {
+            return ExecuteFaultHandledOperations(() =>
             {
-                throw ex;
-            }
-            catch (Exception ex)
+                if (car.CarId == 0)
+                    return _factory.GetRepo<ICarRepository>().Add(car);
+                else
+                    return _factory.GetRepo<ICarRepository>().Update(car);
+            });
+        }
+
+        public void DeleteCar(int id)
+        {
+            ExecuteFaultHandledOperations(() =>
             {
-                throw new FaultException(ex.Message);
-            }
+                _factory.GetRepo<ICarRepository>().Remove(id);
+            });
+        }
+
+        public IEnumerable<Car> GetAvailableCars(DateTime pickupDate, DateTime returnDate)
+        {
+            throw new NotImplementedException();
         }
     }
 }
