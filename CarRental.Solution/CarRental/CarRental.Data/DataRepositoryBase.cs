@@ -12,16 +12,12 @@ namespace CarRental.Data
     public abstract class DataRepositoryBase<T> : DataRepositoryBase<T, CarRentalContext>
         where T : class, IIdentifiableEntity, new()
     {
-        protected DbContext _injectedContext;
+        protected DataRepositoryBase()
+            : base()
+        { }
 
-        public DataRepositoryBase()
-        {
-
-        }
-
-        public DataRepositoryBase(DbContext context)
-        {
-            _injectedContext = context;
-        }
+        protected DataRepositoryBase(CarRentalContext context)
+            : base(context)
+        { }
     }
 }

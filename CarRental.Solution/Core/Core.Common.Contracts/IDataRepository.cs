@@ -10,7 +10,7 @@ namespace Core.Common.Contracts
     {
     }
 
-    public interface IDataRepository<T> : IDataRepository
+    public interface IDataRepository<T> : IDataRepository, IDisposable
         where T : class, IIdentifiableEntity, new()
     {
         IEnumerable<T> Get();

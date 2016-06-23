@@ -9,6 +9,8 @@ using CarRental.Business.Entities;
 using CarRental.Data.Contracts;
 using Core.Common.Exceptions;
 using System.ServiceModel;
+using System.Security.Permissions;
+using CarRental.Common;
 
 namespace CarRental.Business.Services
 {
@@ -22,6 +24,8 @@ namespace CarRental.Business.Services
             : base(factory)
         { }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Car> GetAllRentedCars()
         {
             return ExecuteFaultHandledOperations(() =>
@@ -34,6 +38,8 @@ namespace CarRental.Business.Services
             });
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public Car GetCar(int id)
         {
             return ExecuteFaultHandledOperations(() =>
@@ -48,6 +54,7 @@ namespace CarRental.Business.Services
             });
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         [OperationBehavior(TransactionScopeRequired = true)]
         public Car UpdateCar(Car car)
         {
@@ -60,6 +67,7 @@ namespace CarRental.Business.Services
             });
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         [OperationBehavior(TransactionScopeRequired = true)]
         public void DeleteCar(int id)
         {
@@ -69,9 +77,14 @@ namespace CarRental.Business.Services
             });
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Car> GetAvailableCars(DateTime pickupDate, DateTime returnDate)
         {
-            throw new NotImplementedException();
+            return ExecuteFaultHandledOperations(() =>
+            {
+                return _factory.GetRepo<ICarRepository>().GetAvailableCars(pickupDate, returnDate);
+            });
         }
     }
 }

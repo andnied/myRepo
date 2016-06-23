@@ -12,15 +12,11 @@ namespace CarRental.Data
     {
         public CarRepository()
             : base()
-        {
+        { }
 
-        }
-
-        public CarRepository(DbContext context)
+        public CarRepository(CarRentalContext context)
             : base(context)
-        {
-
-        }
+        { }
 
         protected override Car AddEntity(CarRentalContext entityContext, Car entity)
         {
@@ -53,26 +49,20 @@ namespace CarRental.Data
 
         public IEnumerable<Car> GetRentedCars()
         {
-            using (var context = (CarRentalContext)_injectedContext ?? new CarRentalContext())
-            {
-                var cars = context.CarSet.Include(c => c.Rentals)
-                    .Where(c => c.Rentals.Any(r => r.DateReturned == null));
-                return cars.ToList();
-            }
+            var cars = _context.CarSet
+                .Where(c => c.Rentals.Any(r => r.DateReturned == null));
+            return cars.ToList();
         }
-        //TODO: to be tested!!
+        
         public IEnumerable<Car> GetAvailableCars(DateTime pickupDate, DateTime returnDate)
         {
-            using (var context = (CarRentalContext)_injectedContext ?? new CarRentalContext())
-            {
-                var cars = context.CarSet
-                    .Include(c => c.Rentals)
-                    .Include(c => c.Reservations)
-                    .Where(c => c.Rentals.Any(r => r.DateDue < pickupDate) && 
-                        c.Reservations.Any(r => r.RentalDate > pickupDate || r.ReturnDate < pickupDate &&
-                            r.ReturnDate > returnDate || r.ReturnDate < returnDate));
-                return cars.ToList();
-            }
+            var cars = _context.CarSet
+                .Where(c => 
+                    c.Rentals.Any(r => r.DateDue < pickupDate) && 
+                    c.Reservations.Any(r => 
+                        (r.RentalDate > pickupDate || r.RentalDate < pickupDate) &&
+                        (r.ReturnDate > returnDate || r.ReturnDate < returnDate)));
+            return cars.ToList();
         }
     }
 }

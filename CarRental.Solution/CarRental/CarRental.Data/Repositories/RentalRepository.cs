@@ -6,10 +6,14 @@ using CarRental.Data.Contracts;
 using Core.Common.Extensions;
 using CarRental.Data.Contracts.DTOs;
 
-namespace CarRental.Data
+namespace CarRental.Data.Repositories
 {
     public class RentalRepository : DataRepositoryBase<Rental>, IRentalRepository
     {
+        protected RentalRepository(CarRentalContext context)
+            : base(context)
+        { }
+
         protected override Rental AddEntity(CarRentalContext entityContext, Rental entity)
         {
             return entityContext.RentalSet.Add(entity);
@@ -41,69 +45,54 @@ namespace CarRental.Data
 
         public IEnumerable<Rental> GetRentalHistoryByCar(int carId)
         {
-            using (CarRentalContext entityContext = new CarRentalContext())
-            {
-                var query = from e in entityContext.RentalSet
-                            where e.CarId == carId
-                            select e;
+            var query = from e in _context.RentalSet
+                        where e.CarId == carId
+                        select e;
 
-                return query.ToList();
-            }
+            return query.ToList();
         }
 
         public Rental GetCurrentRentalByCar(int carId)
         {
-            using (CarRentalContext entityContext = new CarRentalContext())
-            {
-                var query = from e in entityContext.RentalSet
-                            where e.CarId == carId && e.DateReturned == null
-                            select e;
+            var query = from e in _context.RentalSet
+                        where e.CarId == carId && e.DateReturned == null
+                        select e;
 
-                return query.FirstOrDefault();
-            }
+            return query.FirstOrDefault();
         }
 
         public IEnumerable<Rental> GetCurrentlyRentedCars()
         {
-            using (CarRentalContext entityContext = new CarRentalContext())
-            {
-                var query = from e in entityContext.RentalSet
-                            where e.DateReturned == null
-                            select e;
+            var query = from e in _context.RentalSet
+                        where e.DateReturned == null
+                        select e;
 
-                return query.ToList();
-            }
+            return query.ToList();
         }
 
         public IEnumerable<Rental> GetRentalHistoryByAccount(int accountId)
         {
-            using (CarRentalContext entityContext = new CarRentalContext())
-            {
-                var query = from e in entityContext.RentalSet
-                            where e.AccountId == accountId
-                            select e;
+            var query = from e in _context.RentalSet
+                        where e.AccountId == accountId
+                        select e;
 
-                return query.ToList();
-            }
+            return query.ToList();
         }
 
         public IEnumerable<CustomerRentalInfo> GetCurrentCustomerRentalInfo()
         {
-            using (CarRentalContext entityContext = new CarRentalContext())
-            {
-                var query = from r in entityContext.RentalSet
-                            where r.DateReturned == null
-                            join a in entityContext.AccountSet on r.AccountId equals a.AccountId
-                            join c in entityContext.CarSet on r.CarId equals c.CarId
-                            select new CustomerRentalInfo()
-                            {
-                                Customer = a,
-                                Car = c,
-                                Rental = r
-                            };
+            var query = from r in _context.RentalSet
+                        where r.DateReturned == null
+                        join a in _context.AccountSet on r.AccountId equals a.AccountId
+                        join c in _context.CarSet on r.CarId equals c.CarId
+                        select new CustomerRentalInfo()
+                        {
+                            Customer = a,
+                            Car = c,
+                            Rental = r
+                        };
 
-                return query.ToList();
-            }
+            return query.ToList();
         }
     }
 }

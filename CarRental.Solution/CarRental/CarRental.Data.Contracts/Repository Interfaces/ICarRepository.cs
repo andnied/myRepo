@@ -9,5 +9,6 @@ namespace CarRental.Data.Contracts
     public interface ICarRepository : IDataRepository<Car>
     {
         IEnumerable<Car> GetRentedCars();
+        IEnumerable<Car> GetAvailableCars(DateTime pickupDate, DateTime returnDate);
     }
 }

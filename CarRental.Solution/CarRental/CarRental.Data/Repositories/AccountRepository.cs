@@ -10,6 +10,10 @@ namespace CarRental.Data.Repositories
 {
     public class AccountRepository : DataRepositoryBase<Account>, IAccountRepository
     {
+        protected AccountRepository(CarRentalContext context)
+            : base(context)
+        { }
+
         protected override Account AddEntity(CarRentalContext context, Account entity)
         {
             return context.AccountSet.Add(entity);
@@ -32,10 +36,7 @@ namespace CarRental.Data.Repositories
 
         public Account GetByLogin(string login)
         {
-            using (var context = new CarRentalContext())
-            {
-                return context.AccountSet.FirstOrDefault(a => a.LoginEmail == login);
-            }
+            return _context.AccountSet.FirstOrDefault(a => a.LoginEmail == login);
         }
     }
 }

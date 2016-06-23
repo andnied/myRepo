@@ -41,51 +41,42 @@ namespace CarRental.Data
 
         public IEnumerable<CustomerReservationInfo> GetCurrentCustomerReservationInfo()
         {
-            using (CarRentalContext entityContext = new CarRentalContext())
-            {
-                var query = from r in entityContext.ReservationSet
-                            join a in entityContext.AccountSet on r.AccountId equals a.AccountId
-                            join c in entityContext.CarSet on r.CarId equals c.CarId
-                            select new CustomerReservationInfo()
-                            {
-                                Customer = a,
-                                Car = c,
-                                Reservation = r
-                            };
+            var query = from r in _context.ReservationSet
+                        join a in _context.AccountSet on r.AccountId equals a.AccountId
+                        join c in _context.CarSet on r.CarId equals c.CarId
+                        select new CustomerReservationInfo()
+                        {
+                            Customer = a,
+                            Car = c,
+                            Reservation = r
+                        };
 
-                return query.ToList();
-            }
+            return query.ToList();
         }
 
         public IEnumerable<Reservation> GetReservationsByPickupDate(DateTime pickupDate)
         {
-            using (CarRentalContext entityContext = new CarRentalContext())
-            {
-                var query = from r in entityContext.ReservationSet
-                            where r.RentalDate < pickupDate
-                            select r;
+            var query = from r in _context.ReservationSet
+                        where r.RentalDate < pickupDate
+                        select r;
 
-                return query.ToList();
-            }
+            return query.ToList();
         }
 
         public IEnumerable<CustomerReservationInfo> GetCustomerOpenReservationInfo(int accountId)
         {
-            using (CarRentalContext entityContext = new CarRentalContext())
-            {
-                var query = from r in entityContext.ReservationSet
-                            join a in entityContext.AccountSet on r.AccountId equals a.AccountId
-                            join c in entityContext.CarSet on r.CarId equals c.CarId
-                            where r.AccountId == accountId
-                            select new CustomerReservationInfo()
-                            {
-                                Customer = a,
-                                Car = c,
-                                Reservation = r
-                            };
+            var query = from r in _context.ReservationSet
+                        join a in _context.AccountSet on r.AccountId equals a.AccountId
+                        join c in _context.CarSet on r.CarId equals c.CarId
+                        where r.AccountId == accountId
+                        select new CustomerReservationInfo()
+                        {
+                            Customer = a,
+                            Car = c,
+                            Reservation = r
+                        };
 
-                return query.ToList();
-            }
+            return query.ToList();
         }
     }
 }
