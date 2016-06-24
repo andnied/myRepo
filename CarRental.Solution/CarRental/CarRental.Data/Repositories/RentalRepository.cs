@@ -10,7 +10,7 @@ namespace CarRental.Data.Repositories
 {
     public class RentalRepository : DataRepositoryBase<Rental>, IRentalRepository
     {
-        protected RentalRepository(CarRentalContext context)
+        public RentalRepository(CarRentalContext context)
             : base(context)
         { }
 

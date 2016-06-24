@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Core.Common.Exceptions
 {
-    public class NotFoundException : ApplicationException
+    public class CarCurrentlyRentedException : ApplicationException
     {
-        public NotFoundException()
+        public CarCurrentlyRentedException()
             : base()
         { }
 
-        public NotFoundException(string msg)
+        public CarCurrentlyRentedException(string msg)
             : base(msg)
         { }
 
-        public NotFoundException(string msg, Exception inner)
+        public CarCurrentlyRentedException(string msg, Exception inner)
             : base(msg, inner)
         { }
     }

@@ -10,6 +10,10 @@ namespace CarRental.Data
 {
     public class ReservationRepository : DataRepositoryBase<Reservation>, IReservationRepository
     {
+        public ReservationRepository(CarRentalContext context)
+            : base(context)
+        { }
+
         protected override Reservation AddEntity(CarRentalContext entityContext, Reservation entity)
         {
             return entityContext.ReservationSet.Add(entity);

@@ -1,5 +1,7 @@
 ﻿using CarRental.Business.Entities;
 using CarRental.Data.Contracts;
+using Core.Common.Contracts;
+using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -49,7 +51,14 @@ namespace CarRental.Data.Tests
             mockContext.Setup(c => c.CarSet).Returns(mockCars.Object);
             mockContext.Setup(c => c.RentalSet).Returns(mockRentals.Object);
 
-            _carRepo = new CarRepository(mockContext.Object);
+            var container = new UnityContainer();
+            container.RegisterInstance(typeof(CarRentalContext), mockContext.Object);
+            container.RegisterInstance(typeof(UnityContainer), container);
+            container.RegisterType<ICarRepository, CarRepository>();
+            container.RegisterType<IDataRepositoryFactory, DataRepositoryFactory>();
+
+            var factory = container.Resolve<IDataRepositoryFactory>();
+            _carRepo = factory.GetRepo<ICarRepository>();
         }
 
         [TestMethod]

@@ -10,10 +10,6 @@ namespace CarRental.Data
 {
     public class CarRepository : DataRepositoryBase<Car>, ICarRepository
     {
-        public CarRepository()
-            : base()
-        { }
-
         public CarRepository(CarRentalContext context)
             : base(context)
         { }

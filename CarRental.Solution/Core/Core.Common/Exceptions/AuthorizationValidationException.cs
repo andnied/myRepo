@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Core.Common.Exceptions
 {
-    public class NotFoundException : ApplicationException
+    public class AuthorizationValidationException : ApplicationException
     {
-        public NotFoundException()
+        public AuthorizationValidationException()
             : base()
         { }
 
-        public NotFoundException(string msg)
+        public AuthorizationValidationException(string msg)
             : base(msg)
         { }
 
-        public NotFoundException(string msg, Exception inner)
+        public AuthorizationValidationException(string msg, Exception inner)
             : base(msg, inner)
         { }
     }
