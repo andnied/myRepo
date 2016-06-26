@@ -1,6 +1,8 @@
 ﻿using CarRental.Business.Entities;
 using CarRental.Data.Contracts;
 using Core.Common.Contracts;
+using Core.Common.Exceptions;
+using Core.Common.Utils;
 using Microsoft.Practices.Unity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -8,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,6 +70,15 @@ namespace CarRental.Data.Tests
             var test = _carRepo.GetRentedCars();
 
             Assert.AreEqual(test.Count(), 1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FaultException<NotFoundException>))]
+        public void MyTestMethod2()
+        {
+            var test = _carRepo.Get(3);
+
+            Guard.ThrowIf<NotFoundException>(test == null, "Car with id = {0} not found.", "3");
         }
     }
 }

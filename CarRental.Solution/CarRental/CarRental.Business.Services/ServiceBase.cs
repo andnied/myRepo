@@ -3,6 +3,7 @@ using CarRental.Common;
 using CarRental.Data.Contracts.Repository_Interfaces;
 using Core.Common.Contracts;
 using Core.Common.Exceptions;
+using Core.Common.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +32,8 @@ namespace CarRental.Business.Services
             if (!string.IsNullOrWhiteSpace(_loginName))
             {
                 _account = _factory.GetRepo<IAccountRepository>().GetByLogin(_loginName);
-
-                if (_account == null)
-                {
-                    var ex = new NotFoundException(string.Format(@"Cannot find account for login name {0} to use for security trimming.", _loginName));
-                    throw new FaultException<NotFoundException>(ex, ex.Message);
-                }
+                
+                Guard.ThrowIf<NotFoundException>(_account == null, "Cannot find account for login name {0} to use for security trimming.", _loginName);
             }
 
             _factory = factory;
@@ -85,8 +82,7 @@ namespace CarRental.Business.Services
             if (_loginName == string.Empty || entity.OwnerAccountId == _account.AccountId)
                 return;
 
-            var ex = new AuthorizationValidationException(@"Attempt to access a secure record.");
-            throw new FaultException<AuthorizationValidationException>(ex, ex.Message);
+            Guard.ThrowIf<AuthorizationValidationException>(true, "Attempt to access a secure record.");
         }
     }
 }

@@ -11,6 +11,7 @@ using Core.Common.Exceptions;
 using System.ServiceModel;
 using System.Security.Permissions;
 using CarRental.Common;
+using Core.Common.Utils;
 
 namespace CarRental.Business.Services
 {
@@ -46,11 +47,9 @@ namespace CarRental.Business.Services
             {
                 var car = _factory.GetRepo<ICarRepository>().Get(id);
 
-                if (car != null)
-                    return car;
+                Guard.ThrowIf<NotFoundException>(car == null, "Car with id = {0} not found.", id.ToString());
 
-                var ex = new NotFoundException(string.Format("Car with id = {0} not found.", id));
-                throw new FaultException<NotFoundException>(ex, ex.Message);
+                return car;
             });
         }
 

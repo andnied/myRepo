@@ -9,8 +9,10 @@ using CarRental.Business.Entities;
 using System.ServiceModel;
 using CarRental.Data.Repositories;
 using Core.Common.Exceptions;
-using CarRental.Common;
 using System.Security.Permissions;
+using CarRental.Business.Contracts.Data_Contracts;
+using CarRental.Common;
+using Core.Common.Utils;
 
 namespace CarRental.Business.Services.Services
 {
@@ -23,6 +25,46 @@ namespace CarRental.Business.Services.Services
             : base(factory)
         { }
 
+        public void AcceptCarReturn(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CancelReservation(int reservationId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ExecuteRentalFromReservation(int reservationId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CustomerRentalData[] GetCurrentRentals()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CustomerReservationData> GetCurrentReservations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CustomerReservationData> GetCustomerReservations(string loginEmail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Reservation[] GetDeadReservations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Rental GetRental(int rentalId)
+        {
+            throw new NotImplementedException();
+        }
+
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Rental> GetRentalHistory(string loginMail)
@@ -30,16 +72,37 @@ namespace CarRental.Business.Services.Services
             return ExecuteFaultHandledOperations(() =>
             {
                 var account = _factory.GetRepo<AccountRepository>().GetByLogin(loginMail);
+                
+                Guard.ThrowIf<NotFoundException>(account == null, "Account not found for login {0}", loginMail);                
+                ValidateAuthorization(account);
 
-                if (account != null)
-                {
-                    ValidateAuthorization(account);
-                    return _factory.GetRepo<RentalRepository>().GetRentalHistoryByAccount(account.AccountId);
-                }
-
-                var ex = new NotFoundException(string.Format("Account not found for login {0}", loginMail));
-                throw new FaultException<NotFoundException>(ex, ex.Message);
+                return _factory.GetRepo<RentalRepository>().GetRentalHistoryByAccount(account.AccountId);                
             });
+        }
+
+        public Reservation GetReservation(int reservationId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsCarCurrentlyRented(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Reservation MakeReservation(string loginEmail, int carId, DateTime rentalDate, DateTime returnDate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Rental RentCarToCustomer(string loginEmail, int carId, DateTime dateDueBack)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Rental RentCarToCustomer(string loginEmail, int carId, DateTime rentalDate, DateTime dateDueBack)
+        {
+            throw new NotImplementedException();
         }
     }
 }
