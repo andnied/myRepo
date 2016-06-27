@@ -1,6 +1,6 @@
 ﻿using CarRental.Business.Entities;
 using CarRental.Common;
-using CarRental.Data.Contracts.Repository_Interfaces;
+using CarRental.Data.Contracts;
 using Core.Common.Contracts;
 using Core.Common.Exceptions;
 using Core.Common.Utils;
@@ -18,9 +18,10 @@ namespace CarRental.Business.Services
     {
         protected readonly string _loginName;
         protected readonly Account _account;
-        protected readonly IDataRepositoryFactory _factory;
+        protected readonly IDataRepositoryFactory _factoryRepo;
+        protected readonly IBusinessEngineFactory _factoryBusinessEngine;
 
-        protected ServiceBase(IDataRepositoryFactory factory)
+        protected ServiceBase(IDataRepositoryFactory factory, IBusinessEngineFactory factoryBusiness)
         {
             var context = OperationContext.Current;
             if (context != null)
@@ -31,15 +32,16 @@ namespace CarRental.Business.Services
 
             if (!string.IsNullOrWhiteSpace(_loginName))
             {
-                _account = _factory.GetRepo<IAccountRepository>().GetByLogin(_loginName);
+                _account = _factoryRepo.GetRepo<IAccountRepository>().GetByLogin(_loginName);
                 
                 Guard.ThrowIf<NotFoundException>(_account == null, "Cannot find account for login name {0} to use for security trimming.", _loginName);
             }
 
-            _factory = factory;
+            _factoryRepo = factory;
+            _factoryBusinessEngine = factoryBusiness;
         }
 
-        protected T ExecuteFaultHandledOperations<T>(Func<T> callback)
+        protected T ExecuteFaultHandledOperation<T>(Func<T> callback)
         {
             try
             {
@@ -55,7 +57,7 @@ namespace CarRental.Business.Services
             }
         }
 
-        protected void ExecuteFaultHandledOperations(Action callback)
+        protected void ExecuteFaultHandledOperation(Action callback)
         {
             try
             {

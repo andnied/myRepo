@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Data.Contracts.Repository_Interfaces
+namespace CarRental.Data.Contracts
 {
     public interface IAccountRepository : IDataRepository<Account>
     {

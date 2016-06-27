@@ -79,12 +79,12 @@ namespace CarRental.Business.Contracts.Service_Contracts
         [OperationContract]
         [FaultContract(typeof(NotFoundException))]
         [FaultContract(typeof(AuthorizationValidationException))]
-        CustomerRentalData[] GetCurrentRentals();
+        IEnumerable<CustomerRentalData> GetCurrentRentals();
 
         [OperationContract]
         [FaultContract(typeof(NotFoundException))]
         [FaultContract(typeof(AuthorizationValidationException))]
-        Reservation[] GetDeadReservations();
+        IEnumerable<Reservation> GetDeadReservations();
 
         [OperationContract]
         [FaultContract(typeof(NotFoundException))]

@@ -21,17 +21,17 @@ namespace CarRental.Business.Services
         ReleaseServiceInstanceOnTransactionComplete = false)]
     public class InventoryService : ServiceBase, IInventoryService
     {
-        public InventoryService(IDataRepositoryFactory factory)
-            : base(factory)
+        public InventoryService(IDataRepositoryFactory factory, IBusinessEngineFactory factoryBusiness)
+            : base(factory, factoryBusiness)
         { }
 
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Car> GetAllRentedCars()
         {
-            return ExecuteFaultHandledOperations(() =>
+            return ExecuteFaultHandledOperation(() =>
             {
-                var cars = _factory.GetRepo<ICarRepository>().GetRentedCars();
+                var cars = _factoryRepo.GetRepo<ICarRepository>().GetRentedCars();
 
                 cars.ToList().ForEach(c => c.CurrentlyRented = true);
 
@@ -39,13 +39,13 @@ namespace CarRental.Business.Services
             });
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
+        //[PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
+        //[PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public Car GetCar(int id)
         {
-            return ExecuteFaultHandledOperations(() =>
+            return ExecuteFaultHandledOperation(() =>
             {
-                var car = _factory.GetRepo<ICarRepository>().Get(id);
+                var car = _factoryRepo.GetRepo<ICarRepository>().Get(id);
 
                 Guard.ThrowIf<NotFoundException>(car == null, "Car with id = {0} not found.", id.ToString());
 
@@ -53,16 +53,16 @@ namespace CarRental.Business.Services
             });
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
+        //[PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         [OperationBehavior(TransactionScopeRequired = true)]
         public Car UpdateCar(Car car)
         {
-            return ExecuteFaultHandledOperations(() =>
+            return ExecuteFaultHandledOperation(() =>
             {
                 if (car.CarId == 0)
-                    return _factory.GetRepo<ICarRepository>().Add(car);
+                    return _factoryRepo.GetRepo<ICarRepository>().Add(car);
                 else
-                    return _factory.GetRepo<ICarRepository>().Update(car);
+                    return _factoryRepo.GetRepo<ICarRepository>().Update(car);
             });
         }
 
@@ -70,9 +70,9 @@ namespace CarRental.Business.Services
         [OperationBehavior(TransactionScopeRequired = true)]
         public void DeleteCar(int id)
         {
-            ExecuteFaultHandledOperations(() =>
+            ExecuteFaultHandledOperation(() =>
             {
-                _factory.GetRepo<ICarRepository>().Remove(id);
+                _factoryRepo.GetRepo<ICarRepository>().Remove(id);
             });
         }
 
@@ -80,9 +80,9 @@ namespace CarRental.Business.Services
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Car> GetAvailableCars(DateTime pickupDate, DateTime returnDate)
         {
-            return ExecuteFaultHandledOperations(() =>
+            return ExecuteFaultHandledOperation(() =>
             {
-                return _factory.GetRepo<ICarRepository>().GetAvailableCars(pickupDate, returnDate);
+                return _factoryRepo.GetRepo<ICarRepository>().GetAvailableCars(pickupDate, returnDate);
             });
         }
     }
