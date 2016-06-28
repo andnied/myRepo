@@ -11,6 +11,8 @@ using CarRental.Business.Services;
 using System.Linq;
 using System.ServiceModel;
 using Core.Common.Exceptions;
+using System.Security.Principal;
+using System.Threading;
 
 namespace CarRental.Business.Services.Tests
 {
@@ -18,14 +20,18 @@ namespace CarRental.Business.Services.Tests
     public class InventoryServiceTests
     {
         private IInventoryService _inventoryService;
-        private IList<Car> carList = new List<Car>();
+        private IList<Car> _carList = new List<Car>();
 
         [TestInitialize]
         public void Initialize()
         {
+            var principal = new GenericPrincipal(new GenericIdentity("TestIdentity"), new string[] { "AppAdmins" });
+            Thread.CurrentPrincipal = principal;
+
             var repoMock = new Mock<ICarRepository>();
-            repoMock.Setup(r => r.Get(It.IsAny<int>())).Returns((int i) => carList.FirstOrDefault(c => c.CarId == i));
-            repoMock.Setup(r => r.Add(It.IsAny<Car>())).Callback((Car car) => carList.Add(car));
+            repoMock.Setup(r => r.Get(It.IsAny<int>())).Returns<int>(i => _carList.FirstOrDefault(c => c.CarId == i));
+            repoMock.Setup(r => r.Add(It.IsAny<Car>())).Callback<Car>(car => _carList.Add(car));
+            repoMock.Setup(r => r.Update(It.IsAny<Car>())).Callback<Car>(car => _carList[_carList.IndexOf(_carList.FirstOrDefault(c => c.CarId == car.CarId))] = car);
 
             var factoryMock = new Mock<IDataRepositoryFactory>();
             factoryMock.Setup(f => f.GetRepo<ICarRepository>()).Returns(repoMock.Object);
@@ -46,9 +52,9 @@ namespace CarRental.Business.Services.Tests
 
             try
             {
-                car = _inventoryService.GetCar(1);
+                car = _inventoryService.GetCar(0);
             }
-            catch (FaultException ex)
+            catch (FaultException)
             {  }
 
             Assert.IsNull(car);
@@ -56,6 +62,21 @@ namespace CarRental.Business.Services.Tests
             _inventoryService.UpdateCar(newCar);
 
             Assert.IsNotNull(_inventoryService.GetCar(0));
+        }
+
+        [TestMethod]
+        public void update_car_updates_car()
+        {
+            _carList.Add(new Car { CarId = 1, Description = "Lanos" });
+            _inventoryService.GetCar(1);
+
+            var newCar = new Car { CarId = 1, Description = "Nubira" };
+
+            _inventoryService.UpdateCar(newCar);
+
+            var car = _inventoryService.GetCar(1);
+
+            Assert.AreEqual(car.Description, "Nubira");
         }
     }
 }

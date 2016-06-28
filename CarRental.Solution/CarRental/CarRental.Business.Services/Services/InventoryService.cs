@@ -39,8 +39,8 @@ namespace CarRental.Business.Services
             });
         }
 
-        //[PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
-        //[PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public Car GetCar(int id)
         {
             return ExecuteFaultHandledOperation(() =>
@@ -53,7 +53,7 @@ namespace CarRental.Business.Services
             });
         }
 
-        //[PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         [OperationBehavior(TransactionScopeRequired = true)]
         public Car UpdateCar(Car car)
         {
