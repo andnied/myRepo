@@ -1,0 +1,1324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddRecord" xml:space="preserve">
+    <value>Add record</value>
+  </data>
+  <data name="ARN" xml:space="preserve">
+    <value>ARN</value>
+  </data>
+  <data name="AssignToUser" xml:space="preserve">
+    <value>Assign to user</value>
+  </data>
+  <data name="BookingAmount" xml:space="preserve">
+    <value>Dispute amount</value>
+  </data>
+  <data name="BookingCurrency" xml:space="preserve">
+    <value>Dispute currency</value>
+  </data>
+  <data name="CheckAll" xml:space="preserve">
+    <value>&amp;#160;Check All</value>
+  </data>
+  <data name="EditRecord" xml:space="preserve">
+    <value>Edit record</value>
+  </data>
+  <data name="Entitlements" xml:space="preserve">
+    <value>Entitlements</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="InternalComment" xml:space="preserve">
+    <value>Internal comment</value>
+  </data>
+  <data name="ListOfComplaints" xml:space="preserve">
+    <value>List of complaints</value>
+  </data>
+  <data name="LoggedAs" xml:space="preserve">
+    <value>Logged as</value>
+  </data>
+  <data name="NewStage" xml:space="preserve">
+    <value>New stage</value>
+  </data>
+  <data name="NotificationsPanel" xml:space="preserve">
+    <value>Notifications Panel</value>
+  </data>
+  <data name="PAN" xml:space="preserve">
+    <value>PAN</value>
+  </data>
+  <data name="ReasonCode" xml:space="preserve">
+    <value>Reason&lt;br/&gt;code</value>
+  </data>
+  <data name="ScrollToTop" xml:space="preserve">
+    <value>Scroll to top</value>
+  </data>
+  <data name="StageAmount" xml:space="preserve">
+    <value>Stage amount</value>
+  </data>
+  <data name="StageCurrency" xml:space="preserve">
+    <value>Stage currency</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="EServiceDocs" xml:space="preserve">
+    <value>eService documents</value>
+  </data>
+  <data name="OrganizationDocs" xml:space="preserve">
+    <value>Organization documents</value>
+  </data>
+  <data name="PairWithTransactionInPO" xml:space="preserve">
+    <value>Pair with transaction in PO</value>
+  </data>
+  <data name="RecordHistory" xml:space="preserve">
+    <value>Record History</value>
+  </data>
+  <data name="RepresentationDocs" xml:space="preserve">
+    <value>Representation</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="MarkAsNotSufficient" xml:space="preserve">
+    <value>Mark as not sufficient</value>
+  </data>
+  <data name="MarkAsSufficient" xml:space="preserve">
+    <value>Mark as sufficient</value>
+  </data>
+  <data name="NotSufficient" xml:space="preserve">
+    <value>Not sufficient</value>
+  </data>
+  <data name="SaveLocal" xml:space="preserve">
+    <value>Save local</value>
+  </data>
+  <data name="StatusChange" xml:space="preserve">
+    <value>Status change</value>
+  </data>
+  <data name="Sufficient" xml:space="preserve">
+    <value>Sufficient</value>
+  </data>
+  <data name="Arbitration" xml:space="preserve">
+    <value>Arbitration</value>
+  </data>
+  <data name="Chargeback" xml:space="preserve">
+    <value>Chargeback</value>
+  </data>
+  <data name="PreArbitr" xml:space="preserve">
+    <value>Pre-Arbitr.</value>
+  </data>
+  <data name="PreComp" xml:space="preserve">
+    <value>Pre-Comp.</value>
+  </data>
+  <data name="Representation" xml:space="preserve">
+    <value>Representation</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="SelectDefault" xml:space="preserve">
+    <value>-- Select --</value>
+  </data>
+  <data name="ExportedDocs" xml:space="preserve">
+    <value>Exported documents</value>
+  </data>
+  <data name="StageDate" xml:space="preserve">
+    <value>Stage Date</value>
+  </data>
+  <data name="ArnValidationErrorMessage" xml:space="preserve">
+    <value>ARN must consist of 23 or 24 characters.</value>
+  </data>
+  <data name="PairWithTransactionInPOError" xml:space="preserve">
+    <value>Transaction not paired successfully.</value>
+  </data>
+  <data name="PairWithTransactionInPOSuccess" xml:space="preserve">
+    <value>Transaction paired successfully.</value>
+  </data>
+  <data name="StageAmountValidationErrorMessage" xml:space="preserve">
+    <value>The Stage amount field is required because "Stage currency" field is not empty.</value>
+  </data>
+  <data name="StageCurrencyValidationErrorMessage" xml:space="preserve">
+    <value>The Stage currency field is required because "Stage amount" field is not empty.</value>
+  </data>
+  <data name="NotAuthorizedMessage" xml:space="preserve">
+    <value>...but I received a message from administrator that&lt;br&gt;
+ you are not authorized to view this page.&lt;br&gt;&lt;br&gt;Please contact him.</value>
+  </data>
+  <data name="NotFoundMessage" xml:space="preserve">
+    <value>...but I was unable to find the page you are looking for:</value>
+  </data>
+  <data name="NotAuthorizedTitle" xml:space="preserve">
+    <value>Authorization Error</value>
+  </data>
+  <data name="NotFoundTitle" xml:space="preserve">
+    <value>Page Not Found</value>
+  </data>
+  <data name="HideNotificationPanel" xml:space="preserve">
+    <value>Hide notification panel</value>
+  </data>
+  <data name="ShowNotificationPanel" xml:space="preserve">
+    <value>Show notification panel</value>
+  </data>
+  <data name="AcceptanceType" xml:space="preserve">
+    <value>Acceptance Type</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action              </value>
+  </data>
+  <data name="AuthenticationMethod" xml:space="preserve">
+    <value>Authentication&lt;br/&gt;Method</value>
+  </data>
+  <data name="AuthorizationCode" xml:space="preserve">
+    <value>Authorization&lt;br/&gt;Code</value>
+  </data>
+  <data name="BrandName" xml:space="preserve">
+    <value>Brand&lt;br/&gt;Name</value>
+  </data>
+  <data name="CaseId" xml:space="preserve">
+    <value>Case Id</value>
+  </data>
+  <data name="ClfExpiration" xml:space="preserve">
+    <value>CLF&lt;br/&gt;Expiration</value>
+  </data>
+  <data name="DisputeAmount" xml:space="preserve">
+    <value>Dispute&lt;br/&gt;Amount</value>
+  </data>
+  <data name="DisputeCurrency" xml:space="preserve">
+    <value>Dispute&lt;br/&gt;Currency</value>
+  </data>
+  <data name="EMV" xml:space="preserve">
+    <value>EMV</value>
+  </data>
+  <data name="EvoTimeFrame" xml:space="preserve">
+    <value>Evo&lt;br/&gt;Time&lt;br/&gt;Frame</value>
+  </data>
+  <data name="ExpirationDate" xml:space="preserve">
+    <value>Expiration&lt;br/&gt;Date</value>
+  </data>
+  <data name="ExpirationDateOfCard" xml:space="preserve">
+    <value>Expiration&lt;br/&gt;Date Of Card</value>
+  </data>
+  <data name="IncomingDate" xml:space="preserve">
+    <value>Incoming&lt;br/&gt;Date</value>
+  </data>
+  <data name="MCC" xml:space="preserve">
+    <value>MCC</value>
+  </data>
+  <data name="MerchantName" xml:space="preserve">
+    <value>Merchant&lt;br/&gt;Name</value>
+  </data>
+  <data name="MID" xml:space="preserve">
+    <value>MID</value>
+  </data>
+  <data name="OID" xml:space="preserve">
+    <value>OID</value>
+  </data>
+  <data name="PanExtension" xml:space="preserve">
+    <value>Pan&lt;br/&gt;Extension</value>
+  </data>
+  <data name="PANMask" xml:space="preserve">
+    <value>PAN&lt;br/&gt;Mask</value>
+  </data>
+  <data name="Stage" xml:space="preserve">
+    <value>Stage</value>
+  </data>
+  <data name="StageDescription" xml:space="preserve">
+    <value>Stage&lt;br/&gt;Description</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="TransactionAmount" xml:space="preserve">
+    <value>Transaction&lt;br/&gt;Amount</value>
+  </data>
+  <data name="TransactionCurrency" xml:space="preserve">
+    <value>Transaction&lt;br/&gt;Currency</value>
+  </data>
+  <data name="TransactionDate" xml:space="preserve">
+    <value>Transaction&lt;br/&gt;Date</value>
+  </data>
+  <data name="UserAssigned" xml:space="preserve">
+    <value>User&lt;br/&gt;Assigned</value>
+  </data>
+  <data name="_3DSecure" xml:space="preserve">
+    <value>3D Secure</value>
+  </data>
+  <data name="SourceCountryCode" xml:space="preserve">
+    <value>Source&lt;br/&gt;Country&lt;br/&gt;Code</value>
+  </data>
+  <data name="ListOfNotMatchedComplaints" xml:space="preserve">
+    <value>List of not matched complaints</value>
+  </data>
+  <data name="MatchRecord" xml:space="preserve">
+    <value>Match record</value>
+  </data>
+  <data name="BusinessDate" xml:space="preserve">
+    <value>Business&lt;br/&gt;Date</value>
+  </data>
+  <data name="AcceptedStatus" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="Collection" xml:space="preserve">
+    <value>GF-Coll</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Compliance</value>
+  </data>
+  <data name="CopyRequestDocAdded" xml:space="preserve">
+    <value>RR Fulfilment</value>
+  </data>
+  <data name="DeclinedStatus" xml:space="preserve">
+    <value>Declined</value>
+  </data>
+  <data name="NoResponseStatus" xml:space="preserve">
+    <value>No response</value>
+  </data>
+  <data name="PcaOut" xml:space="preserve">
+    <value>Credit Fee</value>
+  </data>
+  <data name="PcarOut" xml:space="preserve">
+    <value>Debit Fee</value>
+  </data>
+  <data name="PreArbitrationIn" xml:space="preserve">
+    <value>Inc Pre-Arbitration</value>
+  </data>
+  <data name="PreArbitrationOut" xml:space="preserve">
+    <value>Out Pre-Arbitration</value>
+  </data>
+  <data name="PreComplianceIn" xml:space="preserve">
+    <value>Inc Pre-Compliance</value>
+  </data>
+  <data name="PreComplianceOut" xml:space="preserve">
+    <value>Out Pre-Compliance</value>
+  </data>
+  <data name="Representment" xml:space="preserve">
+    <value>Representment</value>
+  </data>
+  <data name="RepresentmentReversal" xml:space="preserve">
+    <value>Rev. Representment</value>
+  </data>
+  <data name="Ruling" xml:space="preserve">
+    <value>Ruling</value>
+  </data>
+  <data name="RulingAcqStatus" xml:space="preserve">
+    <value>in favour of ACQ</value>
+  </data>
+  <data name="RulingIssuerStatus" xml:space="preserve">
+    <value>in favour of Issuer</value>
+  </data>
+  <data name="DocumentationIndicator" xml:space="preserve">
+    <value>Doc. Ind.</value>
+  </data>
+  <data name="MemberMessageText" xml:space="preserve">
+    <value>Member message text</value>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="ConnectionError" xml:space="preserve">
+    <value>Connection with services failed. Please contact your administrator.</value>
+  </data>
+  <data name="StageChangeConfirmation" xml:space="preserve">
+    <value>Do you confirm status change to &lt;strong class="text-{0} statusChangeText"&gt;"{1}"&lt;/strong&gt;?</value>
+  </data>
+  <data name="StageAmountIsRequiredDependingOnStageErrorMessage" xml:space="preserve">
+    <value>Stage amount is required for selected stage</value>
+  </data>
+  <data name="StageCurrencyIsRequiredDependingOnStageErrorMessage" xml:space="preserve">
+    <value>Stage currency is required for selected stage</value>
+  </data>
+  <data name="ConnectionErrorTitle" xml:space="preserve">
+    <value>Connection error</value>
+  </data>
+  <data name="AssignedTo" xml:space="preserve">
+    <value>assigned to</value>
+  </data>
+  <data name="Chargebacks" xml:space="preserve">
+    <value>Chargebacks</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="CommentAdded" xml:space="preserve">
+    <value>Comment added</value>
+  </data>
+  <data name="CommentNotAdded" xml:space="preserve">
+    <value>Comment not added</value>
+  </data>
+  <data name="ComplaintWith" xml:space="preserve">
+    <value>Complaint with</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="ErrorAssigningUser" xml:space="preserve">
+    <value>Error assigning user</value>
+  </data>
+  <data name="ErrorGettingNotificationChanges" xml:space="preserve">
+    <value>Error getting notification changes</value>
+  </data>
+  <data name="ErrorThrown" xml:space="preserve">
+    <value>Error Thrown</value>
+  </data>
+  <data name="ErrorWhenTryingToRemoveFiles" xml:space="preserve">
+    <value>Error when trying to remove files</value>
+  </data>
+  <data name="GetAdUsersErrorMessage" xml:space="preserve">
+    <value>Error when trying to get AD users</value>
+  </data>
+  <data name="IsBlockedByAnotherUser" xml:space="preserve">
+    <value>is blocked by another user.</value>
+  </data>
+  <data name="MatchComplaintsError" xml:space="preserve">
+    <value>Error when trying to match complaints</value>
+  </data>
+  <data name="MatchSelectedComplaintQuestion" xml:space="preserve">
+    <value>Are you sure you want to match selected complaint ?</value>
+  </data>
+  <data name="NewComplaintSaved" xml:space="preserve">
+    <value>New complaint saved</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="PairTransactionWithPOQuestion" xml:space="preserve">
+    <value>Pair transaction with PO ?</value>
+  </data>
+  <data name="PleaseSelectUser" xml:space="preserve">
+    <value>Please select user</value>
+  </data>
+  <data name="RemoveSelectedFilesQuestion" xml:space="preserve">
+    <value>Are you sure you want to remove {filesCount} file(s) ?</value>
+  </data>
+  <data name="SaveSelectedFilesToDiskQuestion" xml:space="preserve">
+    <value>Save selected files to disk?</value>
+  </data>
+  <data name="SavingNewComplaintErrorMessage" xml:space="preserve">
+    <value>Error on saving new complaint</value>
+  </data>
+  <data name="SelectedComplaintsMatchedSuccessful" xml:space="preserve">
+    <value>Selected complaints matched successfully</value>
+  </data>
+  <data name="SelectedEserviceDocumentsRemovedSuccessfully" xml:space="preserve">
+    <value>Selected eService documents removed successfully</value>
+  </data>
+  <data name="SelectUser" xml:space="preserve">
+    <value>-- Select user --</value>
+  </data>
+  <data name="SignalrConnectionSlow" xml:space="preserve">
+    <value>Signalr connection slow</value>
+  </data>
+  <data name="SignalrDisconnected" xml:space="preserve">
+    <value>Signalr disconnected</value>
+  </data>
+  <data name="SignalrReconnected" xml:space="preserve">
+    <value>Signalr reconnected</value>
+  </data>
+  <data name="SignalrReconnecting" xml:space="preserve">
+    <value>Signalr reconnecting...</value>
+  </data>
+  <data name="StageChangedSuccessful" xml:space="preserve">
+    <value>Stage changed successfully</value>
+  </data>
+  <data name="StageNotChangedSuccessful" xml:space="preserve">
+    <value>Stage not changed successfully</value>
+  </data>
+  <data name="TakeStageStepsErrorMessage" xml:space="preserve">
+    <value>Error when trying to take complaint stage steps</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="AddComment" xml:space="preserve">
+    <value>Add a comment...</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetComment" xml:space="preserve">
+    <value>Reset comment</value>
+  </data>
+  <data name="ResetFilters" xml:space="preserve">
+    <value>Reset filters</value>
+  </data>
+  <data name="BookingAmountNotNumberErrorMessage" xml:space="preserve">
+    <value>Booking amount is not valid</value>
+  </data>
+  <data name="StageAmountNotNumberErrorMessage" xml:space="preserve">
+    <value>Stage amount is not valid</value>
+  </data>
+  <data name="NumberErrorMessage" xml:space="preserve">
+    <value>{0} must be a Number.</value>
+  </data>
+  <data name="FunctionCode" xml:space="preserve">
+    <value>Function code</value>
+  </data>
+  <data name="AddDocument" xml:space="preserve">
+    <value>Add document</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="SufficiencyChangedSuccessful" xml:space="preserve">
+    <value>Sufficiency changed successfully</value>
+  </data>
+  <data name="ErrorWhenTryingToExportDocuments" xml:space="preserve">
+    <value>Error when trying to export documents.</value>
+  </data>
+  <data name="Exported" xml:space="preserve">
+    <value>Exported</value>
+  </data>
+  <data name="ExportSelectedDocumentsQuestion" xml:space="preserve">
+    <value>Are you sure you want to export {filesCount} document(s) ?</value>
+  </data>
+  <data name="NotExported" xml:space="preserve">
+    <value>Not exported</value>
+  </data>
+  <data name="PendingExport" xml:space="preserve">
+    <value>Pending export</value>
+  </data>
+  <data name="SelectedDocumentsExportedSuccessfully" xml:space="preserve">
+    <value>Selected documents added to export queue successfully.</value>
+  </data>
+  <data name="SuspendCase" xml:space="preserve">
+    <value>Pend Case</value>
+  </data>
+  <data name="SuspendCaseQuestion" xml:space="preserve">
+    <value>Are you sure you want to suspend the case ?</value>
+  </data>
+  <data name="SuspendEndDate" xml:space="preserve">
+    <value>Suspend end date</value>
+  </data>
+  <data name="SuspendCaseSuccessMessage" xml:space="preserve">
+    <value>Complaint suspended successfully</value>
+  </data>
+  <data name="SuspendCaseErrorMessage" xml:space="preserve">
+    <value>Error when trying to suspend complaint</value>
+  </data>
+  <data name="ComplaintSuspendedExpirationDays" xml:space="preserve">
+    <value>Suspended&lt;br/&gt;expiration&lt;br/&gt;days</value>
+  </data>
+  <data name="IsPartial" xml:space="preserve">
+    <value>Is Partial?</value>
+  </data>
+  <data name="UnSuspendCase" xml:space="preserve">
+    <value>Remove pend</value>
+  </data>
+  <data name="UnSuspendCaseQuestion" xml:space="preserve">
+    <value>Are you sure you want to unsuspend the case ?</value>
+  </data>
+  <data name="UnSuspendCaseErrorMessage" xml:space="preserve">
+    <value>Error when trying to unsuspend case</value>
+  </data>
+  <data name="UnSuspendCaseSuccessMessage" xml:space="preserve">
+    <value>Complaint unsuspended successfully</value>
+  </data>
+  <data name="DaysToCriticalDate" xml:space="preserve">
+    <value>Days to Critical Date</value>
+  </data>
+  <data name="DaysToCLFResponseDate" xml:space="preserve">
+    <value>Days to CLF response date</value>
+  </data>
+  <data name="DocumentUploadError" xml:space="preserve">
+    <value>Document(s) upload error</value>
+  </data>
+  <data name="DocumentUploadSuccess" xml:space="preserve">
+    <value>Document(s) upload success</value>
+  </data>
+  <data name="ViewRecord" xml:space="preserve">
+    <value>View record</value>
+  </data>
+  <data name="StringLengthValidationError" xml:space="preserve">
+    <value>Max length of {0} is {1}</value>
+  </data>
+  <data name="PANNoBr" xml:space="preserve">
+    <value>PAN</value>
+  </data>
+  <data name="ReasonCodeNoBr" xml:space="preserve">
+    <value>Reason code</value>
+  </data>
+  <data name="CloseCase" xml:space="preserve">
+    <value>Close Case</value>
+  </data>
+  <data name="OpenCase" xml:space="preserve">
+    <value>Open Case</value>
+  </data>
+  <data name="ComplaintAlreadyExists_MatchQuestion" xml:space="preserve">
+    <value>For ARN and PAN introduced, Complaint with CaseId {0} already exists. Do you want to match the records ?</value>
+  </data>
+  <data name="ClfHistory" xml:space="preserve">
+    <value>CLF History</value>
+  </data>
+  <data name="ActivityType" xml:space="preserve">
+    <value>Activity type</value>
+  </data>
+  <data name="DateFromClf" xml:space="preserve">
+    <value>Date from CLF</value>
+  </data>
+  <data name="FileDate" xml:space="preserve">
+    <value>File date</value>
+  </data>
+  <data name="GoodDeliveryDate" xml:space="preserve">
+    <value>Good delivery date</value>
+  </data>
+  <data name="InfoAcquirer" xml:space="preserve">
+    <value>Info Acquirer</value>
+  </data>
+  <data name="RecordDate" xml:space="preserve">
+    <value>Record date</value>
+  </data>
+  <data name="RefundAmount" xml:space="preserve">
+    <value>Refund amount</value>
+  </data>
+  <data name="RefundCurrency" xml:space="preserve">
+    <value>Refund currency</value>
+  </data>
+  <data name="RefundDate" xml:space="preserve">
+    <value>Refund date</value>
+  </data>
+  <data name="ResponseCode" xml:space="preserve">
+    <value>Response Code</value>
+  </data>
+  <data name="ResponseInfo" xml:space="preserve">
+    <value>Response info</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="CBProcessingDate" xml:space="preserve">
+    <value>CB&lt;br/&gt;processing&lt;br/&gt;date</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="SearchCase" xml:space="preserve">
+    <value>Search Case</value>
+  </data>
+  <data name="CaseIdNoBr" xml:space="preserve">
+    <value>Case Id</value>
+  </data>
+  <data name="MerchantId" xml:space="preserve">
+    <value>Merchant ID</value>
+  </data>
+  <data name="OutletId" xml:space="preserve">
+    <value>Outlet ID</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>Date From</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>Date To</value>
+  </data>
+  <data name="ClfApproved" xml:space="preserve">
+    <value>CLF Approved</value>
+  </data>
+  <data name="ClfReceived" xml:space="preserve">
+    <value>CLF Received</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>Hold</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="DisputeAmountFrom" xml:space="preserve">
+    <value>Dispute Amount From</value>
+  </data>
+  <data name="DisputeAmountTo" xml:space="preserve">
+    <value>Dispute Amount To</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="IsHolded" xml:space="preserve">
+    <value>On hold?</value>
+  </data>
+  <data name="NoRecordsSelected" xml:space="preserve">
+    <value>No records selected!</value>
+  </data>
+  <data name="TransactionNotFoundInPO" xml:space="preserve">
+    <value>Transaction not found in PO</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="RepresentationDocumentsErrorMessage" xml:space="preserve">
+    <value>Doc. Ind. is set to 1. Please add required documents or change definition of this parameter.</value>
+  </data>
+  <data name="CbAmount" xml:space="preserve">
+    <value>CB amount</value>
+  </data>
+  <data name="CbCurrency" xml:space="preserve">
+    <value>CB currency</value>
+  </data>
+  <data name="RepresentmentAmount" xml:space="preserve">
+    <value>Representment amount</value>
+  </data>
+  <data name="RepresentmentCurrency" xml:space="preserve">
+    <value>Representment currency</value>
+  </data>
+  <data name="FoundTransactionsInComplaintTool" xml:space="preserve">
+    <value>Found transactions in Complaint tool</value>
+  </data>
+  <data name="RecordToMatch" xml:space="preserve">
+    <value>Record to match</value>
+  </data>
+  <data name="ApprovedOrCompletedSuccessfully" xml:space="preserve">
+    <value>Approved or completed successfully</value>
+  </data>
+  <data name="DuplicateTransaction" xml:space="preserve">
+    <value>Duplicate transaction</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="FormatError" xml:space="preserve">
+    <value>Format error</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="RoutingError" xml:space="preserve">
+    <value>Routing error</value>
+  </data>
+  <data name="SystemMalfunction" xml:space="preserve">
+    <value>System malfunction</value>
+  </data>
+  <data name="PostilionStatus" xml:space="preserve">
+    <value>Postilion&lt;br/&gt;status</value>
+  </data>
+  <data name="UpdateMerchantData" xml:space="preserve">
+    <value>Update merchant data</value>
+  </data>
+  <data name="AlreadyHasMerchantData" xml:space="preserve">
+    <value>already has merchant data</value>
+  </data>
+  <data name="ForCaseId" xml:space="preserve">
+    <value>For caseId</value>
+  </data>
+  <data name="UpdateMerchantDataFailedNoDataInCbd" xml:space="preserve">
+    <value>update merchant data failed (no data in CBD)</value>
+  </data>
+  <data name="UpdateMerchantDataQuestion" xml:space="preserve">
+    <value>Are you sure you want to update merchant data for selected complaints ?</value>
+  </data>
+  <data name="UserUpdatedMerchantDataForComplaintCaseId" xml:space="preserve">
+    <value>User updated merchant data for complaint caseId</value>
+  </data>
+  <data name="RepeatRepresentmentQuestion" xml:space="preserve">
+    <value>The case has already been represented. Redo?</value>
+  </data>
+  <data name="FeeAmount" xml:space="preserve">
+    <value>Fee amount</value>
+  </data>
+  <data name="FeeCurrency" xml:space="preserve">
+    <value>Fee currency</value>
+  </data>
+  <data name="InitiateOutgoingFeeToIssuer" xml:space="preserve">
+    <value>Initiate Outgoing Fee To Issuer</value>
+  </data>
+  <data name="ReturnFee" xml:space="preserve">
+    <value>Return Fee</value>
+  </data>
+  <data name="ReceivingInstitutionId" xml:space="preserve">
+    <value>Receiving Institution Id</value>
+  </data>
+  <data name="AdjustmentType" xml:space="preserve">
+    <value>Adjustment Type</value>
+  </data>
+  <data name="ControlNr" xml:space="preserve">
+    <value>Fee Collection&lt;br/&gt;Control Nr</value>
+  </data>
+  <data name="NoDocumentsSelectedErrorMessage" xml:space="preserve">
+    <value>Add documents to change the stage of case.</value>
+  </data>
+  <data name="ExchangeDataNotFound" xml:space="preserve">
+    <value>Exchange Data not found. Saved amounts from 1CB to database.</value>
+  </data>
+  <data name="FieldLengthValidationError" xml:space="preserve">
+    <value>Maximum length of this field is {1}</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="SentDocuments" xml:space="preserve">
+    <value>Sent documents</value>
+  </data>
+  <data name="DestinationBin" xml:space="preserve">
+    <value>Destination Bin</value>
+  </data>
+  <data name="SourceBin" xml:space="preserve">
+    <value>Source Bin</value>
+  </data>
+  <data name="ErrorUpdatingMerchantData" xml:space="preserve">
+    <value>Error updating merchant data</value>
+  </data>
+  <data name="CaseType" xml:space="preserve">
+    <value>Case type</value>
+  </data>
+  <data name="Memo" xml:space="preserve">
+    <value>Memo</value>
+  </data>
+  <data name="RequiredValidationErrorMessage" xml:space="preserve">
+    <value>{0} is required</value>
+  </data>
+  <data name="ResponseDueDate" xml:space="preserve">
+    <value>Response due date</value>
+  </data>
+  <data name="ViolationCode" xml:space="preserve">
+    <value>Violation code</value>
+  </data>
+  <data name="InvalidFormatErrorMessage" xml:space="preserve">
+    <value>{0} is in wrong format</value>
+  </data>
+  <data name="IssuerDocs" xml:space="preserve">
+    <value>Issuer documents</value>
+  </data>
+  <data name="CBReferenceNumber" xml:space="preserve">
+    <value>CB Reference Number</value>
+  </data>
+  <data name="FilingICA" xml:space="preserve">
+    <value>Filing ICA</value>
+  </data>
+  <data name="GenerateResponse" xml:space="preserve">
+    <value>Generate response</value>
+  </data>
+  <data name="MasterCardCaseId" xml:space="preserve">
+    <value>MasterCard Case Id</value>
+  </data>
+  <data name="RecordNotFoundMessage" xml:space="preserve">
+    <value>Record not found in database</value>
+  </data>
+  <data name="GenerateResponseConfirmation" xml:space="preserve">
+    <value>Do you confirm to generate reponse for stage &lt;strong class="text-{0}"&gt;"{1}"&lt;/strong&gt;?</value>
+  </data>
+  <data name="ImageExchange" xml:space="preserve">
+    <value>Image exchange</value>
+  </data>
+  <data name="ErrorCode" xml:space="preserve">
+    <value>Error code</value>
+  </data>
+  <data name="ErrorDescription" xml:space="preserve">
+    <value>Error description</value>
+  </data>
+  <data name="AcceptedDate" xml:space="preserve">
+    <value>Accepted date</value>
+  </data>
+  <data name="ChargebackReasonCode" xml:space="preserve">
+    <value>Chargeback reason code</value>
+  </data>
+  <data name="RebuttalDate" xml:space="preserve">
+    <value>Rebuttal date</value>
+  </data>
+  <data name="RejectedDate" xml:space="preserve">
+    <value>Rejected date</value>
+  </data>
+  <data name="StageDetails" xml:space="preserve">
+    <value>Stage details</value>
+  </data>
+  <data name="SubmittedDate" xml:space="preserve">
+    <value>Submitted date</value>
+  </data>
+  <data name="ViolationDate" xml:space="preserve">
+    <value>Violation date</value>
+  </data>
+  <data name="DisputeAmountNoBr" xml:space="preserve">
+    <value>Dispute amount</value>
+  </data>
+  <data name="DocumentManagement" xml:space="preserve">
+    <value>Document Management</value>
+  </data>
+  <data name="MerchantDocs" xml:space="preserve">
+    <value>Merchant documents</value>
+  </data>
+  <data name="AssignDocument" xml:space="preserve">
+    <value>Assign Document</value>
+  </data>
+  <data name="SelectedDocumentsRemovedSuccessfully" xml:space="preserve">
+    <value>Selected documents removed successfully</value>
+  </data>
+  <data name="ChargebackDate" xml:space="preserve">
+    <value>Chargeback date</value>
+  </data>
+  <data name="CreditDate" xml:space="preserve">
+    <value>Credit date</value>
+  </data>
+  <data name="CurrencyCode" xml:space="preserve">
+    <value>Currency code</value>
+  </data>
+  <data name="EscalationDate" xml:space="preserve">
+    <value>Escalation date</value>
+  </data>
+  <data name="FiledAgainstICA" xml:space="preserve">
+    <value>Filed against ICA</value>
+  </data>
+  <data name="FiledAgainstRegion" xml:space="preserve">
+    <value>Filed against region</value>
+  </data>
+  <data name="FilingRegion" xml:space="preserve">
+    <value>Filing region</value>
+  </data>
+  <data name="PrimaryAccountNumber" xml:space="preserve">
+    <value>Primary account number</value>
+  </data>
+  <data name="RulingAmount" xml:space="preserve">
+    <value>Ruling amount</value>
+  </data>
+  <data name="RulingCurrencyCode" xml:space="preserve">
+    <value>Ruling currency code</value>
+  </data>
+  <data name="RulingDate" xml:space="preserve">
+    <value>Ruling date</value>
+  </data>
+  <data name="WithdrawnDate" xml:space="preserve">
+    <value>Withdrawn date</value>
+  </data>
+  <data name="AdminFee" xml:space="preserve">
+    <value>Admin fee</value>
+  </data>
+  <data name="AppealFee" xml:space="preserve">
+    <value>Appeal fee</value>
+  </data>
+  <data name="CaseFee" xml:space="preserve">
+    <value>Case fee</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="FilingFee" xml:space="preserve">
+    <value>Filing fee</value>
+  </data>
+  <data name="HubsiteFee" xml:space="preserve">
+    <value>Hubsite fee</value>
+  </data>
+  <data name="PreArbFee" xml:space="preserve">
+    <value>PreArb fee</value>
+  </data>
+  <data name="TechFee" xml:space="preserve">
+    <value>Tech fee</value>
+  </data>
+  <data name="TotalSenderFees" xml:space="preserve">
+    <value>Total sender fees</value>
+  </data>
+  <data name="WithdrawingFee" xml:space="preserve">
+    <value>Withdrawing fee</value>
+  </data>
+  <data name="CaseFileResponseError" xml:space="preserve">
+    <value>Case file response error</value>
+  </data>
+  <data name="CaseFileResponseSuccesfull" xml:space="preserve">
+    <value>Case file response succesfull</value>
+  </data>
+  <data name="NoDocumentsAddedForRebuttalViolationCode" xml:space="preserve">
+    <value>No documents added for rebuttal violation code</value>
+  </data>
+  <data name="PostilionProcessingUpdateError" xml:space="preserve">
+    <value>Error on updating postilion data for record</value>
+  </data>
+  <data name="PostilionValidatingError" xml:space="preserve">
+    <value>Postilion validating error</value>
+  </data>
+  <data name="PostilionRepresentmentSetMC4103ExtractError" xml:space="preserve">
+    <value>Postilion representment setMC4103Extract error</value>
+  </data>
+  <data name="PostilionRepresentmentSetVISA4103ExtractError" xml:space="preserve">
+    <value>Postilion representment setVISA4103Extract error</value>
+  </data>
+  <data name="PostilionFeeCollectionSetMC4105ExtractError" xml:space="preserve">
+    <value>Postilion FeeCollection set MC 4105 extract error</value>
+  </data>
+  <data name="PostilionFeeCollectionSetVISA4105ExtractError" xml:space="preserve">
+    <value>Postilion FeeCollection set VISA 4105 extract error</value>
+  </data>
+  <data name="Postilion2PRExtractError" xml:space="preserve">
+    <value>Error while generating Representment</value>
+  </data>
+  <data name="Postilion2PRRExtractError" xml:space="preserve">
+    <value>Error while generating Representment Reversal</value>
+  </data>
+  <data name="PostilionPCAExtractError" xml:space="preserve">
+    <value>Error while generating Funds Disbursement</value>
+  </data>
+  <data name="PostilionPCARExtractError" xml:space="preserve">
+    <value>Error while generating Fee Collection</value>
+  </data>
+  <data name="PostilionRFEEExtractError" xml:space="preserve">
+    <value>Error while generating Return Fee</value>
+  </data>
+  <data name="BusinessLine" xml:space="preserve">
+    <value>Business line</value>
+  </data>
+  <data name="BrandNameNoBr" xml:space="preserve">
+    <value>Brand Name</value>
+  </data>
+  <data name="NoRecordSelectedChangeStage" xml:space="preserve">
+    <value>No record selected. Changes will be made for the last stage.</value>
+  </data>
+  <data name="MerchantAction" xml:space="preserve">
+    <value>Merchant Action</value>
+  </data>
+  <data name="OperationType" xml:space="preserve">
+    <value>Operation Type</value>
+  </data>
+  <data name="WriteOff" xml:space="preserve">
+    <value>Write Off</value>
+  </data>
+  <data name="OperationReason" xml:space="preserve">
+    <value>Reason of operation</value>
+  </data>
+  <data name="Response" xml:space="preserve">
+    <value>Response</value>
+  </data>
+  <data name="InternalStageChangeConfirmation" xml:space="preserve">
+    <value>Do you confirm status change to &lt;strong class="text-{0} statusChangeText"&gt;"{1}"&lt;/strong&gt; for &lt;strong&gt;"{2}"&lt;/strong&gt;?</value>
+  </data>
+  <data name="NotAuthorizedInAD" xml:space="preserve">
+    <value>You are not authorized in Active Directory</value>
+  </data>
+  <data name="ConfirmOutgoing" xml:space="preserve">
+    <value>Confirm outgoing</value>
+  </data>
+  <data name="FormDispatch" xml:space="preserve">
+    <value>Form dispatch</value>
+  </data>
+  <data name="PaymentOfAward" xml:space="preserve">
+    <value>Payment of award</value>
+  </data>
+  <data name="PitIssuance" xml:space="preserve">
+    <value>PIT Issuance</value>
+  </data>
+  <data name="SettlementWithTheOrganization" xml:space="preserve">
+    <value>Settlement with the organization</value>
+  </data>
+  <data name="AwardsPaidReport" xml:space="preserve">
+    <value>Awards paid report</value>
+  </data>
+  <data name="AwardsUnpaidReport" xml:space="preserve">
+    <value>Awards unpaid report</value>
+  </data>
+  <data name="FeeConfirmedByOrganizationReport" xml:space="preserve">
+    <value>Fee confirmed by organization report</value>
+  </data>
+  <data name="RequestsReport" xml:space="preserve">
+    <value>Requests report</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="InvalidNumber" xml:space="preserve">
+    <value>Invalid {0} number</value>
+  </data>
+  <data name="MaxLengthValidationMessage" xml:space="preserve">
+    <value>Maximum length for {0} is {1}</value>
+  </data>
+  <data name="MinLengthValidationMessage" xml:space="preserve">
+    <value>Minimum length for {0} is {1}</value>
+  </data>
+  <data name="ConfirmFormDispatch" xml:space="preserve">
+    <value>Confirm form dispatch</value>
+  </data>
+  <data name="ConfirmPaymentOfAward" xml:space="preserve">
+    <value>Confirm payment of award</value>
+  </data>
+  <data name="ConfirmPitIssuance" xml:space="preserve">
+    <value>Confirm PIT issuance</value>
+  </data>
+  <data name="ConfirmSettlementWithMc" xml:space="preserve">
+    <value>Confirm settlement with MC</value>
+  </data>
+  <data name="ConfirmSettlementWithVisa" xml:space="preserve">
+    <value>Confirm settlement with VISA</value>
+  </data>
+  <data name="ExpirationDateNoBr" xml:space="preserve">
+    <value>Expiration Date</value>
+  </data>
+  <data name="FeeType" xml:space="preserve">
+    <value>Fee Type</value>
+  </data>
+  <data name="CBDCaseId" xml:space="preserve">
+    <value>CBD Case Id</value>
+  </data>
+  <data name="DeclineSettlementWithMc" xml:space="preserve">
+    <value>Settlements declined by Mc</value>
+  </data>
+  <data name="DeclineSettlementWithVisa" xml:space="preserve">
+    <value>Settlements declined by Visa</value>
+  </data>
+  <data name="OperationAmountNoBr" xml:space="preserve">
+    <value>Operation amount</value>
+  </data>
+  <data name="OperationCurrencyNoBr" xml:space="preserve">
+    <value>Operation currency</value>
+  </data>
+  <data name="InternalStageSaveError" xml:space="preserve">
+    <value>Internal stage not saved!</value>
+  </data>
+  <data name="InternalStageSaveSuccesfull" xml:space="preserve">
+    <value>Internal stage saved successfully</value>
+  </data>
+  <data name="FinancialBalanceNotAdded" xml:space="preserve">
+    <value>Financial balance has not been added</value>
+  </data>
+  <data name="CaseNotClosed" xml:space="preserve">
+    <value>Case has not  been closed</value>
+  </data>
+  <data name="MerchantNameNoBr" xml:space="preserve">
+    <value>Merchant Name</value>
+  </data>
+  <data name="AuthenticationMethodNoBr" xml:space="preserve">
+    <value>Authentication Method</value>
+  </data>
+  <data name="AuthorizationCodeNoBr" xml:space="preserve">
+    <value>Authorization code</value>
+  </data>
+  <data name="CaseAdditionalInfo" xml:space="preserve">
+    <value>Case Additional Info</value>
+  </data>
+  <data name="ExpirationDateOfCardNoBr" xml:space="preserve">
+    <value>Expiration Date Of Card</value>
+  </data>
+  <data name="GenerateResponseError" xml:space="preserve">
+    <value>Error while generating response</value>
+  </data>
+  <data name="GenerateResponseSuccess" xml:space="preserve">
+    <value>Response generated successfully</value>
+  </data>
+  <data name="InternalStage" xml:space="preserve">
+    <value>Internal&lt;br/&gt;Stage</value>
+  </data>
+  <data name="InternalStageDescription" xml:space="preserve">
+    <value>Int. Stage&lt;br/&gt;Description</value>
+  </data>
+  <data name="OperationAmount" xml:space="preserve">
+    <value>Operation&lt;br/&gt;Amount</value>
+  </data>
+  <data name="OperationCurrency" xml:space="preserve">
+    <value>Operation&lt;br/&gt;Currency</value>
+  </data>
+  <data name="RecoveryCards" xml:space="preserve">
+    <value>Recovery cards</value>
+  </data>
+  <data name="AccountNumber" xml:space="preserve">
+    <value>Account number</value>
+  </data>
+  <data name="AddressLine1" xml:space="preserve">
+    <value>Address line 1</value>
+  </data>
+  <data name="AddressLine2" xml:space="preserve">
+    <value>Address line 2</value>
+  </data>
+  <data name="AddressType" xml:space="preserve">
+    <value>Address type</value>
+  </data>
+  <data name="BankName" xml:space="preserve">
+    <value>Bank name</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Commune" xml:space="preserve">
+    <value>Commune</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Contact phone</value>
+  </data>
+  <data name="County" xml:space="preserve">
+    <value>County</value>
+  </data>
+  <data name="FixedLengthValidationError" xml:space="preserve">
+    <value>{0} length should be {1}</value>
+  </data>
+  <data name="HouseNumber" xml:space="preserve">
+    <value>House number</value>
+  </data>
+  <data name="IssuerName" xml:space="preserve">
+    <value>Issuer name</value>
+  </data>
+  <data name="Local" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="PaymentOrganization" xml:space="preserve">
+    <value>Payment organization</value>
+  </data>
+  <data name="PickupPlace" xml:space="preserve">
+    <value>Pickup place</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Postal code</value>
+  </data>
+  <data name="PostOffice" xml:space="preserve">
+    <value>Post office</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="TaxOfficeCode" xml:space="preserve">
+    <value>Tax office code</value>
+  </data>
+  <data name="TaxOfficeName" xml:space="preserve">
+    <value>Tax office name</value>
+  </data>
+  <data name="CaseManagement" xml:space="preserve">
+    <value>Case Management</value>
+  </data>
+  <data name="CaseMonitor" xml:space="preserve">
+    <value>Case Monitor</value>
+  </data>
+  <data name="ClfManagement" xml:space="preserve">
+    <value>CLF Management</value>
+  </data>
+  <data name="ProcessingException" xml:space="preserve">
+    <value>Processing Exception</value>
+  </data>
+</root>

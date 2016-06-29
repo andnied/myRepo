@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c099bf825de448dc92327ea0f681a684" Name="Diagram1">
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Complaint" Width="1.5" PointX="0.75" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintAutomaticEvent" Width="1.5" PointX="3" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintDocument" Width="1.5" PointX="3" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintFinacialBalance" Width="1.5" PointX="6" PointY="48.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintNote" Width="1.5" PointX="3" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintRecord" Width="1.5" PointX="3" PointY="49.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintStage" Width="1.5" PointX="9" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintStageDocument" Width="1.5" PointX="5.25" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintStageInternal" Width="1.5" PointX="11.25" PointY="49.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintSuspended" Width="1.5" PointX="3" PointY="46" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ComplaintValue" Width="1.5" PointX="3" PointY="65.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.GoodFaithLetter" Width="1.5" PointX="10.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.GoodFaithLetterRecord" Width="1.5" PointX="13" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.GoodFaithLetterStage" Width="1.5" PointX="14" PointY="32.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.GoodFaithLetterValue" Width="1.5" PointX="16.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.IncomingTranMASTERCARD" Width="1.5" PointX="18.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.IncomingTranVISA" Width="1.5" PointX="20.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RecoveryCard" Width="1.5" PointX="5.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RecoveryCardNote" Width="1.5" PointX="8" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RecoveryCardRecord" Width="1.5" PointX="13.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RecoveryCardStage" Width="1.5" PointX="11.25" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RecoveryCardValue" Width="1.5" PointX="16.5" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Temporary" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.BINList" Width="1.5" PointX="2.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CaseCounter" Width="1.5" PointX="4.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ExchangeFixedMASTERCARD" Width="1.5" PointX="2.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ExchangeFixedVISA" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FeeConfiguration" Width="1.5" PointX="2.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FeeValue" Width="1.5" PointX="7.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FilesEndPointDefinition" Width="1.5" PointX="12.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.HolidaysCalendar" Width="1.5" PointX="15.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.InternalStageDefinition" Width="1.5" PointX="9" PointY="58.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.MappingValue" Width="1.5" PointX="12.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.NotificationDefinition" Width="1.5" PointX="15.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Organization" Width="1.5" PointX="5.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.OrganizationBrand" Width="1.5" PointX="7.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Parameter" Width="1.5" PointX="9.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ReasonCodeMapping" Width="1.5" PointX="20.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Schedule" Width="1.5" PointX="20.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.StageDefinition" Width="1.5" PointX="6.75" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.StageMappingIncoming" Width="1.5" PointX="8.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.StageMappingOutgoing" Width="1.5" PointX="10.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.StageStep" Width="1.5" PointX="5.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.sysdiagram" Width="1.5" PointX="22.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.AdjustmentType" Width="1.5" PointX="22.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Bin" Width="1.5" PointX="21" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CountryCode" Width="1.5" PointX="22.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CurrencyCode" Width="1.5" PointX="22.75" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FeeType" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FunctionCode" Width="1.5" PointX="23.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Issuer" Width="1.5" PointX="18.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Mapping" Width="1.5" PointX="23.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.PickupType" Width="1.5" PointX="22.75" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.POLTaxOffice" Width="1.5" PointX="24.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ReasonCode" Width="1.5" PointX="24.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ResponseCode" Width="1.5" PointX="24.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ViolationCode" Width="1.5" PointX="24.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Audit" Width="1.5" PointX="3" PointY="70.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CaseFilingIncomingBulkFile" Width="1.5" PointX="25.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CaseFilingIncomingFile" Width="1.5" PointX="3" PointY="75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CaseFilingIncomingFileDocumentItem" Width="1.5" PointX="5.25" PointY="54" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CaseFilingOutgoingFile" Width="1.5" PointX="3" PointY="79.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CaseFilingOutgoingFileDocumentItem" Width="1.5" PointX="8.25" PointY="55.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CaseFilingRecord" Width="1.5" PointX="5.25" PointY="59" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CLFReport" Width="1.5" PointX="15.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CLFReportItem" Width="1.5" PointX="18" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CRBReport" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.CRBReportItem" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FilesStageNotification" Width="1.5" PointX="11.25" PointY="61.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.NameList" Width="1.5" PointX="25.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.OutgoingPackage" Width="1.5" PointX="15.75" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.OutgoingPackageItem" Width="1.5" PointX="26.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ParserKey" Width="1.5" PointX="8.75" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RegOrgIncomingFile" Width="1.5" PointX="10.75" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Log" Width="1.5" PointX="26.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Address" Width="1.5" PointX="8" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Person" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RecoveryCardList" Width="1.5" PointX="8" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.DocumentExport" Width="1.5" PointX="8.25" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.DocumentExportReference" Width="1.5" PointX="10.5" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.DocumentExtractExport" Width="1.5" PointX="8.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FeeCollection" Width="1.5" PointX="10.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FeeCollectionExtract" Width="1.5" PointX="13" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.FeeCollectionPostilionFile" Width="1.5" PointX="10.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.MemberMessageText" Width="1.5" PointX="12.75" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ProcessKey" Width="1.5" PointX="26.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Representment" Width="1.5" PointX="3" PointY="84.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RepresentmentCondition" Width="1.5" PointX="26.75" PointY="24.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RepresentmentDocument" Width="1.5" PointX="5.25" PointY="84.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RepresentmentExtract" Width="1.5" PointX="5.25" PointY="80.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RepresentmentExtractDocument" Width="1.5" PointX="7.5" PointY="84" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.RepresentmentPostilionFile" Width="1.5" PointX="3" PointY="93.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.ResponsePostilionFile" Width="1.5" PointX="27.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Affection" Width="1.5" PointX="3" PointY="89" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.Notification" Width="1.5" PointX="27.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_CBT_ADRESY" Width="1.5" PointX="22.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_CBT_KLIENCI" Width="1.5" PointX="24.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_CBV_MIDBYTID" Width="1.5" PointX="26.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_Complaints" Width="1.5" PointX="28.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_Documents" Width="1.5" PointX="28.75" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_Last_Transaction_Card" Width="1.5" PointX="28.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_POSTILIONDATA" Width="1.5" PointX="30.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_SELECTEDPOSTILIONDATA" Width="1.5" PointX="30.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_SL_KODY_POCZTOWE" Width="1.5" PointX="0.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_CurrencyCode" Width="1.5" PointX="2.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_eservice_okp_ARDEF" Width="1.5" PointX="30.75" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintTool.DataAccess.Model.View_mcipm_ip0040t1" Width="1.5" PointX="32.75" PointY="2.875" IsExpanded="true" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_Affection_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_Audit_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingIncomingfile_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingOutgoingFile_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingRecord_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintAutomaticEvents_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintDocuments_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintFinacialBalance_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintNote_Complaint1" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintRecord_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintStage_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintStageDocuments_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintSuspended_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintValue_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_DocumentExport_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_FilesStageNotification_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_FilesStageNotification_Complaint1" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_Representment_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingIncomingFileDocumentItem_ComplaintDocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingOutgoingFileDocumentItem_ComplaintDocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintStageDocuments_ComplaintDocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_DocumentExport_ComplaintDocuments" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintFinacialBalance_ComplaintStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintStage_StageDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintStageInternal_ComplaintStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_FilesStageNotification_ComplaintStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_ComplaintStageInternal_InternalStageDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_GoodFaithLetterRecord_GoodFaithLetter" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_GoodFaithLetterStage_GoodFaithLetter" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_GoodFaithLetterValue_GoodFaithLetter" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_GoodFaithLetterRecord_FeeType" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_GoodFaithLetterRecord_GoodFaithLetterStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_GoodFaithLetterStage_InternalStageDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_GoodFaithLetterValue_GoodFaithLetterStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardList_RecoveryCard" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardNote_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardRecord_RecoveryCard" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardStage_RecoveryCard" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardValue_RecoveryCard" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardRecord_RecoveryCardStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardStage_InternalStageDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardValue_RecoveryCardStage" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_Bin_Issuer" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_FilesStageNotification_Audit" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingIncomingFileDocumentItem_CaseFilingIncomingFile" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingRecord_CaseFilingIncomingFile" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_FilesStageNotification_CaseFilingIncomingFile" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingOutgoingFileDocumentItem_CaseFilingOutgoingFile" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CaseFilingRecord_CaseFilingOutgoingFile" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_FilesStageNotification_CaseFilingOutgoingFile" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CLFReportItem_CLFReport" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_CRBReportItem_CRBReport" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_Address_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RecoveryCardList_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_DocumentExportReference_DocumentExport" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_DocumentExportReference_DocumentExtractExport" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_FeeCollectionExtract_FeeCollection" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_FeeCollectionExtract_FeeCollectionPostilionFile" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RepresentmentDocument_Representment" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RepresentmentExtract_Representment" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RepresentmentExtractDocument_RepresentmentDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintTool.DataAccess.Model.FK_RepresentmentExtract_RepresentmentPostilionFile" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

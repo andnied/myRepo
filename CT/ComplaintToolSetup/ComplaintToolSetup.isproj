@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<!-- Select a Product Configuration -->
+		<InstallShieldProductConfiguration>Express</InstallShieldProductConfiguration>
+		<!-- Select a Visual Studio Configuration / InstallShield Release -->
+		<Configuration>Debug</Configuration>
+		<InstallShieldRelease>$(Configuration)</InstallShieldRelease>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- The InstallShieldProject item selects the project to build -->
+		<InstallShieldProject Include="$(MSBuildProjectDirectory)\$(MSBuildProjectName).isl"/>
+		<!-- The InstallShieldReleaseFlags sets Release Flags -->
+		<!--<InstallShieldReleaseFlags Include=""/>-->
+		<!-- The InstallShieldMergeModulePath specifies what directories are
+		searched for Merge Modules -->
+		<!--<InstallShieldMergeModulePath Include=""/>-->
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The ProjectReference items refer to any Visual Studio solutions you want to automatically probe for Project Output Groups.  -->
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The TaggedOutputs items allow you to explicitly add extra files to output groups. Each item must include both Name and OutputGroup, as well as TargetPath metadata values. -->
+		<!--<TaggedOutputs Include="C:\My Test Exe.exe">
+			<Name>My Test Project</Name>
+			<OutputGroup>Primary output</OutputGroup>
+			<TargetPath>My Test Exe.exe</TargetPath>
+		</TaggedOutputs> -->
+	</ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2015Limited\InstallShield.targets"/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup/>
+	<ItemGroup>
+		<ProjectReference Include="..\ComplaintConfigSetup\ComplaintConfigSetup.csproj">
+			<Name>ComplaintConfigSetup</Name>
+			<Project>{974ED5B1-9CDD-4BBD-83B9-977A43CBFF50}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.Common\ComplaintTool.Common.csproj">
+			<Name>ComplaintTool.Common</Name>
+			<Project>{50F85D36-FD25-4BB3-A267-52E720D19DBC}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.DataAccess\ComplaintTool.DataAccess.csproj">
+			<Name>ComplaintTool.DataAccess</Name>
+			<Project>{39869719-4EE3-4058-B259-8C768DD3C138}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.Documents\ComplaintTool.Documents.csproj">
+			<Name>ComplaintTool.Documents</Name>
+			<Project>{AFCABC33-2A05-4C11-B304-E2D8A8532CC6}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.EVOGermany\ComplaintTool.EVOGermany.csproj">
+			<Name>ComplaintTool.EVOGermany</Name>
+			<Project>{92CEB76A-FCFE-4242-950A-53DC6761252C}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.MCProImageInterface\ComplaintTool.MCProImageInterface.csproj">
+			<Name>ComplaintTool.MCProImageInterface</Name>
+			<Project>{C62907D4-CB60-4517-A87C-1C4E3E2E7AC8}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.MasterCard\ComplaintTool.MasterCard.csproj">
+			<Name>ComplaintTool.MasterCard</Name>
+			<Project>{D5D38D6D-A23B-4161-B297-6FC054B738CA}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.Models\ComplaintTool.Models.csproj">
+			<Name>ComplaintTool.Models</Name>
+			<Project>{1114FA9F-F62C-4D6B-82FF-382DA4272CED}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.Postilion\ComplaintTool.Postilion.csproj">
+			<Name>ComplaintTool.Postilion</Name>
+			<Project>{4B817B64-CB17-410B-9B2F-0407E354F741}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.Processing\ComplaintTool.Processing.csproj">
+			<Name>ComplaintTool.Processing</Name>
+			<Project>{81B70B36-C6F6-49EE-95E4-92685E753B23}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.Shell\ComplaintTool.Shell.csproj">
+			<Name>ComplaintTool.Shell</Name>
+			<Project>{777A25B3-F379-4D8F-82BE-D0ABC6A5D912}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\ComplaintTool.Visa\ComplaintTool.Visa.csproj">
+			<Name>ComplaintTool.Visa</Name>
+			<Project>{7E0DD130-EBD0-4877-AC22-B9D7F8BCC04E}</Project>
+		</ProjectReference>
+	</ItemGroup>
+</Project>

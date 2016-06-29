@@ -1,0 +1,50 @@
+﻿using System.ComponentModel;
+
+namespace ComplaintTool.Common.Enum
+{
+    public enum ChbRecordStage
+    {
+        [Description("ARB")]
+        _ARB,
+        [Description("COLL")]
+        _COLL,
+        [Description("COM")]
+        _COM,
+        [Description("MI1")]
+        _MI1,
+        [Description("PAIN")]
+        _PAIN,
+        [Description("PAOU")]
+        _PAOU,
+        [Description("PCA")]
+        _PCA,
+        [Description("PCAR")]
+        _PCAR,
+        [Description("PCIN")]
+        _PCIN,
+        [Description("PCOU")]
+        _PCOU,
+        [Description("RR")]
+        _RR,
+        [Description("RRF")]
+        _RRF,
+        [Description("RRR")]
+        _RRR,
+        [Description("RUL")]
+        _RUL,
+        [Description("1CB")]
+        _1CB,
+        [Description("1CBR")]
+        _1CBR,
+        [Description("2CB")]
+        _2CB,
+        [Description("2CBR")]
+        _2CBR,
+        [Description("2PR")]
+        _2PR,
+        [Description("2PRR")]
+        _2PRR,
+        [Description("RFEE")]
+        _RFEE
+    }
+}

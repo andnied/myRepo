@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{777A25B3-F379-4D8F-82BE-D0ABC6A5D912}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ComplaintTool.Shell</RootNamespace>
+    <AssemblyName>ComplaintTool.Shell</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>ComplaintKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\libs\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.8.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Complaint\ComplaintApplications\ComplaintService.Documents\bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\libs\System.Management.Automation.6.1.7601.17515\lib\net45\System.Management.Automation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Administration\NewConfigFile.cs" />
+    <Compile Include="Administration\ShowConfigFile.cs" />
+    <Compile Include="Common\ComplaintCmdletBase.cs" />
+    <Compile Include="Common\ErrorInformant.cs" />
+    <Compile Include="Documents\GetDocumentExport.cs" />
+    <Compile Include="Documents\NewDocumentImport.cs" />
+    <Compile Include="EvoGermany\GetEvoGermanyOutgoingFiles.cs" />
+    <Compile Include="EvoGermany\NewEvoGermanyIncomingFile.cs" />
+    <Compile Include="Extract\GetMCBulkFile.cs" />
+    <Compile Include="Extract\NewMCBulkFile.cs" />
+    <Compile Include="ImagePro\NewMCProImageIncomingFiles.cs" />
+    <Compile Include="ImagePro\GetMCProImageOutgoingFiles.cs" />
+    <Compile Include="MasterCard\GetMasterCardProcessing.cs" />
+    <Compile Include="MasterCard\NewMasterCardRegistration.cs" />
+    <Compile Include="Postilion\GetPostilionExtractedFiles.cs" />
+    <Compile Include="Postilion\NewPostilionProcessingFiles.cs" />
+    <Compile Include="Postilion\NewPostilionResponseFile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\FindIncomingRecordsInFile.cs" />
+    <Compile Include="Utils\GetDecryptPassword.cs" />
+    <Compile Include="Utils\GetEncryptPassword.cs" />
+    <Compile Include="Utils\Set3DSecureValidation.cs" />
+    <Compile Include="Utils\SetAutoRepresentmentValidation.cs" />
+    <Compile Include="Utils\SetClfValidation.cs" />
+    <Compile Include="Utils\SetCurrencyCode.cs" />
+    <Compile Include="Utils\SetEcho.cs" />
+    <Compile Include="Utils\NewResumeIncomingByFileName.cs" />
+    <Compile Include="Utils\SetMasterCard3DSecureStatus.cs" />
+    <Compile Include="Utils\SetPostilionData.cs" />
+    <Compile Include="Utils\SetSupportingDocumentVerification.cs" />
+    <Compile Include="Utils\SetTemporaryValidation.cs" />
+    <Compile Include="Utils\ShowProcessingKeys.cs" />
+    <Compile Include="Utils\SwitchCasesToClose.cs" />
+    <Compile Include="VISA\NewVisaIncomingProcessing.cs" />
+    <Compile Include="VISA\NewVisaIncomingRegistration.cs" />
+    <Compile Include="VISA\GetVisaOutgoingFiles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ComplaintKey.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComplaintTool.Common\ComplaintTool.Common.csproj">
+      <Project>{50f85d36-fd25-4bb3-a267-52e720d19dbc}</Project>
+      <Name>ComplaintTool.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.DataAccess\ComplaintTool.DataAccess.csproj">
+      <Project>{39869719-4ee3-4058-b259-8c768dd3c138}</Project>
+      <Name>ComplaintTool.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.Documents\ComplaintTool.Documents.csproj">
+      <Project>{afcabc33-2a05-4c11-b304-e2d8a8532cc6}</Project>
+      <Name>ComplaintTool.Documents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.EVOGermany\ComplaintTool.EVOGermany.csproj">
+      <Project>{92ceb76a-fcfe-4242-950a-53dc6761252c}</Project>
+      <Name>ComplaintTool.EVOGermany</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.MasterCard\ComplaintTool.MasterCard.csproj">
+      <Project>{d5d38d6d-a23b-4161-b297-6fc054b738ca}</Project>
+      <Name>ComplaintTool.MasterCard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.MCProImageInterface\ComplaintTool.MCProImageInterface.csproj">
+      <Project>{c62907d4-cb60-4517-a87c-1c4e3e2e7ac8}</Project>
+      <Name>ComplaintTool.MCProImageInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.Models\ComplaintTool.Models.csproj">
+      <Project>{1114fa9f-f62c-4d6b-82ff-382da4272ced}</Project>
+      <Name>ComplaintTool.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.Postilion\ComplaintTool.Postilion.csproj">
+      <Project>{4b817b64-cb17-410b-9b2f-0407e354f741}</Project>
+      <Name>ComplaintTool.Postilion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.Processing\ComplaintTool.Processing.csproj">
+      <Project>{81b70b36-c6f6-49ee-95e4-92685e753b23}</Project>
+      <Name>ComplaintTool.Processing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComplaintTool.Visa\ComplaintTool.Visa.csproj">
+      <Project>{7e0dd130-ebd0-4877-ac22-b9d7f8bcc04e}</Project>
+      <Name>ComplaintTool.Visa</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
