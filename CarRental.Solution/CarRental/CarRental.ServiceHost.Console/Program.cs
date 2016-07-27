@@ -20,22 +20,36 @@ namespace CarRental.ServiceHost.Console
             System.Console.WriteLine("");
 
             var container = new UnityContainer();
+            container.RegisterInstance(typeof(UnityContainer), container);
             container.RegisterType<IDataRepositoryFactory, DataRepositoryFactory>();
             container.RegisterType<IBusinessEngineFactory, BusinessEngineFactory>();
-
-            using (var host = new System.ServiceModel.ServiceHost(container.Resolve<InventoryService>()))
+            
+            using (var host = new System.ServiceModel.ServiceHost(typeof(InventoryService)))
             {
-                host.Open();
-            }
+                StartService(host, "InventoryService");
 
-            System.Console.WriteLine("");
-            System.Console.WriteLine("Press any key to exit.");
-            System.Console.ReadKey();
+                System.Console.WriteLine("");
+                System.Console.WriteLine("Press any key to exit.");
+                System.Console.ReadKey();
+
+                host.Close();
+            }
         }
 
-        private static void Register()
+        private static void StartService(System.ServiceModel.ServiceHost host, string desc)
         {
+            host.Open();
+            System.Console.WriteLine(string.Format(@"Service {0} started.", desc));
 
+            foreach (var endpoint in host.Description.Endpoints)
+            {
+                System.Console.WriteLine(string.Format("Listening on endpoint:"));
+                System.Console.WriteLine(string.Format("Address: {0}", endpoint.Address.Uri));
+                System.Console.WriteLine(string.Format("Binding: {0}", endpoint.Binding.Name));
+                System.Console.WriteLine(string.Format("Contract: {0}", endpoint.Contract.Name));
+            }
+
+            System.Console.WriteLine();
         }
     }
 }

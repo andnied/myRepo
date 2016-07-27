@@ -15,6 +15,8 @@ namespace Core.Common.Data
     {
         protected readonly TContext _context;
 
+        #region Constructors
+
         protected DataRepositoryBase()
         {
             _context = new TContext();
@@ -25,64 +27,48 @@ namespace Core.Common.Data
             _context = context;
         }
 
+        #endregion
+
         #region PublicMethods
 
         public TEntity Add(TEntity entity)
         {
-            //using (TContext context = new TContext())
-            //{
             var added = AddEntity(_context, entity);
             _context.SaveChanges();
             return added;
-            //}
         }
 
         public IEnumerable<TEntity> Get()
         {
-            //using (TContext context = new TContext())
-            //{
             return GetEntities(_context);
-            //}
         }
 
         public TEntity Get(int id)
         {
-            //using (TContext context = new TContext())
-            //{
             return GetEntity(_context, id);
-            //}
         }
 
         public void Remove(int id)
         {
-            //using (TContext context = new TContext())
-            //{
             var entity = GetEntity(_context, id);
             _context.Entry(entity).State = EntityState.Deleted;
             _context.SaveChanges();
-            //}
         }
 
         public void Remove(TEntity entity)
         {
-            //using (TContext context = new TContext())
-            //{
             _context.Entry(entity).State = EntityState.Deleted;
             _context.SaveChanges();
-            //}
         }
 
         public TEntity Update(TEntity entity)
         {
-            //using (TContext context = new TContext())
-            //{
             var current = UpdateEntity(_context, entity);
 
             SimpleMapper.MapProperties(entity, current);
 
             _context.SaveChanges();
             return current;
-            //}
         }
 
         public void Dispose()

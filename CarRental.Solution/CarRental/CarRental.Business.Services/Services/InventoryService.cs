@@ -21,6 +21,12 @@ namespace CarRental.Business.Services
         ReleaseServiceInstanceOnTransactionComplete = false)]
     public class InventoryService : ServiceBase, IInventoryService
     {
+        public InventoryService()
+            : base(null, null)
+        {
+
+        }
+
         public InventoryService(IDataRepositoryFactory factory, IBusinessEngineFactory factoryBusiness)
             : base(factory, factoryBusiness)
         { }

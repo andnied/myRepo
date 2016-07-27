@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{2DC16112-58EE-4C0B-90C5-6D6409C469CB}"
 EndProject
@@ -52,6 +52,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{11973876-3D4B-4B65-A21A-9BB2F08D7682}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.ServiceHost.Console", "CarRental\CarRental.ServiceHost.Console\CarRental.ServiceHost.Console.csproj", "{5F18C5BD-940B-4F0B-8E05-C77A3D4D66A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRental.ServiceHost.Tests", "CarRental\CarRental.ServiceHost.Tests\CarRental.ServiceHost.Tests.csproj", "{22BA7FF9-E97F-4D74-AEC3-23B19C41FA32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +133,10 @@ Global
 		{5F18C5BD-940B-4F0B-8E05-C77A3D4D66A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F18C5BD-940B-4F0B-8E05-C77A3D4D66A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F18C5BD-940B-4F0B-8E05-C77A3D4D66A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22BA7FF9-E97F-4D74-AEC3-23B19C41FA32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BA7FF9-E97F-4D74-AEC3-23B19C41FA32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BA7FF9-E97F-4D74-AEC3-23B19C41FA32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BA7FF9-E97F-4D74-AEC3-23B19C41FA32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,5 +160,6 @@ Global
 		{A6145776-E1EF-4164-AD28-3E84D34C0382} = {6D24D5F3-95BA-4EDA-A6AA-4EC7D5681886}
 		{77770369-BF82-48A6-821D-0F1B038D8AFA} = {6D24D5F3-95BA-4EDA-A6AA-4EC7D5681886}
 		{5F18C5BD-940B-4F0B-8E05-C77A3D4D66A1} = {11973876-3D4B-4B65-A21A-9BB2F08D7682}
+		{22BA7FF9-E97F-4D74-AEC3-23B19C41FA32} = {6D24D5F3-95BA-4EDA-A6AA-4EC7D5681886}
 	EndGlobalSection
 EndGlobal
