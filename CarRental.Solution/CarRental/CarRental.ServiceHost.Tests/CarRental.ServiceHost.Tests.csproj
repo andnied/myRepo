@@ -62,6 +62,10 @@
       <Project>{8EA3B632-ABD3-4817-9DC6-65258A99EE95}</Project>
       <Name>CarRental.Business.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarRental.Business.Entities\CarRental.Business.Entities.csproj">
+      <Project>{357990A0-B52E-43B4-BC60-933BD19E383F}</Project>
+      <Name>CarRental.Business.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

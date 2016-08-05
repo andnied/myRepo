@@ -17,5 +17,15 @@ namespace CarRental.ServiceHost.Tests
             (proxy as ICommunicationObject).Open();
             channelFactory.Close();
         }
+
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            using (var factory = new ChannelFactory<IInventoryService>(""))
+            {
+                var proxy = factory.CreateChannel();
+                var car = proxy.GetCar(0);
+            }
+        }
     }
 }

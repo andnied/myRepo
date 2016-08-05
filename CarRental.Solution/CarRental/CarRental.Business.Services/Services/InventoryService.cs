@@ -12,6 +12,7 @@ using System.ServiceModel;
 using System.Security.Permissions;
 using CarRental.Common;
 using Core.Common.Utils;
+using Core.Common.Container;
 
 namespace CarRental.Business.Services
 {
@@ -22,10 +23,8 @@ namespace CarRental.Business.Services
     public class InventoryService : ServiceBase, IInventoryService
     {
         public InventoryService()
-            : base(null, null)
-        {
-
-        }
+            : base(DependencyFactory.Resolve<IDataRepositoryFactory>(), DependencyFactory.Resolve<IBusinessEngineFactory>())
+        { }
 
         public InventoryService(IDataRepositoryFactory factory, IBusinessEngineFactory factoryBusiness)
             : base(factory, factoryBusiness)

@@ -15,6 +15,7 @@ using CarRental.Common;
 using Core.Common.Utils;
 using CarRental.Data.Contracts;
 using CarRental.Business.Common;
+using Core.Common.Container;
 
 namespace CarRental.Business.Services.Services
 {
@@ -23,6 +24,10 @@ namespace CarRental.Business.Services.Services
         ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class RentalService : ServiceBase, IRentalService
     {
+        public RentalService()
+            : base(DependencyFactory.Resolve<IDataRepositoryFactory>(), DependencyFactory.Resolve<IBusinessEngineFactory>())
+        { }
+
         public RentalService(IDataRepositoryFactory factory, IBusinessEngineFactory factoryBusiness)
             : base(factory, factoryBusiness)
         { }
@@ -44,6 +49,8 @@ namespace CarRental.Business.Services.Services
         }
 
         [OperationBehavior(TransactionScopeRequired = true)]
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
+        [PrincipalPermission(SecurityAction.Demand, Name = Security.CarRentalUser)]
         public void CancelReservation(int reservationId)
         {
             ExecuteFaultHandledOperation(() =>
@@ -171,6 +178,7 @@ namespace CarRental.Business.Services.Services
             });
         }
 
+        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Reservation> GetDeadReservations()
         {
             return ExecuteFaultHandledOperation(() =>

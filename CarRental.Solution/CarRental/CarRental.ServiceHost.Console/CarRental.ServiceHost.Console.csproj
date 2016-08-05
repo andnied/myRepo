@@ -50,9 +50,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,9 +78,17 @@
       <Project>{DFC963D7-17AF-4EF9-AB5A-23AC995C2F34}</Project>
       <Name>Core.Common.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Core\Core.Common\Core.Common.csproj">
+      <Project>{9F9B8822-B7CE-4DF0-9BA3-0809ECC2A39C}</Project>
+      <Name>Core.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CarRental.Business.Contracts\CarRental.Business.Contracts.csproj">
       <Project>{8ea3b632-abd3-4817-9dc6-65258a99ee95}</Project>
       <Name>CarRental.Business.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarRental.Business.Entities\CarRental.Business.Entities.csproj">
+      <Project>{357990a0-b52e-43b4-bc60-933bd19e383f}</Project>
+      <Name>CarRental.Business.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\CarRental.Business.Services\CarRental.Business.Services.csproj">
       <Project>{9EA27077-9916-4A6F-A0F9-C4B978631B65}</Project>

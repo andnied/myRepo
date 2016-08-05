@@ -9,6 +9,11 @@ using Microsoft.Practices.Unity;
 using Core.Common.Contracts;
 using CarRental.Data;
 using CarRental.Business;
+using Core.Common.Container;
+using CarRental.Business.Services.Services;
+using System.Timers;
+using System.Transactions;
+using System.Security.Principal;
 
 namespace CarRental.ServiceHost.Console
 {
@@ -16,24 +21,35 @@ namespace CarRental.ServiceHost.Console
     {
         static void Main(string[] args)
         {
+            var principal = new GenericPrincipal(new GenericIdentity("Admin"), new string[] { "CarRentalAdmin" });
+
             System.Console.WriteLine("Starting up services...");
             System.Console.WriteLine("");
 
-            var container = new UnityContainer();
+            var container = DependencyFactory.Container;
             container.RegisterInstance(typeof(UnityContainer), container);
             container.RegisterType<IDataRepositoryFactory, DataRepositoryFactory>();
             container.RegisterType<IBusinessEngineFactory, BusinessEngineFactory>();
+
+            var hostInventoryService = new System.ServiceModel.ServiceHost(typeof(InventoryService));
+            var hostRentalService = new System.ServiceModel.ServiceHost(typeof(RentalService));
+            //var hostInventoryService = new System.ServiceModel.ServiceHost(typeof(InventoryService));
             
-            using (var host = new System.ServiceModel.ServiceHost(typeof(InventoryService)))
-            {
-                StartService(host, "InventoryService");
+            StartService(hostInventoryService, "InventoryService");
+            //StartService(hostRentalService, "RentalService");
 
-                System.Console.WriteLine("");
-                System.Console.WriteLine("Press any key to exit.");
-                System.Console.ReadKey();
+            var timer = new Timer(10000);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Start();
 
-                host.Close();
-            }
+            System.Console.WriteLine("");
+            System.Console.WriteLine("Press any key to exit.");
+            System.Console.ReadKey();
+
+            timer.Stop();
+
+            hostInventoryService.Close();
+            hostRentalService.Close();
         }
 
         private static void StartService(System.ServiceModel.ServiceHost host, string desc)
@@ -50,6 +66,28 @@ namespace CarRental.ServiceHost.Console
             }
 
             System.Console.WriteLine();
+        }
+
+        private static void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            var rentalService = new RentalService();
+            var deadReservations = rentalService.GetDeadReservations();
+
+            foreach (var res in deadReservations)
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        rentalService.CancelReservation(res.ReservationId);
+                        scope.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine(string.Format("Problem with canceling dead reservation: {0}", ex.Message));
+                    }
+                }
+            }
         }
     }
 }
