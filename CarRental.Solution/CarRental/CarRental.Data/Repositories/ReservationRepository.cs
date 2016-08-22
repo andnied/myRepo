@@ -6,7 +6,7 @@ using CarRental.Data.Contracts;
 using Core.Common.Extensions;
 using CarRental.Data.Contracts.DTOs;
 
-namespace CarRental.Data
+namespace CarRental.Data.Repositories
 {
     public class ReservationRepository : DataRepositoryBase<Reservation>, IReservationRepository
     {

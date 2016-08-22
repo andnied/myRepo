@@ -178,7 +178,7 @@ namespace CarRental.Business.Services.Services
             });
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
+        //[PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Reservation> GetDeadReservations()
         {
             return ExecuteFaultHandledOperation(() =>
@@ -203,8 +203,8 @@ namespace CarRental.Business.Services.Services
             });
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
+        [PrincipalPermission(SecurityAction.Demand, Name = Security.CarRentalUser)]
         public IEnumerable<Rental> GetRentalHistory(string loginMail)
         {
             return ExecuteFaultHandledOperation(() =>

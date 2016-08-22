@@ -7,13 +7,16 @@ using System.ServiceModel;
 using CarRental.Business.Services;
 using Microsoft.Practices.Unity;
 using Core.Common.Contracts;
-using CarRental.Data;
 using CarRental.Business;
 using Core.Common.Container;
 using CarRental.Business.Services.Services;
 using System.Timers;
 using System.Transactions;
 using System.Security.Principal;
+using CarRental.Data.Contracts;
+using CarRental.Data.Repositories;
+using CarRental.Data;
+using System.Threading;
 
 namespace CarRental.ServiceHost.Console
 {
@@ -22,14 +25,12 @@ namespace CarRental.ServiceHost.Console
         static void Main(string[] args)
         {
             var principal = new GenericPrincipal(new GenericIdentity("Admin"), new string[] { "CarRentalAdmin" });
+            Thread.CurrentPrincipal = principal;
 
             System.Console.WriteLine("Starting up services...");
             System.Console.WriteLine("");
 
-            var container = DependencyFactory.Container;
-            container.RegisterInstance(typeof(UnityContainer), container);
-            container.RegisterType<IDataRepositoryFactory, DataRepositoryFactory>();
-            container.RegisterType<IBusinessEngineFactory, BusinessEngineFactory>();
+            ResolveDependencies();
 
             var hostInventoryService = new System.ServiceModel.ServiceHost(typeof(InventoryService));
             var hostRentalService = new System.ServiceModel.ServiceHost(typeof(RentalService));
@@ -38,7 +39,7 @@ namespace CarRental.ServiceHost.Console
             StartService(hostInventoryService, "InventoryService");
             //StartService(hostRentalService, "RentalService");
 
-            var timer = new Timer(10000);
+            var timer = new System.Timers.Timer(10000);
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
 
@@ -50,6 +51,19 @@ namespace CarRental.ServiceHost.Console
 
             hostInventoryService.Close();
             hostRentalService.Close();
+        }
+
+        private static void ResolveDependencies()
+        {
+            var container = DependencyFactory.Container;
+            container.RegisterInstance(typeof(UnityContainer), container);
+            container.RegisterType<IDataRepositoryFactory, DataRepositoryFactory>();
+            container.RegisterType<IBusinessEngineFactory, BusinessEngineFactory>();
+
+            container.RegisterType<IReservationRepository, ReservationRepository>();
+            container.RegisterType<ICarRepository, CarRepository>();
+            container.RegisterType<IRentalRepository, RentalRepository>();
+            container.RegisterType<IAccountRepository, AccountRepository>();
         }
 
         private static void StartService(System.ServiceModel.ServiceHost host, string desc)

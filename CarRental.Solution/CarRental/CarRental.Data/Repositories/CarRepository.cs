@@ -6,7 +6,7 @@ using CarRental.Business.Entities;
 using CarRental.Data.Contracts;
 using Core.Common.Extensions;
 
-namespace CarRental.Data
+namespace CarRental.Data.Repositories
 {
     public class CarRepository : DataRepositoryBase<Car>, ICarRepository
     {

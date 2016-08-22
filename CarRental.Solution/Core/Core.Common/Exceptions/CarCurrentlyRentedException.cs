@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Common.Exceptions
 {
-    public class CarCurrentlyRentedException : ApplicationException
+    [Serializable]
+    public class CarCurrentlyRentedException : Exception
     {
-        public CarCurrentlyRentedException()
-            : base()
-        { }
-
-        public CarCurrentlyRentedException(string msg)
-            : base(msg)
-        { }
-
-        public CarCurrentlyRentedException(string msg, Exception inner)
-            : base(msg, inner)
-        { }
+        public CarCurrentlyRentedException() { }
+        public CarCurrentlyRentedException(string message) : base(message) { }
+        public CarCurrentlyRentedException(string message, Exception inner) : base(message, inner) { }
+        protected CarCurrentlyRentedException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 }

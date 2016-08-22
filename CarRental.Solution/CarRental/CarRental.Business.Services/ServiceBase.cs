@@ -21,7 +21,7 @@ namespace CarRental.Business.Services
         protected readonly IDataRepositoryFactory _factoryRepo;
         protected readonly IBusinessEngineFactory _factoryBusinessEngine;
 
-        protected ServiceBase(IDataRepositoryFactory factory, IBusinessEngineFactory factoryBusiness)
+        protected ServiceBase(IDataRepositoryFactory factoryRepo, IBusinessEngineFactory factoryBusiness)
         {
             var context = OperationContext.Current;
             if (context != null)
@@ -37,7 +37,7 @@ namespace CarRental.Business.Services
                 Guard.ThrowIf<NotFoundException>(_account == null, "Cannot find account for login name {0} to use for security trimming.", _loginName);
             }
 
-            _factoryRepo = factory;
+            _factoryRepo = factoryRepo;
             _factoryBusinessEngine = factoryBusiness;
         }
 

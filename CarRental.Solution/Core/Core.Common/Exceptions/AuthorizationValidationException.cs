@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Common.Exceptions
 {
-    public class AuthorizationValidationException : ApplicationException
+    [Serializable]
+    public class AuthorizationValidationException : Exception
     {
-        public AuthorizationValidationException()
-            : base()
-        { }
-
-        public AuthorizationValidationException(string msg)
-            : base(msg)
-        { }
-
-        public AuthorizationValidationException(string msg, Exception inner)
-            : base(msg, inner)
-        { }
+        public AuthorizationValidationException() { }
+        public AuthorizationValidationException(string message) : base(message) { }
+        public AuthorizationValidationException(string message, Exception inner) : base(message, inner) { }
+        protected AuthorizationValidationException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
     }
 }
