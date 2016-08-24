@@ -9,23 +9,37 @@ namespace CarRental.ServiceHost.Tests
     public class ServiceAccessTests
     {
         [TestMethod]
-        public void TestInventoryService()
+        public void InventoryServicePingTest()
         {
-            var channelFactory = new ChannelFactory<IInventoryService>("");
-            var proxy = channelFactory.CreateChannel();
-
-            (proxy as ICommunicationObject).Open();
-            channelFactory.Close();
+            using (var channelFactory = new ChannelFactory<IInventoryService>(""))
+            {
+                var proxy = channelFactory.CreateChannel();
+                
+                (proxy as ICommunicationObject).Open();
+                channelFactory.Close();
+            }
         }
 
         [TestMethod]
-        public void MyTestMethod()
+        public void RentalServicePingTest()
         {
-            using (var factory = new ChannelFactory<IInventoryService>(""))
+            using (var factory = new ChannelFactory<IRentalService>(""))
             {
                 var proxy = factory.CreateChannel();
-                var car = proxy.GetCar(0);
+
+                (proxy as ICommunicationObject).Open();
+                factory.Close();
             }
         }
+
+        //[TestMethod]
+        //public void MyTestMethod()
+        //{
+        //    using (var factory = new ChannelFactory<IInventoryService>(""))
+        //    {
+        //        var proxy = factory.CreateChannel();
+        //        var car = proxy.GetCar(0);
+        //    }
+        //}
     }
 }

@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Common.Contracts;
 using System.ServiceModel;
-using CarRental.Business.Contracts.Service_Contracts;
 using CarRental.Business.Entities;
 using CarRental.Data.Contracts;
 using Core.Common.Utils;
 using Core.Common.Exceptions;
 using System.Security.Permissions;
 using CarRental.Common;
+using CarRental.Business.Contracts;
 
-namespace CarRental.Business.Services.Services
+namespace CarRental.Business.Services
 {
     [ServiceBehavior(
         InstanceContextMode = InstanceContextMode.PerCall,

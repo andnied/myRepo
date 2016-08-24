@@ -8,7 +8,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Business.Contracts.Service_Contracts
+namespace CarRental.Business.Contracts
 {
     [ServiceContract]
     public interface IRentalService

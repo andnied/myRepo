@@ -1,5 +1,6 @@
 ﻿using CarRental.Business.Entities;
 using CarRental.Data.Contracts;
+using CarRental.Data.Repositories;
 using Core.Common.Contracts;
 using Core.Common.Exceptions;
 using Core.Common.Utils;
@@ -65,20 +66,20 @@ namespace CarRental.Data.Tests
         }
 
         [TestMethod]
-        public void MyTestMethod()
+        public void GetRentedCars_returns_one_car()
         {
-            var test = _carRepo.GetRentedCars();
+            var cars = _carRepo.GetRentedCars();
 
-            Assert.AreEqual(test.Count(), 1);
+            Assert.AreEqual(cars.Count(), 1);
         }
 
         [TestMethod]
         [ExpectedException(typeof(FaultException<NotFoundException>))]
-        public void MyTestMethod2()
+        public void car_with_id_3_throws_NotFoundException()
         {
-            var test = _carRepo.Get(3);
+            var car = _carRepo.Get(3);
 
-            Guard.ThrowIf<NotFoundException>(test == null, "Car with id = {0} not found.", "3");
+            Guard.ThrowIf<NotFoundException>(car == null, "Car with id = {0} not found.", "3");
         }
     }
 }

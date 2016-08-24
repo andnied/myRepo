@@ -5,12 +5,8 @@ using Core.Common.Contracts;
 using Core.Common.Exceptions;
 using Core.Common.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace CarRental.Business.Services
 {

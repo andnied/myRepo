@@ -30,7 +30,7 @@ namespace CarRental.Business.Services
             : base(factory, factoryBusiness)
         { }
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
+        [PrincipalPermission(SecurityAction.Demand, Name = Security.CarRentalUser)]
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Car> GetAllRentedCars()
         {
@@ -44,7 +44,7 @@ namespace CarRental.Business.Services
             });
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
+        [PrincipalPermission(SecurityAction.Demand, Name = Security.CarRentalUser)]
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public Car GetCar(int id)
         {
@@ -81,7 +81,7 @@ namespace CarRental.Business.Services
             });
         }
 
-        [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalUser)]
+        [PrincipalPermission(SecurityAction.Demand, Name = Security.CarRentalUser)]
         [PrincipalPermission(SecurityAction.Demand, Role = Security.CarRentalAdminRole)]
         public IEnumerable<Car> GetAvailableCars(DateTime pickupDate, DateTime returnDate)
         {

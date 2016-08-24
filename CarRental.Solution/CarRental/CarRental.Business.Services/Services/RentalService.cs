@@ -1,5 +1,4 @@
-﻿using CarRental.Business.Contracts.Service_Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,12 +15,14 @@ using Core.Common.Utils;
 using CarRental.Data.Contracts;
 using CarRental.Business.Common;
 using Core.Common.Container;
+using CarRental.Business.Contracts;
 
-namespace CarRental.Business.Services.Services
+namespace CarRental.Business.Services
 {
     [ServiceBehavior(
         InstanceContextMode = InstanceContextMode.PerCall,
-        ConcurrencyMode = ConcurrencyMode.Multiple)]
+        ConcurrencyMode = ConcurrencyMode.Multiple,
+        ReleaseServiceInstanceOnTransactionComplete = false)]
     public class RentalService : ServiceBase, IRentalService
     {
         public RentalService()
