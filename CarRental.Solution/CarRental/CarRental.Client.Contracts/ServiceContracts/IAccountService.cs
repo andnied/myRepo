@@ -1,11 +1,12 @@
-﻿using CarRental.Business.Entities;
+﻿using CarRental.Client.Entities;
+using Core.Common.Contracts;
 using Core.Common.Exceptions;
 using System.ServiceModel;
 
-namespace CarRental.Business.Contracts
+namespace CarRental.Client.Contracts.ServiceContracts
 {
     [ServiceContract]
-    public interface IAccountService
+    public interface IAccountService : IServiceContract
     {
         [OperationContract]
         [FaultContract(typeof(NotFoundException))]

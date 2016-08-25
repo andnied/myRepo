@@ -19,7 +19,10 @@ namespace CarRental.Business.Services
 
         protected ServiceBase(IDataRepositoryFactory factoryRepo, IBusinessEngineFactory factoryBusiness)
         {
+            _factoryRepo = factoryRepo;
+            _factoryBusinessEngine = factoryBusiness;
             var context = OperationContext.Current;
+
             if (context != null)
             {
                 _loginName = context.IncomingMessageHeaders.GetHeader<string>("String", "System");
@@ -32,9 +35,6 @@ namespace CarRental.Business.Services
                 
                 Guard.ThrowIf<NotFoundException>(_account == null, "Cannot find account for login name {0} to use for security trimming.", _loginName);
             }
-
-            _factoryRepo = factoryRepo;
-            _factoryBusinessEngine = factoryBusiness;
         }
 
         protected T ExecuteFaultHandledOperation<T>(Func<T> callback)

@@ -6,12 +6,13 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Business.Contracts.Data_Contracts
+namespace CarRental.Business.Contracts.DataContracts
 {
-    public class CustomerRentalData : DataContractBase
+    [DataContract]
+    public class CustomerReservationData : DataContractBase
     {
         [DataMember]
-        public int RentalId { get; set; }
+        public int ReservationId { get; set; }
 
         [DataMember]
         public string CustomerName { get; set; }
@@ -20,9 +21,9 @@ namespace CarRental.Business.Contracts.Data_Contracts
         public string Car { get; set; }
 
         [DataMember]
-        public DateTime DateRented { get; set; }
+        public DateTime RentalDate { get; set; }
 
         [DataMember]
-        public DateTime ExpectedReturn { get; set; }
+        public DateTime ReturnDate { get; set; }
     }
 }

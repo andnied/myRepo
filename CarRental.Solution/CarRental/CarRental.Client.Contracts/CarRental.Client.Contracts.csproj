@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D98395FE-EB45-4B51-815E-38691E70DDAE}</ProjectGuid>
+    <ProjectGuid>{B9CC0881-D8A2-46ED-AC21-E8E078E750F2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Core.Common.ServiceModel</RootNamespace>
-    <AssemblyName>Core.Common.ServiceModel</AssemblyName>
+    <RootNamespace>CarRental.Client.Contracts</RootNamespace>
+    <AssemblyName>CarRental.Client.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,9 +42,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContractBase.cs" />
+    <Compile Include="DataContracts\CustomerRentalData.cs" />
+    <Compile Include="DataContracts\CustomerReservationData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserClientBase.cs" />
+    <Compile Include="ServiceContracts\IAccountService.cs" />
+    <Compile Include="ServiceContracts\IInventoryService.cs" />
+    <Compile Include="ServiceContracts\IRentalService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.Common.Contracts\Core.Common.Contracts.csproj">
+      <Project>{DFC963D7-17AF-4EF9-AB5A-23AC995C2F34}</Project>
+      <Name>Core.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Core.Common\Core.Common.csproj">
+      <Project>{9F9B8822-B7CE-4DF0-9BA3-0809ECC2A39C}</Project>
+      <Name>Core.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarRental.Client.Entities\CarRental.Client.Entities.csproj">
+      <Project>{94A3228A-C1F5-471A-90D6-A2BD093A70B7}</Project>
+      <Name>CarRental.Client.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Common.ServiceModel\Core.Common.ServiceModel.csproj">
+      <Project>{D98395FE-EB45-4B51-815E-38691E70DDAE}</Project>
+      <Name>Core.Common.ServiceModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

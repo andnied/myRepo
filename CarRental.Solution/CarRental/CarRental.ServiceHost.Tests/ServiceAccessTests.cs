@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ServiceModel;
-using CarRental.Business.Contracts;
+using CarRental.Business.Contracts.ServiceContracts;
 
 namespace CarRental.ServiceHost.Tests
 {
@@ -31,15 +31,5 @@ namespace CarRental.ServiceHost.Tests
                 factory.Close();
             }
         }
-
-        //[TestMethod]
-        //public void MyTestMethod()
-        //{
-        //    using (var factory = new ChannelFactory<IInventoryService>(""))
-        //    {
-        //        var proxy = factory.CreateChannel();
-        //        var car = proxy.GetCar(0);
-        //    }
-        //}
     }
 }

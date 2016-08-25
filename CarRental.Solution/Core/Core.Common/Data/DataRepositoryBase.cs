@@ -33,24 +33,24 @@ namespace Core.Common.Data
 
         public TEntity Add(TEntity entity)
         {
-            var added = AddEntity(_context, entity);
+            var added = AddEntity(entity);
             _context.SaveChanges();
             return added;
         }
 
         public IEnumerable<TEntity> Get()
         {
-            return GetEntities(_context);
+            return GetEntities();
         }
 
         public TEntity Get(int id)
         {
-            return GetEntity(_context, id);
+            return GetEntity(id);
         }
 
         public void Remove(int id)
         {
-            var entity = GetEntity(_context, id);
+            var entity = GetEntity(id);
             _context.Entry(entity).State = EntityState.Deleted;
             _context.SaveChanges();
         }
@@ -63,7 +63,7 @@ namespace Core.Common.Data
 
         public TEntity Update(TEntity entity)
         {
-            var current = UpdateEntity(_context, entity);
+            var current = UpdateEntity(entity);
 
             SimpleMapper.MapProperties(entity, current);
 
@@ -86,10 +86,10 @@ namespace Core.Common.Data
 
         #region AbstractMethods
 
-        protected abstract TEntity AddEntity(TContext context, TEntity entity);
-        protected abstract TEntity UpdateEntity(TContext context, TEntity entity);
-        protected abstract IEnumerable<TEntity> GetEntities(TContext context);
-        protected abstract TEntity GetEntity(TContext context, int id);
+        protected abstract TEntity AddEntity(TEntity entity);
+        protected abstract TEntity UpdateEntity(TEntity entity);
+        protected abstract IEnumerable<TEntity> GetEntities();
+        protected abstract TEntity GetEntity(int id);
 
         #endregion
     }

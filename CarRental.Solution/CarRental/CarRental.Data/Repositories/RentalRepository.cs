@@ -14,33 +14,27 @@ namespace CarRental.Data.Repositories
             : base(context)
         { }
 
-        protected override Rental AddEntity(CarRentalContext entityContext, Rental entity)
+        protected override Rental AddEntity(Rental entity)
         {
-            return entityContext.RentalSet.Add(entity);
+            return _context.RentalSet.Add(entity);
         }
 
-        protected override Rental UpdateEntity(CarRentalContext entityContext, Rental entity)
+        protected override Rental UpdateEntity(Rental entity)
         {
-            return (from e in entityContext.RentalSet
+            return (from e in _context.RentalSet
                     where e.RentalId == entity.RentalId
                     select e).FirstOrDefault();
         }
 
-        protected override IEnumerable<Rental> GetEntities(CarRentalContext entityContext)
+        protected override IEnumerable<Rental> GetEntities()
         {
-            return from e in entityContext.RentalSet
-                   select e;
+            return (from e in _context.RentalSet
+                   select e).ToList();
         }
 
-        protected override Rental GetEntity(CarRentalContext entityContext, int id)
+        protected override Rental GetEntity(int id)
         {
-            var query = (from e in entityContext.RentalSet
-                         where e.RentalId == id
-                         select e);
-
-            var results = query.FirstOrDefault();
-
-            return results;
+            return _context.RentalSet.FirstOrDefault(r => r.RentalId == id);
         }
 
         public IEnumerable<Rental> GetRentalHistoryByCar(int carId)

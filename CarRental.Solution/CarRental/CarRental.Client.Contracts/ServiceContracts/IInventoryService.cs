@@ -1,4 +1,5 @@
-﻿using CarRental.Business.Entities;
+﻿using CarRental.Client.Entities;
+using Core.Common.Contracts;
 using Core.Common.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -7,10 +8,10 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Business.Contracts
+namespace CarRental.Client.Contracts.ServiceContracts
 {
     [ServiceContract]
-    public interface IInventoryService
+    public interface IInventoryService : IServiceContract
     {
         [OperationContract]
         [FaultContract(typeof(NotFoundException))]

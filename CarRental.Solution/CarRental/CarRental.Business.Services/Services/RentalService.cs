@@ -9,13 +9,13 @@ using System.ServiceModel;
 using CarRental.Data.Repositories;
 using Core.Common.Exceptions;
 using System.Security.Permissions;
-using CarRental.Business.Contracts.Data_Contracts;
+using CarRental.Business.Contracts.DataContracts;
 using CarRental.Common;
 using Core.Common.Utils;
 using CarRental.Data.Contracts;
 using CarRental.Business.Common;
 using Core.Common.Container;
-using CarRental.Business.Contracts;
+using CarRental.Business.Contracts.ServiceContracts;
 
 namespace CarRental.Business.Services
 {

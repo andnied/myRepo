@@ -11,7 +11,7 @@ using Core.Common.Utils;
 using Core.Common.Exceptions;
 using System.Security.Permissions;
 using CarRental.Common;
-using CarRental.Business.Contracts;
+using CarRental.Business.Contracts.ServiceContracts;
 
 namespace CarRental.Business.Services
 {

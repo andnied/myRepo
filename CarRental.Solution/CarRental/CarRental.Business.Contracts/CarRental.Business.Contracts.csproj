@@ -43,12 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data Contracts\CustomerRentalData.cs" />
-    <Compile Include="Data Contracts\CustomerReservationData.cs" />
+    <Compile Include="DataContracts\CustomerRentalData.cs" />
+    <Compile Include="DataContracts\CustomerReservationData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service Contracts\IAccountService.cs" />
-    <Compile Include="Service Contracts\IInventoryService.cs" />
-    <Compile Include="Service Contracts\IRentalService.cs" />
+    <Compile Include="ServiceContracts\IAccountService.cs" />
+    <Compile Include="ServiceContracts\IInventoryService.cs" />
+    <Compile Include="ServiceContracts\IRentalService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.Common\Core.Common.csproj">

@@ -1,5 +1,6 @@
-﻿using CarRental.Business.Contracts.Data_Contracts;
-using CarRental.Business.Entities;
+﻿using CarRental.Client.Contracts.DataContracts;
+using CarRental.Client.Entities;
+using Core.Common.Contracts;
 using Core.Common.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,10 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRental.Business.Contracts
+namespace CarRental.Client.Contracts.ServiceContracts
 {
     [ServiceContract]
-    public interface IRentalService
+    public interface IRentalService : IServiceContract
     {
         [OperationContract(Name = "RentCarToCustomerImmediately")]
         [TransactionFlow(TransactionFlowOption.Allowed)]

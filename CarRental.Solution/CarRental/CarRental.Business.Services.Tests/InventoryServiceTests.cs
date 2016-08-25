@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CarRental.Business.Contracts;
+using CarRental.Business.Contracts.ServiceContracts;
 using CarRental.Business.Entities;
 using System.Collections.Generic;
 using Moq;

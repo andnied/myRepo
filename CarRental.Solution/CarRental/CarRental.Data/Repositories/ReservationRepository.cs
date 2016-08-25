@@ -14,33 +14,27 @@ namespace CarRental.Data.Repositories
             : base(context)
         { }
 
-        protected override Reservation AddEntity(CarRentalContext entityContext, Reservation entity)
+        protected override Reservation AddEntity(Reservation entity)
         {
-            return entityContext.ReservationSet.Add(entity);
+            return _context.ReservationSet.Add(entity);
         }
 
-        protected override Reservation UpdateEntity(CarRentalContext entityContext, Reservation entity)
+        protected override Reservation UpdateEntity(Reservation entity)
         {
-            return (from e in entityContext.ReservationSet
+            return (from e in _context.ReservationSet
                     where e.ReservationId == entity.ReservationId
                     select e).FirstOrDefault();
         }
 
-        protected override IEnumerable<Reservation> GetEntities(CarRentalContext entityContext)
+        protected override IEnumerable<Reservation> GetEntities()
         {
-            return from e in entityContext.ReservationSet
-                   select e;
+            return (from e in _context.ReservationSet
+                   select e).ToList();
         }
 
-        protected override Reservation GetEntity(CarRentalContext entityContext, int id)
+        protected override Reservation GetEntity(int id)
         {
-            var query = (from e in entityContext.ReservationSet
-                         where e.ReservationId == id
-                         select e);
-
-            var results = query.FirstOrDefault();
-
-            return results;
+            return _context.ReservationSet.FirstOrDefault(r => r.ReservationId == id);
         }
 
         public IEnumerable<CustomerReservationInfo> GetCurrentCustomerReservationInfo()

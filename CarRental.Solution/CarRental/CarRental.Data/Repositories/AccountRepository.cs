@@ -14,24 +14,26 @@ namespace CarRental.Data.Repositories
             : base(context)
         { }
 
-        protected override Account AddEntity(CarRentalContext context, Account entity)
+        protected override Account AddEntity(Account entity)
         {
-            return context.AccountSet.Add(entity);
+            return _context.AccountSet.Add(entity);
         }
 
-        protected override IEnumerable<Account> GetEntities(CarRentalContext context)
+        protected override IEnumerable<Account> GetEntities()
         {
-            return context.AccountSet.ToList();
+            return _context.AccountSet.ToList();
         }
 
-        protected override Account GetEntity(CarRentalContext context, int id)
+        protected override Account GetEntity(int id)
         {
-            return context.AccountSet.FirstOrDefault(a => a.AccountId == id);
+            return _context.AccountSet.FirstOrDefault(a => a.AccountId == id);
         }
 
-        protected override Account UpdateEntity(CarRentalContext context, Account entity)
+        protected override Account UpdateEntity(Account entity)
         {
-            return GetEntity(context, entity.AccountId);  
+            return (from a in _context.AccountSet
+                    where a.AccountId == entity.AccountId
+                    select a).FirstOrDefault();
         }
 
         public Account GetByLogin(string login)

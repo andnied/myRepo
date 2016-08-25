@@ -66,6 +66,14 @@
       <Project>{357990A0-B52E-43B4-BC60-933BD19E383F}</Project>
       <Name>CarRental.Business.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarRental.Client.Contracts\CarRental.Client.Contracts.csproj">
+      <Project>{b9cc0881-d8a2-46ed-ac21-e8e078e750f2}</Project>
+      <Name>CarRental.Client.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarRental.Client.Entities\CarRental.Client.Entities.csproj">
+      <Project>{94a3228a-c1f5-471a-90d6-a2bd093a70b7}</Project>
+      <Name>CarRental.Client.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

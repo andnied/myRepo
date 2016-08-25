@@ -14,27 +14,27 @@ namespace CarRental.Data.Repositories
             : base(context)
         { }
 
-        protected override Car AddEntity(CarRentalContext entityContext, Car entity)
+        protected override Car AddEntity(Car entity)
         {
-            return entityContext.CarSet.Add(entity);
+            return _context.CarSet.Add(entity);
         }
 
-        protected override Car UpdateEntity(CarRentalContext entityContext, Car entity)
+        protected override Car UpdateEntity(Car entity)
         {
-            return (from e in entityContext.CarSet
+            return (from e in _context.CarSet
                     where e.CarId == entity.CarId
                     select e).FirstOrDefault();
         }
 
-        protected override IEnumerable<Car> GetEntities(CarRentalContext entityContext)
+        protected override IEnumerable<Car> GetEntities()
         {
-            return from e in entityContext.CarSet
+            return from e in _context.CarSet
                    select e;
         }
 
-        protected override Car GetEntity(CarRentalContext entityContext, int id)
+        protected override Car GetEntity(int id)
         {
-            var query = (from e in entityContext.CarSet
+            var query = (from e in _context.CarSet
                          where e.CarId == id
                          select e);
 
