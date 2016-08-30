@@ -79,7 +79,7 @@ namespace CarRental.Data.Tests
         {
             var car = _carRepo.Get(3);
 
-            Guard.ThrowIf<NotFoundException>(car == null, "Car with id = {0} not found.", "3");
+            Guard.ThrowFaultExceptionIf<NotFoundException>(car == null, "Car with id = {0} not found.", "3");
         }
     }
 }

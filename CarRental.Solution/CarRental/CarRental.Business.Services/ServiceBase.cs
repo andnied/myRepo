@@ -33,7 +33,7 @@ namespace CarRental.Business.Services
             {
                 _account = _factoryRepo.GetRepo<IAccountRepository>().GetByLogin(_loginName);
                 
-                Guard.ThrowIf<NotFoundException>(_account == null, "Cannot find account for login name {0} to use for security trimming.", _loginName);
+                Guard.ThrowFaultExceptionIf<NotFoundException>(_account == null, "Cannot find account for login name {0} to use for security trimming.", _loginName);
             }
         }
 
@@ -80,7 +80,7 @@ namespace CarRental.Business.Services
             if (_loginName == string.Empty || entity.OwnerAccountId == _account.AccountId)
                 return;
 
-            Guard.ThrowIf<AuthorizationValidationException>(true, "Attempt to access a secure record.");
+            Guard.ThrowFaultExceptionIf<AuthorizationValidationException>(true, "Attempt to access a secure record.");
         }
     }
 }

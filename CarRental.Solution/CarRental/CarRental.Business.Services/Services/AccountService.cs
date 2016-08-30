@@ -32,7 +32,7 @@ namespace CarRental.Business.Services
             {
                 var account = _factoryRepo.GetRepo<IAccountRepository>().GetByLogin(loginEmail);
 
-                Guard.ThrowIf<NotFoundException>(account == null, "Account with login {0} not found.", loginEmail);
+                Guard.ThrowFaultExceptionIf<NotFoundException>(account == null, "Account with login {0} not found.", loginEmail);
 
                 ValidateAuthorization(account);
 

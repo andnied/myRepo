@@ -41,7 +41,7 @@ namespace CarRental.Business.Services
                 var rentalRepository = _factoryRepo.GetRepo<IRentalRepository>();
                 var rental = _factoryRepo.GetRepo<IRentalRepository>().GetCurrentRentalByCar(carId);
 
-                Guard.ThrowIf<CarNotRentedException>(rental == null, "Car {0} is not currently rented.", carId.ToString());
+                Guard.ThrowFaultExceptionIf<CarNotRentedException>(rental == null, "Car {0} is not currently rented.", carId.ToString());
 
                 rental.DateReturned = DateTime.Now;
 
@@ -60,7 +60,7 @@ namespace CarRental.Business.Services
 
                 Reservation reservation = reservationRepository.Get(reservationId);
 
-                Guard.ThrowIf<NotFoundException>(reservation == null, "No reservation found for id '{0}'.", reservationId.ToString());
+                Guard.ThrowFaultExceptionIf<NotFoundException>(reservation == null, "No reservation found for id '{0}'.", reservationId.ToString());
 
                 reservationRepository.Remove(reservationId);
             });
@@ -78,8 +78,8 @@ namespace CarRental.Business.Services
                 var reservation = reservationRepository.Get(reservationId);
                 var account = accountRepository.Get(reservation.AccountId);
 
-                Guard.ThrowIf<NotFoundException>(reservation == null, "No reservation found for id '{0}'.", reservationId.ToString());
-                Guard.ThrowIf<NotFoundException>(account == null, "Account not found for ID {0}", reservation.AccountId.ToString());
+                Guard.ThrowFaultExceptionIf<NotFoundException>(reservation == null, "No reservation found for id '{0}'.", reservationId.ToString());
+                Guard.ThrowFaultExceptionIf<NotFoundException>(account == null, "Account not found for ID {0}", reservation.AccountId.ToString());
 
                 try
                 {
@@ -159,7 +159,7 @@ namespace CarRental.Business.Services
                 var reservationRepository = _factoryRepo.GetRepo<IReservationRepository>();
                 var account = accountRepository.GetByLogin(loginEmail);
 
-                Guard.ThrowIf<NotFoundException>(account == null, "No account found for login '{0}'.", loginEmail);
+                Guard.ThrowFaultExceptionIf<NotFoundException>(account == null, "No account found for login '{0}'.", loginEmail);
 
                 var reservationInfoSet = reservationRepository.GetCustomerOpenReservationInfo(account.AccountId);
 
@@ -198,7 +198,7 @@ namespace CarRental.Business.Services
                 var rentalRepository = _factoryRepo.GetRepo<IRentalRepository>();
                 var rental = rentalRepository.Get(rentalId);
 
-                Guard.ThrowIf<NotFoundException>(rental == null, "No rental record found for id '{0}'.", rentalId.ToString());
+                Guard.ThrowFaultExceptionIf<NotFoundException>(rental == null, "No rental record found for id '{0}'.", rentalId.ToString());
 
                 return rental;
             });
@@ -212,7 +212,7 @@ namespace CarRental.Business.Services
             {
                 var account = _factoryRepo.GetRepo<IAccountRepository>().GetByLogin(loginMail);
                 
-                Guard.ThrowIf<NotFoundException>(account == null, "Account not found for login {0}", loginMail);
+                Guard.ThrowFaultExceptionIf<NotFoundException>(account == null, "Account not found for login {0}", loginMail);
                 ValidateAuthorization(account);
 
                 return _factoryRepo.GetRepo<RentalRepository>().GetRentalHistoryByAccount(account.AccountId);                
@@ -227,7 +227,7 @@ namespace CarRental.Business.Services
 
                 Reservation reservation = reservationRepository.Get(reservationId);
 
-                Guard.ThrowIf<NotFoundException>(reservation == null, "No reservation found for id '{0}'.", reservationId.ToString());
+                Guard.ThrowFaultExceptionIf<NotFoundException>(reservation == null, "No reservation found for id '{0}'.", reservationId.ToString());
 
                 return reservation;
             });
@@ -253,7 +253,7 @@ namespace CarRental.Business.Services
 
                 Account account = accountRepository.GetByLogin(loginEmail);
 
-                Guard.ThrowIf<NotFoundException>(account == null, "No account found for login '{0}'.", loginEmail);
+                Guard.ThrowFaultExceptionIf<NotFoundException>(account == null, "No account found for login '{0}'.", loginEmail);
 
                 Reservation reservation = new Reservation()
                 {

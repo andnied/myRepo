@@ -52,7 +52,7 @@ namespace CarRental.Business.Services
             {
                 var car = _factoryRepo.GetRepo<ICarRepository>().Get(id);
 
-                Guard.ThrowIf<NotFoundException>(car == null, "Car with id = {0} not found.", id.ToString());
+                Guard.ThrowFaultExceptionIf<NotFoundException>(car == null, "Car with id = {0} not found.", id.ToString());
 
                 return car;
             });
