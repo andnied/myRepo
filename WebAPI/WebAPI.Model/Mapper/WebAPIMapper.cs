@@ -25,7 +25,8 @@ namespace WebAPI.Model.Mapper
             {
                 c.CreateMap<Value, ValueReadDto>()
                     .ForMember(dto => dto.Id, s => s.MapFrom(model => model.Id))
-                    .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
+                    .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name))
+                    .ForMember(dto => dto.Description, s => s.MapFrom(model => model.Description));
             });
 
             _mapper = config.CreateMapper();

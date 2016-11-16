@@ -10,7 +10,7 @@ using WebAPI.Model.Dto.Update;
 
 namespace WebAPI.Controllers
 {
-    [RoutePrefix("api/values")]
+    //[RoutePrefix("api/values")]
     public class ValuesController : ApiController
     {
         private readonly IValuesFcd _valuesFcd;
@@ -28,10 +28,19 @@ namespace WebAPI.Controllers
             return Ok(items);
         }
 
-        [HttpPatch]
-        [Route("")]
-        public IHttpActionResult Patch(int id, [FromBody]JsonPatchDocument<ValueUpdateDto> model)
+        [Route("{id}")]
+        public IHttpActionResult Get(int id)
         {
+            return Ok();
+        }
+
+        [HttpPatch]
+        //[Route("{id}")]
+        public IHttpActionResult Patch(int id, [FromBody]JsonPatchDocument<ValueUpdateDto> patch)
+        //public IHttpActionResult Patch(int id, [FromBody]ValueUpdateDto patch)
+        {
+            //_valuesFcd.Update(id, patch);
+
             return Ok();
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JsonPatch;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace WebAPI.Contracts.BLL
     public interface IValuesFcd
     {
         IEnumerable<ValueReadDto> GetAll(string sort);
-        ValueReadDto Update(ValueUpdateDto model);
+        ValueReadDto Update(int id, JsonPatchDocument<ValueUpdateDto> model);
     }
 }

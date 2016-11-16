@@ -11,6 +11,8 @@ using WebAPI.Common.Mocks;
 using WebAPI.Contracts.BLL;
 using WebAPI.BLL.Facades;
 using Unity.WebApi;
+using JsonPatch.Formatting;
+using System.Net.Http.Headers;
 
 namespace WebAPI
 {
@@ -31,6 +33,11 @@ namespace WebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json-patch+json"));
+            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             var container = new UnityContainer();
             container.RegisterInstance(ValuesMock.GetValueRepositoryMock());

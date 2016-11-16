@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JsonPatch;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,9 +29,15 @@ namespace WebAPI.BLL.Facades
             return _mapper.Map<IEnumerable<ValueReadDto>>(items);
         }
 
-        public ValueReadDto Update(ValueUpdateDto model)
+        public ValueReadDto Update(int id, JsonPatchDocument<ValueUpdateDto> model)
         {
-            throw new NotImplementedException();
+            var item = _repo.Get(id);
+            var dto = _mapper.Map<ValueUpdateDto>(item);
+            model.ApplyUpdatesTo(dto);
+            item = _mapper.Map<Value>(dto);
+            var updated = _repo.Update(id, item);
+
+            return _mapper.Map<ValueReadDto>(updated);
         }
     }
 }

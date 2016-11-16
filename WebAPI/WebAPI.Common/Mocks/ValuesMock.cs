@@ -7,7 +7,7 @@ using WebAPI.Contracts.DAL;
 using Moq;
 using WebAPI.DAL.Models;
 using WebAPI.Common.Extensions;
-using JsonPatch;
+using WebAPI.Model.Dto.Update;
 
 namespace WebAPI.Common.Mocks
 {
@@ -15,7 +15,7 @@ namespace WebAPI.Common.Mocks
     {
         #region Values
 
-        private static IEnumerable<Value> values = new List<Value>
+        private static IList<Value> values = new List<Value>
         {
             new Value
             {
@@ -40,7 +40,16 @@ namespace WebAPI.Common.Mocks
         {
             var mock = new Mock<IValuesRepository>();
             mock.Setup(m => m.Get(It.IsAny<string>())).Returns<string>(s => values.AsQueryable().DynamicSort(s).ToList());
-            
+            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => values.ElementAt(i));
+            mock.Setup(m => m.Update(It.IsAny<int>(), It.IsAny<Value>())).Returns<int, Value>((i, v) =>
+            {
+                var oldId = values[i].Id;
+                values[i] = v;
+                v.Id = oldId;
+
+                return v;
+            });
+
             return mock.Object;
         }
     }
