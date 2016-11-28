@@ -51,6 +51,21 @@ namespace WebAPI.Common.Extensions
             return source;
         }
 
+        public static IQueryable<T> Page<T>(this IQueryable<T> source, int page, int count)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            if (page == 0 || count == 0)
+            {
+                return source;
+            }
+
+            return source.Skip(page - 1).Take(count);
+        }
+
         private static bool AreFieldsValid<T>(string[] fields)
         {
             return fields

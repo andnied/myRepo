@@ -6,12 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Model.Dto.Read;
 using WebAPI.Model.Dto.Update;
+using WebAPI.Model.SearchParams;
 
 namespace WebAPI.Contracts.BLL
 {
     public interface IValuesFcd
     {
-        IEnumerable<ValueReadDto> GetAll(string sort);
+        IEnumerable<ValueReadDto> GetAll(BaseSearchParams searchParams);
+        ValueReadDto Get(int id);
         ValueReadDto Update(int id, JsonPatchDocument<ValueUpdateDto> model);
     }
 }

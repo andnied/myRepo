@@ -63,6 +63,7 @@
     <Compile Include="Extensions\IQueryableExtensions.cs" />
     <Compile Include="Mocks\ValuesMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structures\ApiCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

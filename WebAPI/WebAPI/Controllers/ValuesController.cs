@@ -7,10 +7,10 @@ using System.Net.Http;
 using System.Web.Http;
 using WebAPI.Contracts.BLL;
 using WebAPI.Model.Dto.Update;
+using WebAPI.Model.SearchParams;
 
 namespace WebAPI.Controllers
 {
-    //[RoutePrefix("api/values")]
     public class ValuesController : ApiController
     {
         private readonly IValuesFcd _valuesFcd;
@@ -19,29 +19,27 @@ namespace WebAPI.Controllers
         {
             _valuesFcd = valuesFcd;
         }
-
-        [Route("")]
-        public IHttpActionResult Get(string sort = "id")
+        
+        public IHttpActionResult Get([FromUri] BaseSearchParams searchParams)
         {
-            var items = _valuesFcd.GetAll(sort);
+            var items = _valuesFcd.GetAll(searchParams);
 
             return Ok(items);
         }
-
-        [Route("{id}")]
+        
         public IHttpActionResult Get(int id)
         {
-            return Ok();
+            var item = _valuesFcd.Get(id);
+
+            return Ok(item);
         }
 
         [HttpPatch]
-        //[Route("{id}")]
         public IHttpActionResult Patch(int id, [FromBody]JsonPatchDocument<ValueUpdateDto> patch)
-        //public IHttpActionResult Patch(int id, [FromBody]ValueUpdateDto patch)
         {
-            //_valuesFcd.Update(id, patch);
+            var updated = _valuesFcd.Update(id, patch);
 
-            return Ok();
+            return Ok(updated);
         }
     }
 }

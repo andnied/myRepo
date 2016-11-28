@@ -8,6 +8,8 @@ using Moq;
 using WebAPI.DAL.Models;
 using WebAPI.Common.Extensions;
 using WebAPI.Model.Dto.Update;
+using WebAPI.Model.SearchParams;
+using WebAPI.Common.Structures;
 
 namespace WebAPI.Common.Mocks
 {
@@ -20,7 +22,8 @@ namespace WebAPI.Common.Mocks
             new Value
             {
                 Id = 1,
-                Name = "Jeden"
+                Name = "Jeden",
+                Description = "test"
             },
             new Value
             {
@@ -39,8 +42,21 @@ namespace WebAPI.Common.Mocks
         public static IValuesRepository GetValueRepositoryMock()
         {
             var mock = new Mock<IValuesRepository>();
-            mock.Setup(m => m.Get(It.IsAny<string>())).Returns<string>(s => values.AsQueryable().DynamicSort(s).ToList());
+
+            mock.Setup(m => m.Get(It.IsAny<BaseSearchParams>())).Returns<BaseSearchParams>(s =>
+            {
+                var items = values.AsQueryable();
+                var count = values.Count;
+                items = items.DynamicSort(s.Sort);
+                items = items.Page(s.Page.Value, s.Items.Value);
+
+                var apiCollection = new ApiCollection<Value>(items.ToList()) { TotalCount = count };
+
+                return items.ToList();
+            });
+
             mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => values.ElementAt(i));
+
             mock.Setup(m => m.Update(It.IsAny<int>(), It.IsAny<Value>())).Returns<int, Value>((i, v) =>
             {
                 var oldId = values[i].Id;

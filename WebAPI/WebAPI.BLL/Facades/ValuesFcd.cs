@@ -9,6 +9,7 @@ using WebAPI.Contracts.DAL;
 using WebAPI.DAL.Models;
 using WebAPI.Model.Dto.Read;
 using WebAPI.Model.Dto.Update;
+using WebAPI.Model.SearchParams;
 
 namespace WebAPI.BLL.Facades
 {
@@ -22,11 +23,18 @@ namespace WebAPI.BLL.Facades
             _repo = repo;
         }
 
-        public IEnumerable<ValueReadDto> GetAll(string sort = "id")
+        public IEnumerable<ValueReadDto> GetAll(BaseSearchParams searchParams)
         {
-            var items = _repo.Get(sort);
+            var items = _repo.Get(searchParams);
 
             return _mapper.Map<IEnumerable<ValueReadDto>>(items);
+        }
+
+        public ValueReadDto Get(int id)
+        {
+            var item = _repo.Get(id);
+
+            return _mapper.Map<ValueReadDto>(item);
         }
 
         public ValueReadDto Update(int id, JsonPatchDocument<ValueUpdateDto> model)
@@ -34,7 +42,7 @@ namespace WebAPI.BLL.Facades
             var item = _repo.Get(id);
             var dto = _mapper.Map<ValueUpdateDto>(item);
             model.ApplyUpdatesTo(dto);
-            item = _mapper.Map<Value>(dto);
+            item = _mapper.Map(dto, item);
             var updated = _repo.Update(id, item);
 
             return _mapper.Map<ValueReadDto>(updated);
