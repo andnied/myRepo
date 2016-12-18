@@ -7,19 +7,9 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Common.Structures
 {
-    public class ApiCollection<T> : IEnumerable<T>
+    public class ApiCollection<T>
     {
-        public IEnumerator<T> GetEnumerator()
-        {
-            return Items.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return Items.GetEnumerator();
-        }
-
-        public IEnumerable<T> Items { get; set; }
+        public IEnumerable<T> Items { get; private set; }
         public int TotalCount { get; set; }
 
         public ApiCollection(IEnumerable<T> src)

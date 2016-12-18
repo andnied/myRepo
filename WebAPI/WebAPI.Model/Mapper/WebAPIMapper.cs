@@ -10,17 +10,17 @@ using WebAPI.Model.Dto.Update;
 
 namespace WebAPI.Model.Mapper
 {
-    public sealed class WebAPIMapper
+    public sealed class WebApiMapper
     {
-        private static WebAPIMapper Instance;
+        private static WebApiMapper Instance;
         private readonly IMapper _mapper;
 
-        public static WebAPIMapper GetMapper()
+        public static WebApiMapper GetMapper()
         {
-            return Instance = (Instance ?? new WebAPIMapper());
+            return Instance = (Instance ?? new WebApiMapper());
         }
 
-        private WebAPIMapper()
+        private WebApiMapper()
         {
             var config = new MapperConfiguration(c =>
             {

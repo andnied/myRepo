@@ -11,7 +11,7 @@ using WebAPI.Model.Dto.Update;
 using WebAPI.Model.SearchParams;
 using WebAPI.Common.Structures;
 
-namespace WebAPI.Common.Mocks
+namespace WebAPI.Mocks
 {
     public class ValuesMock
     {
@@ -33,7 +33,12 @@ namespace WebAPI.Common.Mocks
             new Value
             {
                 Id = 3,
-                Name = "Dwa"
+                Name = "Trzy"
+            },
+            new Value
+            {
+                Id = 4,
+                Name = "Trzy"
             }
         };
 
@@ -52,16 +57,15 @@ namespace WebAPI.Common.Mocks
 
                 var apiCollection = new ApiCollection<Value>(items.ToList()) { TotalCount = count };
 
-                return items.ToList();
+                return apiCollection;
             });
 
-            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => values.ElementAt(i));
+            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => values.FirstOrDefault(v => v.Id == i));
 
             mock.Setup(m => m.Update(It.IsAny<int>(), It.IsAny<Value>())).Returns<int, Value>((i, v) =>
             {
-                var oldId = values[i].Id;
-                values[i] = v;
-                v.Id = oldId;
+                var index = values.IndexOf(v);
+                values[index] = v;
 
                 return v;
             });

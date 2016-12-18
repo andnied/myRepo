@@ -58,6 +58,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebAPI.Common\WebAPI.Common.csproj">
+      <Project>{EE9B8F54-052C-4D5B-A2A4-00ADDA0B44D6}</Project>
+      <Name>WebAPI.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebAPI.DAL\WebAPI.DAL.csproj">
       <Project>{2CAFB156-62D5-4B01-81E3-27E93B0C6AE6}</Project>
       <Name>WebAPI.DAL</Name>

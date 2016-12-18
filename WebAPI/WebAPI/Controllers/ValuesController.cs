@@ -31,7 +31,10 @@ namespace WebAPI.Controllers
         {
             var item = _valuesFcd.Get(id);
 
-            return Ok(item);
+            if (item != null)
+                return Ok(item);
+            else
+                return NotFound();
         }
 
         [HttpPatch]

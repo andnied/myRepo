@@ -15,6 +15,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.BLL", "WebAPI.BLL\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.Common", "WebAPI.Common\WebAPI.Common.csproj", "{EE9B8F54-052C-4D5B-A2A4-00ADDA0B44D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.Mocks", "WebAPI.Mocks\WebAPI.Mocks.csproj", "{02AE27E1-9538-4F92-80E1-FAEEBD4073B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C08F5DD2-331F-4145-8416-BE6182DDD633}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.Common.Tests", "WebAPI.Common.Tests\WebAPI.Common.Tests.csproj", "{8D728186-251E-460C-9D16-95AE99B8916B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,8 +51,19 @@ Global
 		{EE9B8F54-052C-4D5B-A2A4-00ADDA0B44D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE9B8F54-052C-4D5B-A2A4-00ADDA0B44D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE9B8F54-052C-4D5B-A2A4-00ADDA0B44D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02AE27E1-9538-4F92-80E1-FAEEBD4073B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02AE27E1-9538-4F92-80E1-FAEEBD4073B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02AE27E1-9538-4F92-80E1-FAEEBD4073B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02AE27E1-9538-4F92-80E1-FAEEBD4073B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D728186-251E-460C-9D16-95AE99B8916B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D728186-251E-460C-9D16-95AE99B8916B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D728186-251E-460C-9D16-95AE99B8916B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D728186-251E-460C-9D16-95AE99B8916B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D728186-251E-460C-9D16-95AE99B8916B} = {C08F5DD2-331F-4145-8416-BE6182DDD633}
 	EndGlobalSection
 EndGlobal

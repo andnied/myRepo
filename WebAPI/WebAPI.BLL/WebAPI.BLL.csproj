@@ -57,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebAPI.Common\WebAPI.Common.csproj">
+      <Project>{EE9B8F54-052C-4D5B-A2A4-00ADDA0B44D6}</Project>
+      <Name>WebAPI.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebAPI.Contracts\WebAPI.Contracts.csproj">
       <Project>{F0F251FC-5D8B-43F2-A9AF-9C8704FDFA28}</Project>
       <Name>WebAPI.Contracts</Name>

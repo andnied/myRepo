@@ -21,7 +21,7 @@ namespace WebAPI.Common.Extensions
                 return source;
             }
 
-            var fields = sort.Split(',');
+            var fields = sort.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(f => f.Trim());
 
             if (!(AreFieldsValid<T>(fields)))
             {
@@ -63,10 +63,10 @@ namespace WebAPI.Common.Extensions
                 return source;
             }
 
-            return source.Skip(page - 1).Take(count);
+            return source.Skip((page - 1) * count).Take(count);
         }
 
-        private static bool AreFieldsValid<T>(string[] fields)
+        private static bool AreFieldsValid<T>(IEnumerable<string> fields)
         {
             return fields
                 .Select(f =>

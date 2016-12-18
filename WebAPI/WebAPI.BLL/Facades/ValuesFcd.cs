@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI.Common.Structures;
 using WebAPI.Contracts.BLL;
 using WebAPI.Contracts.DAL;
 using WebAPI.DAL.Models;
@@ -23,11 +24,12 @@ namespace WebAPI.BLL.Facades
             _repo = repo;
         }
 
-        public IEnumerable<ValueReadDto> GetAll(BaseSearchParams searchParams)
+        public ApiCollection<ValueReadDto> GetAll(BaseSearchParams searchParams)
         {
-            var items = _repo.Get(searchParams);
+            var collection = _repo.Get(searchParams);
+            var items = _mapper.Map<IEnumerable<ValueReadDto>>(collection.Items);
 
-            return _mapper.Map<IEnumerable<ValueReadDto>>(items);
+            return new ApiCollection<ValueReadDto>(items) { TotalCount = collection.TotalCount };
         }
 
         public ValueReadDto Get(int id)
