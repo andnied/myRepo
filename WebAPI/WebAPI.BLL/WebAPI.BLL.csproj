@@ -69,6 +69,10 @@
       <Project>{2cafb156-62d5-4b01-81e3-27e93b0c6ae6}</Project>
       <Name>WebAPI.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebAPI.Mapper\WebAPI.Mapper.csproj">
+      <Project>{7780E33E-869D-4CA9-9E05-A3A5C2686C9D}</Project>
+      <Name>WebAPI.Mapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebAPI.Model\WebAPI.Model.csproj">
       <Project>{4B1F56D9-C392-483E-8F06-AD43EF0D76D9}</Project>
       <Name>WebAPI.Model</Name>

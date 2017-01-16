@@ -9,7 +9,7 @@ using WebAPI.Model.Dto.Update;
 
 namespace WebAPI.Contracts.DAL
 {
-    public interface IValuesRepository : IRepositoryBase<Value>
+    public interface IValuesRepository : IRepositoryBase<Value, IQueryable<Value>>
     {
     }
 }

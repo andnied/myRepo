@@ -21,7 +21,7 @@ namespace WebAPI.Common.Tests.Extensions
         public IQueryableExtensionsTests()
         {
             _valuesRepository = ValuesMock.GetValueRepositoryMock();
-            _defaultCollection = _valuesRepository.Get(new BaseSearchParams()).Items.AsQueryable();
+            _defaultCollection = _valuesRepository.Get(new BaseSearchParams());
         }
 
         [Fact]

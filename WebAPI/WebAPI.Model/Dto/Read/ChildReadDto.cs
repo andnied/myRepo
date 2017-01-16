@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Model.Dto.Read
 {
-    public class ValueReadDto
+    public class ChildReadDto
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public IEnumerable<ChildReadDto> Children { get; set; }
+        public string ChildName { get; set; }
     }
 }

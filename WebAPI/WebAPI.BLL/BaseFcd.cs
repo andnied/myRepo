@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebAPI.Model.Mapper;
+﻿using WebAPI.Mapper;
 
 namespace WebAPI.BLL
 {
     public abstract class BaseFcd
     {
-        protected readonly WebApiMapper _mapper;
+        //protected readonly WebApiMapper _mapper;
 
         protected BaseFcd()
         {
-            _mapper = WebApiMapper.GetMapper();
+            //_mapper = WebApiMapper.GetMapper();
         }
     }
 }

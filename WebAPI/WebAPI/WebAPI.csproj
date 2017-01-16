@@ -369,6 +369,10 @@
       <Project>{F0F251FC-5D8B-43F2-A9AF-9C8704FDFA28}</Project>
       <Name>WebAPI.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebAPI.Mapper\WebAPI.Mapper.csproj">
+      <Project>{7780E33E-869D-4CA9-9E05-A3A5C2686C9D}</Project>
+      <Name>WebAPI.Mapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebAPI.Mocks\WebAPI.Mocks.csproj">
       <Project>{02AE27E1-9538-4F92-80E1-FAEEBD4073B6}</Project>
       <Name>WebAPI.Mocks</Name>

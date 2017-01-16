@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebAPI.DAL.Models;
 using WebAPI.Model.Dto.Read;
 using WebAPI.Model.Dto.Update;
 
-namespace WebAPI.Model.Mapper
+namespace WebAPI.Mapper
 {
     public sealed class WebApiMapper
     {
@@ -22,12 +18,17 @@ namespace WebAPI.Model.Mapper
 
         private WebApiMapper()
         {
-            var config = new MapperConfiguration(c =>
+            var action = new Action<IMapperConfigurationExpression>(c =>
             {
+                c.CreateMap<Child, ChildReadDto>()
+                    .ForMember(dto => dto.Id, s => s.MapFrom(model => model.Id))
+                    .ForMember(dto => dto.ChildName, s => s.MapFrom(model => model.ChildName));
+
                 c.CreateMap<Value, ValueReadDto>()
                     .ForMember(dto => dto.Id, s => s.MapFrom(model => model.Id))
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name))
-                    .ForMember(dto => dto.Description, s => s.MapFrom(model => model.Description));
+                    .ForMember(dto => dto.Description, s => s.MapFrom(model => model.Description))
+                    .ForMember(dto => dto.Children, s => s.MapFrom(model => model.Children));
 
                 c.CreateMap<Value, ValueUpdateDto>()
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
@@ -36,7 +37,10 @@ namespace WebAPI.Model.Mapper
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
             });
 
+            var config = new MapperConfiguration(action);
+
             _mapper = config.CreateMapper();
+            AutoMapper.Mapper.Initialize(action);
         }
 
         public TDest Map<TDest>(object source) 

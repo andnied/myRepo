@@ -1,24 +1,23 @@
 ﻿using JsonPatch;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebAPI.Common.Structures;
 using WebAPI.Contracts.BLL;
 using WebAPI.Contracts.DAL;
-using WebAPI.DAL.Models;
+using WebAPI.Contracts.Mapper;
 using WebAPI.Model.Dto.Read;
 using WebAPI.Model.Dto.Update;
 using WebAPI.Model.SearchParams;
+using System;
+using WebAPI.Mapper;
 
 namespace WebAPI.BLL.Facades
 {
     public class ValuesFcd : BaseFcd, IValuesFcd
     {
-        private readonly IValuesRepository _repo;
+        private readonly IValuesMappedRepository _repo;
+        private readonly WebApiMapper _mapper = WebApiMapper.GetMapper();
 
-        public ValuesFcd(IValuesRepository repo)
+        public ValuesFcd(IValuesMappedRepository repo)
             : base()
         {
             _repo = repo;
@@ -26,17 +25,16 @@ namespace WebAPI.BLL.Facades
 
         public ApiCollection<ValueReadDto> GetAll(BaseSearchParams searchParams)
         {
-            var collection = _repo.Get(searchParams);
-            var items = _mapper.Map<IEnumerable<ValueReadDto>>(collection.Items);
+            var items = _repo.Get(searchParams);
 
-            return new ApiCollection<ValueReadDto>(items) { TotalCount = collection.TotalCount };
+            return items;
         }
 
         public ValueReadDto Get(int id)
         {
             var item = _repo.Get(id);
 
-            return _mapper.Map<ValueReadDto>(item);
+            return item;
         }
 
         public ValueReadDto Update(int id, JsonPatchDocument<ValueUpdateDto> model)
@@ -47,7 +45,14 @@ namespace WebAPI.BLL.Facades
             item = _mapper.Map(dto, item);
             var updated = _repo.Update(id, item);
 
-            return _mapper.Map<ValueReadDto>(updated);
+            return updated;
+        }
+
+        public ValueReadDto Update(int id, ValueReadDto model)
+        {
+            var updated = _repo.Update(id, model);
+
+            return updated;
         }
     }
 }

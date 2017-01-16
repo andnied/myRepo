@@ -44,6 +44,31 @@ namespace WebAPI.Mocks
 
         #endregion
 
+        #region Children
+
+        private static IList<Child> Children = new List<Child>
+        {
+            new Child { Id = 1, ChildName = "Child name 1", OtherProperty = "asdsadas" },
+            new Child { Id = 2, ChildName = "Child name 2", OtherProperty = "rtrtrtr" }
+        };
+
+        #endregion
+
+        #region Constructor
+
+        static ValuesMock()
+        {
+            values[0].Children = Children;
+
+            foreach (var child in Children)
+            {
+                child.Value = values[0];
+                child.Id = values[0].Id;
+            }
+        }
+
+        #endregion
+
         public static IValuesRepository GetValueRepositoryMock()
         {
             var mock = new Mock<IValuesRepository>();
@@ -55,9 +80,11 @@ namespace WebAPI.Mocks
                 items = items.DynamicSort(s.Sort);
                 items = items.Page(s.Page.Value, s.Items.Value);
 
-                var apiCollection = new ApiCollection<Value>(items.ToList()) { TotalCount = count };
+                return items;
 
-                return apiCollection;
+                //var apiCollection = new ApiCollection<Value>(items.ToList()) { TotalCount = count };
+
+                //return apiCollection;
             });
 
             mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => values.FirstOrDefault(v => v.Id == i));

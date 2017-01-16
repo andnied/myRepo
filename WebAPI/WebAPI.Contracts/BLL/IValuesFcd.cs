@@ -16,5 +16,6 @@ namespace WebAPI.Contracts.BLL
         ApiCollection<ValueReadDto> GetAll(BaseSearchParams searchParams);
         ValueReadDto Get(int id);
         ValueReadDto Update(int id, JsonPatchDocument<ValueUpdateDto> model);
+        ValueReadDto Update(int id, ValueReadDto model);
     }
 }
