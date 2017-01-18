@@ -10,6 +10,8 @@ using WebAPI.Common.Extensions;
 using WebAPI.Model.Dto.Update;
 using WebAPI.Model.SearchParams;
 using WebAPI.Common.Structures;
+using WebAPI.Model.Dto.Read;
+using WebAPI.DAL;
 
 namespace WebAPI.Mocks
 {
@@ -17,25 +19,25 @@ namespace WebAPI.Mocks
     {
         #region Values
 
-        private static IList<Value> values = new List<Value>
+        private static IList<ValueReadDto> values = new List<ValueReadDto>
         {
-            new Value
+            new ValueReadDto
             {
                 Id = 1,
                 Name = "Jeden",
                 Description = "test"
             },
-            new Value
+            new ValueReadDto
             {
                 Id = 2,
                 Name = "Dwa"
             },
-            new Value
+            new ValueReadDto
             {
                 Id = 3,
                 Name = "Trzy"
             },
-            new Value
+            new ValueReadDto
             {
                 Id = 4,
                 Name = "Trzy"
@@ -46,10 +48,10 @@ namespace WebAPI.Mocks
 
         #region Children
 
-        private static IList<Child> Children = new List<Child>
+        private static IList<ChildReadDto> Children = new List<ChildReadDto>
         {
-            new Child { Id = 1, ChildName = "Child name 1", OtherProperty = "asdsadas" },
-            new Child { Id = 2, ChildName = "Child name 2", OtherProperty = "rtrtrtr" }
+            new ChildReadDto { Id = 1, ChildName = "Child name 1"},
+            new ChildReadDto { Id = 2, ChildName = "Child name 2"}
         };
 
         #endregion
@@ -59,12 +61,6 @@ namespace WebAPI.Mocks
         static ValuesMock()
         {
             values[0].Children = Children;
-
-            foreach (var child in Children)
-            {
-                child.Value = values[0];
-                child.Id = values[0].Id;
-            }
         }
 
         #endregion
@@ -77,19 +73,18 @@ namespace WebAPI.Mocks
             {
                 var items = values.AsQueryable();
                 var count = values.Count;
+
                 items = items.DynamicSort(s.Sort);
                 items = items.Page(s.Page.Value, s.Items.Value);
+                
+                var apiCollection = new ApiCollection<ValueReadDto>(items.ToList()) { TotalCount = count };
 
-                return items;
-
-                //var apiCollection = new ApiCollection<Value>(items.ToList()) { TotalCount = count };
-
-                //return apiCollection;
+                return apiCollection;
             });
 
-            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => values.FirstOrDefault(v => v.Id == i));
+            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => values.AsQueryable().FirstOrDefault(v => v.Id == i));
 
-            mock.Setup(m => m.Update(It.IsAny<int>(), It.IsAny<Value>())).Returns<int, Value>((i, v) =>
+            mock.Setup(m => m.Update(It.IsAny<int>(), It.IsAny<ValueReadDto>())).Returns<int, ValueReadDto>((i, v) =>
             {
                 var index = values.IndexOf(v);
                 values[index] = v;

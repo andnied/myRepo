@@ -55,7 +55,6 @@
     <Compile Include="BLL\IValuesFcd.cs" />
     <Compile Include="DAL\IRepositoryBase.cs" />
     <Compile Include="DAL\IValuesRepository.cs" />
-    <Compile Include="Mapper\IValuesMappedRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

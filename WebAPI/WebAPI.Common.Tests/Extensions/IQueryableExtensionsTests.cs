@@ -10,18 +10,19 @@ using WebAPI.Mocks;
 using WebAPI.Model.SearchParams;
 using Xunit;
 using WebAPI.Common.Extensions;
+using WebAPI.Model.Dto.Read;
 
 namespace WebAPI.Common.Tests.Extensions
 {
     public class IQueryableExtensionsTests
     {
         private readonly IValuesRepository _valuesRepository;
-        private readonly IQueryable<Value> _defaultCollection;
+        private readonly IQueryable<ValueReadDto> _defaultCollection;
 
         public IQueryableExtensionsTests()
         {
             _valuesRepository = ValuesMock.GetValueRepositoryMock();
-            _defaultCollection = _valuesRepository.Get(new BaseSearchParams());
+            _defaultCollection = _valuesRepository.Get(new BaseSearchParams()).Items.AsQueryable();
         }
 
         [Fact]

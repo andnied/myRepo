@@ -8,11 +8,10 @@ namespace WebAPI.Contracts.DAL
     {
     }
 
-    public interface IRepositoryBase<T, T2> 
+    public interface IRepositoryBase<T> 
         where T : class, new()
-        where T2 : class
     {
-        T2 Get(BaseSearchParams searchParams);
+        ApiCollection<T> Get(BaseSearchParams searchParams);
         T Get(int id);
         T Add(T entity);
         T Update(int id, T entity);

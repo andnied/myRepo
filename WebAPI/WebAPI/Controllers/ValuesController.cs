@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
             _valuesFcd = valuesFcd;
         }
         
-        public IHttpActionResult Get([FromUri] BaseSearchParams searchParams)
+        public IHttpActionResult Get([FromUri]BaseSearchParams searchParams)
         {
             var items = _valuesFcd.GetAll(searchParams);
 

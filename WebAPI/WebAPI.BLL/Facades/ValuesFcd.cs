@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using WebAPI.Common.Structures;
 using WebAPI.Contracts.BLL;
 using WebAPI.Contracts.DAL;
-using WebAPI.Contracts.Mapper;
 using WebAPI.Model.Dto.Read;
 using WebAPI.Model.Dto.Update;
 using WebAPI.Model.SearchParams;
@@ -14,10 +13,10 @@ namespace WebAPI.BLL.Facades
 {
     public class ValuesFcd : BaseFcd, IValuesFcd
     {
-        private readonly IValuesMappedRepository _repo;
+        private readonly IValuesRepository _repo;
         private readonly WebApiMapper _mapper = WebApiMapper.GetMapper();
 
-        public ValuesFcd(IValuesMappedRepository repo)
+        public ValuesFcd(IValuesRepository repo)
             : base()
         {
             _repo = repo;

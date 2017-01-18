@@ -30,10 +30,10 @@ namespace WebAPI.Mapper
                     .ForMember(dto => dto.Description, s => s.MapFrom(model => model.Description))
                     .ForMember(dto => dto.Children, s => s.MapFrom(model => model.Children));
 
-                c.CreateMap<Value, ValueUpdateDto>()
+                c.CreateMap<ValueReadDto, ValueUpdateDto>()
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
 
-                c.CreateMap<ValueUpdateDto, Value>()
+                c.CreateMap<ValueUpdateDto, ValueReadDto>()
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
             });
 

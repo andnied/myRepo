@@ -13,8 +13,6 @@ using Unity.WebApi;
 using JsonPatch.Formatting;
 using System.Net.Http.Headers;
 using WebAPI.Mocks;
-using WebAPI.Contracts.Mapper;
-using WebAPI.Mapper.Mappers;
 
 namespace WebAPI
 {
@@ -44,7 +42,6 @@ namespace WebAPI
             var container = new UnityContainer();
             container.RegisterInstance(ValuesMock.GetValueRepositoryMock());
             container.RegisterType<IValuesFcd, ValuesFcd>();
-            container.RegisterType<IValuesMappedRepository, ValuesMapper>();
 
             config.DependencyResolver = new UnityDependencyResolver(container);
         }
