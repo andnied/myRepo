@@ -43,6 +43,7 @@
     <Compile Include="Dto\Read\ChildReadDto.cs" />
     <Compile Include="Dto\Read\ValueReadDto.cs" />
     <Compile Include="Dto\Update\ValueUpdateDto.cs" />
+    <Compile Include="Dto\Write\ValueWriteDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchParams\BaseSearchParams.cs" />
   </ItemGroup>

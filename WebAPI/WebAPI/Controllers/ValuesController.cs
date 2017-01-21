@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using WebAPI.Contracts.BLL;
+using WebAPI.Filters;
 using WebAPI.Model.Dto.Update;
 using WebAPI.Model.SearchParams;
 
 namespace WebAPI.Controllers
 {
+    [WebApiException]
     public class ValuesController : ApiController
     {
         private readonly IValuesFcd _valuesFcd;
@@ -20,16 +23,16 @@ namespace WebAPI.Controllers
             _valuesFcd = valuesFcd;
         }
         
-        public IHttpActionResult Get([FromUri]BaseSearchParams searchParams)
+        public async Task<IHttpActionResult> Get([FromUri]BaseSearchParams searchParams)
         {
             var items = _valuesFcd.GetAll(searchParams);
 
-            return Ok(items);
+            return Ok(await items);
         }
         
-        public IHttpActionResult Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
-            var item = _valuesFcd.Get(id);
+            var item = await _valuesFcd.Get(id);
 
             if (item != null)
                 return Ok(item);
@@ -38,11 +41,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpPatch]
-        public IHttpActionResult Patch(int id, [FromBody]JsonPatchDocument<ValueUpdateDto> patch)
+        public async Task<IHttpActionResult> Patch(int id, [FromBody]JsonPatchDocument<ValueUpdateDto> patch)
         {
             var updated = _valuesFcd.Update(id, patch);
 
-            return Ok(updated);
+            return Ok(await updated);
         }
     }
 }

@@ -4,11 +4,11 @@ namespace WebAPI.BLL
 {
     public abstract class BaseFcd
     {
-        //protected readonly WebApiMapper _mapper;
+        protected readonly WebApiMapper _mapper;
 
         protected BaseFcd()
         {
-            //_mapper = WebApiMapper.GetMapper();
+            _mapper = WebApiMapper.GetMapper();
         }
     }
 }

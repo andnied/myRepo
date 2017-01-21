@@ -8,13 +8,13 @@ using WebAPI.Model.Dto.Update;
 using WebAPI.Model.SearchParams;
 using System;
 using WebAPI.Mapper;
+using System.Threading.Tasks;
 
 namespace WebAPI.BLL.Facades
 {
     public class ValuesFcd : BaseFcd, IValuesFcd
     {
         private readonly IValuesRepository _repo;
-        private readonly WebApiMapper _mapper = WebApiMapper.GetMapper();
 
         public ValuesFcd(IValuesRepository repo)
             : base()
@@ -22,36 +22,34 @@ namespace WebAPI.BLL.Facades
             _repo = repo;
         }
 
-        public ApiCollection<ValueReadDto> GetAll(BaseSearchParams searchParams)
+        public async Task<ApiCollection<ValueReadDto>> GetAll(BaseSearchParams searchParams)
         {
             var items = _repo.Get(searchParams);
 
-            return items;
+            return await items;
         }
 
-        public ValueReadDto Get(int id)
+        public async Task<ValueReadDto> Get(int id)
         {
             var item = _repo.Get(id);
 
-            return item;
+            return await item;
         }
 
-        public ValueReadDto Update(int id, JsonPatchDocument<ValueUpdateDto> model)
+        public async Task<ValueReadDto> Update(int id, JsonPatchDocument<ValueUpdateDto> model)
         {
-            var item = _repo.Get(id);
+            var item = await _repo.Get(id);
             var dto = _mapper.Map<ValueUpdateDto>(item);
             model.ApplyUpdatesTo(dto);
             item = _mapper.Map(dto, item);
             var updated = _repo.Update(id, item);
 
-            return updated;
+            return await updated;
         }
 
-        public ValueReadDto Update(int id, ValueReadDto model)
+        public async Task<ValueReadDto> Update(int id, ValueReadDto model)
         {
-            var updated = _repo.Update(id, model);
-
-            return updated;
+            throw new NotImplementedException();
         }
     }
 }

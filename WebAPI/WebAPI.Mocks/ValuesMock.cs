@@ -71,25 +71,35 @@ namespace WebAPI.Mocks
 
             mock.Setup(m => m.Get(It.IsAny<BaseSearchParams>())).Returns<BaseSearchParams>(s =>
             {
-                var items = values.AsQueryable();
-                var count = values.Count;
+                var task = Task.Factory.StartNew(() =>
+                  {
+                      var items = values.AsQueryable();
+                      var count = values.Count;
 
-                items = items.DynamicSort(s.Sort);
-                items = items.Page(s.Page.Value, s.Items.Value);
-                
-                var apiCollection = new ApiCollection<ValueReadDto>(items.ToList()) { TotalCount = count };
+                      items = items.DynamicSort(s.Sort);
+                      items = items.Page(s.Page.Value, s.Items.Value);
 
-                return apiCollection;
+                      var apiCollection = new ApiCollection<ValueReadDto>(items.ToList()) { TotalCount = count };
+
+                      return apiCollection;
+                  });
+
+                return task;
             });
 
-            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => values.AsQueryable().FirstOrDefault(v => v.Id == i));
+            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => Task.Factory.StartNew(() => values.AsQueryable().FirstOrDefault(v => v.Id == i)));
 
             mock.Setup(m => m.Update(It.IsAny<int>(), It.IsAny<ValueReadDto>())).Returns<int, ValueReadDto>((i, v) =>
             {
-                var index = values.IndexOf(v);
-                values[index] = v;
+                var task = Task.Factory.StartNew(() =>
+                {
+                    var index = values.IndexOf(v);
+                    values[index] = v;
 
-                return v;
+                    return v;
+                });
+
+                return task;
             });
 
             return mock.Object;
