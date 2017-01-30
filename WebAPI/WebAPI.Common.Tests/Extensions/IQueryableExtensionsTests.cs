@@ -17,7 +17,7 @@ namespace WebAPI.Common.Tests.Extensions
     public class IQueryableExtensionsTests
     {
         private readonly IValuesRepository _valuesRepository;
-        private readonly IQueryable<ValueReadDto> _defaultCollection;
+        private readonly IQueryable<Value> _defaultCollection;
 
         public IQueryableExtensionsTests()
         {

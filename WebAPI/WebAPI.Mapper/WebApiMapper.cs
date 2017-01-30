@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using System;
+using WebAPI.Common.Structures;
 using WebAPI.DAL.Models;
 using WebAPI.Model.Dto.Read;
 using WebAPI.Model.Dto.Update;
+using WebAPI.Model.Dto.Write;
 
 namespace WebAPI.Mapper
 {
@@ -30,11 +32,15 @@ namespace WebAPI.Mapper
                     .ForMember(dto => dto.Description, s => s.MapFrom(model => model.Description))
                     .ForMember(dto => dto.Children, s => s.MapFrom(model => model.Children));
 
-                c.CreateMap<ValueReadDto, ValueUpdateDto>()
+                c.CreateMap<Value, ValueUpdateDto>()
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
 
-                c.CreateMap<ValueUpdateDto, ValueReadDto>()
+                c.CreateMap<ValueUpdateDto, Value>()
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
+
+                c.CreateMap<ApiCollection<Value>, ApiCollection<ValueReadDto>>();
+
+                c.CreateMap<ValueWriteDto, Value>();
             });
 
             var config = new MapperConfiguration(action);

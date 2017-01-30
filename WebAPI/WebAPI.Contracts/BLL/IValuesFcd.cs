@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using WebAPI.Common.Structures;
 using WebAPI.Model.Dto.Read;
 using WebAPI.Model.Dto.Update;
+using WebAPI.Model.Dto.Write;
 using WebAPI.Model.SearchParams;
 
 namespace WebAPI.Contracts.BLL
@@ -17,5 +18,6 @@ namespace WebAPI.Contracts.BLL
         Task<ValueReadDto> Get(int id);
         Task<ValueReadDto> Update(int id, JsonPatchDocument<ValueUpdateDto> model);
         Task<ValueReadDto> Update(int id, ValueReadDto model);
+        Task<ValueReadDto> Create(ValueWriteDto model);
     }
 }

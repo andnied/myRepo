@@ -12,6 +12,7 @@ using WebAPI.Model.SearchParams;
 using WebAPI.Common.Structures;
 using WebAPI.Model.Dto.Read;
 using WebAPI.DAL;
+using WebAPI.Common.Exceptions;
 
 namespace WebAPI.Mocks
 {
@@ -19,25 +20,25 @@ namespace WebAPI.Mocks
     {
         #region Values
 
-        private static IList<ValueReadDto> values = new List<ValueReadDto>
+        private static IList<Value> values = new List<Value>
         {
-            new ValueReadDto
+            new Value
             {
                 Id = 1,
                 Name = "Jeden",
                 Description = "test"
             },
-            new ValueReadDto
+            new Value
             {
                 Id = 2,
                 Name = "Dwa"
             },
-            new ValueReadDto
+            new Value
             {
                 Id = 3,
                 Name = "Trzy"
             },
-            new ValueReadDto
+            new Value
             {
                 Id = 4,
                 Name = "Trzy"
@@ -48,10 +49,10 @@ namespace WebAPI.Mocks
 
         #region Children
 
-        private static IList<ChildReadDto> Children = new List<ChildReadDto>
+        private static IList<Child> Children = new List<Child>
         {
-            new ChildReadDto { Id = 1, ChildName = "Child name 1"},
-            new ChildReadDto { Id = 2, ChildName = "Child name 2"}
+            new Child { Id = 1, ChildName = "Child name 1"},
+            new Child { Id = 2, ChildName = "Child name 2"}
         };
 
         #endregion
@@ -79,7 +80,7 @@ namespace WebAPI.Mocks
                       items = items.DynamicSort(s.Sort);
                       items = items.Page(s.Page.Value, s.Items.Value);
 
-                      var apiCollection = new ApiCollection<ValueReadDto>(items.ToList()) { TotalCount = count };
+                      var apiCollection = new ApiCollection<Value>(items.ToList()) { TotalCount = count };
 
                       return apiCollection;
                   });
@@ -87,14 +88,37 @@ namespace WebAPI.Mocks
                 return task;
             });
 
-            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => Task.Factory.StartNew(() => values.AsQueryable().FirstOrDefault(v => v.Id == i)));
+            mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => Task.Factory.StartNew(() =>
+            {
+                var value = values.FirstOrDefault(v => v.Id == i);
 
-            mock.Setup(m => m.Update(It.IsAny<int>(), It.IsAny<ValueReadDto>())).Returns<int, ValueReadDto>((i, v) =>
+                if (value == null)
+                {
+                    throw new NotFoundException(string.Format("Value with id {0} not found.", i));
+                }
+
+                return value;
+            }));
+
+            mock.Setup(m => m.Update(It.IsAny<int>(), It.IsAny<Value>())).Returns<int, Value>((i, v) =>
             {
                 var task = Task.Factory.StartNew(() =>
                 {
                     var index = values.IndexOf(v);
                     values[index] = v;
+
+                    return v;
+                });
+
+                return task;
+            });
+
+            mock.Setup(m => m.Add(It.IsAny<Value>())).Returns<Value>(v =>
+            {
+                var task = Task.Factory.StartNew(() =>
+                {
+                    values.Add(v);
+                    v.Id = values.Count;
 
                     return v;
                 });

@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPI.DAL.Models;
-using WebAPI.Model.Dto.Read;
 
 namespace WebAPI.Contracts.DAL
 {
-    public interface IValuesRepository : IRepositoryBase<ValueReadDto>
+    public interface IValuesRepository : IRepositoryBase<Value>
     {
     }
 }

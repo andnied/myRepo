@@ -7,8 +7,9 @@ using WebAPI.Model.Dto.Read;
 using WebAPI.Model.Dto.Update;
 using WebAPI.Model.SearchParams;
 using System;
-using WebAPI.Mapper;
 using System.Threading.Tasks;
+using WebAPI.Model.Dto.Write;
+using WebAPI.DAL.Models;
 
 namespace WebAPI.BLL.Facades
 {
@@ -24,32 +25,46 @@ namespace WebAPI.BLL.Facades
 
         public async Task<ApiCollection<ValueReadDto>> GetAll(BaseSearchParams searchParams)
         {
-            var items = _repo.Get(searchParams);
+            var items = await _repo.Get(searchParams);
+            var dto = _mapper.Map<ApiCollection<ValueReadDto>>(items);
 
-            return await items;
+            return dto;
         }
 
         public async Task<ValueReadDto> Get(int id)
         {
-            var item = _repo.Get(id);
+            var item = await _repo.Get(id);
+            var dto = _mapper.Map<ValueReadDto>(item);
 
-            return await item;
+            return dto;
         }
 
         public async Task<ValueReadDto> Update(int id, JsonPatchDocument<ValueUpdateDto> model)
         {
             var item = await _repo.Get(id);
             var dto = _mapper.Map<ValueUpdateDto>(item);
+
             model.ApplyUpdatesTo(dto);
             item = _mapper.Map(dto, item);
-            var updated = _repo.Update(id, item);
 
-            return await updated;
+            var updated = await _repo.Update(id, item);
+            var updatedDto = _mapper.Map<ValueReadDto>(updated);
+
+            return updatedDto;
         }
 
         public async Task<ValueReadDto> Update(int id, ValueReadDto model)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<ValueReadDto> Create(ValueWriteDto model)
+        {
+            var entity = _mapper.Map<Value>(model);
+            var added = await _repo.Add(entity);
+            var addedDto = _mapper.Map<ValueReadDto>(added);
+
+            return addedDto;
         }
     }
 }
