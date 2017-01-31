@@ -39,6 +39,25 @@ namespace WebAPI.BLL.Facades
             return dto;
         }
 
+        public async Task<ValueReadDto> Create(ValueWriteDto model)
+        {
+            var entity = _mapper.Map<Value>(model);
+            var added = await _repo.Add(entity);
+            var addedDto = _mapper.Map<ValueReadDto>(added);
+
+            return addedDto;
+        }
+
+        public async Task<ValueReadDto> Update(int id, ValueWriteDto model)
+        {
+            var mapped = _mapper.Map<Value>(model);
+            mapped.Id = id;
+            var updated = await _repo.Update(id, mapped);
+            var updatedDto = _mapper.Map<ValueReadDto>(updated);
+
+            return updatedDto;
+        }
+
         public async Task<ValueReadDto> Update(int id, JsonPatchDocument<ValueUpdateDto> model)
         {
             var item = await _repo.Get(id);
@@ -53,18 +72,9 @@ namespace WebAPI.BLL.Facades
             return updatedDto;
         }
 
-        public async Task<ValueReadDto> Update(int id, ValueReadDto model)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<ValueReadDto> Create(ValueWriteDto model)
-        {
-            var entity = _mapper.Map<Value>(model);
-            var added = await _repo.Add(entity);
-            var addedDto = _mapper.Map<ValueReadDto>(added);
-
-            return addedDto;
+            await _repo.Delete(id);
         }
     }
 }

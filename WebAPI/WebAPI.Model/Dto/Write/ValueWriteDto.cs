@@ -9,6 +9,7 @@ namespace WebAPI.Model.Dto.Write
 {
     public class ValueWriteDto
     {
+        [Required]
         [StringLength(10, ErrorMessage = "The maximum name length can be 10.")]
         public string Name { get; set; }
 

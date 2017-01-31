@@ -17,7 +17,8 @@ namespace WebAPI.Contracts.BLL
         Task<ApiCollection<ValueReadDto>> GetAll(BaseSearchParams searchParams);
         Task<ValueReadDto> Get(int id);
         Task<ValueReadDto> Update(int id, JsonPatchDocument<ValueUpdateDto> model);
-        Task<ValueReadDto> Update(int id, ValueReadDto model);
+        Task<ValueReadDto> Update(int id, ValueWriteDto model);
         Task<ValueReadDto> Create(ValueWriteDto model);
+        Task Delete(int id);
     }
 }

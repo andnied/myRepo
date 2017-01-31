@@ -43,6 +43,22 @@ namespace WebAPI.Controllers
                 return NotFound();
         }
 
+        [HttpPost]
+        public async Task<IHttpActionResult> Post([FromBody]ValueWriteDto value)
+        {
+            var added = await _valuesFcd.Create(value);
+
+            return CreatedAtRoute("DefaultApi", new { id = added.Id }, added);
+        }
+
+        [HttpPut]
+        public async Task<IHttpActionResult> Put(int id, [FromBody]ValueWriteDto value)
+        {
+            var updated = _valuesFcd.Update(id, value);
+
+            return Ok(await updated);
+        }
+
         [HttpPatch]
         public async Task<IHttpActionResult> Patch(int id, [FromBody]JsonPatchDocument<ValueUpdateDto> value)
         {
@@ -51,12 +67,12 @@ namespace WebAPI.Controllers
             return Ok(await updated);
         }
 
-        [HttpPost]
-        public async Task<IHttpActionResult> Post([FromBody]ValueWriteDto value)
+        [HttpDelete]
+        public async Task<IHttpActionResult> Delete(int id)
         {
-            var added = await _valuesFcd.Create(value);
-            
-            return CreatedAtRoute("DefaultApi", new { id = added.Id }, added);
+            await _valuesFcd.Delete(id);
+
+            return Ok();
         }
     }
 }
