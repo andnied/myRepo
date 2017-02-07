@@ -94,7 +94,7 @@ namespace WebAPI.BLL.Tests.Facades
         [Fact]
         public void delete_values_deletes_value()
         {
-            var deleteId = 4;
+            var deleteId = 3;
             var func = new Func<Task>(() => _fcd.Get(deleteId));
 
             _fcd.Delete(deleteId).ContinueWith((t) =>
