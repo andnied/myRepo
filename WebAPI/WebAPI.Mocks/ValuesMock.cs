@@ -13,6 +13,8 @@ using WebAPI.Common.Structures;
 using WebAPI.Model.Dto.Read;
 using WebAPI.DAL;
 using WebAPI.Common.Exceptions;
+using System.Linq.Dynamic;
+using System.Linq.Expressions;
 
 namespace WebAPI.Mocks
 {
@@ -74,7 +76,16 @@ namespace WebAPI.Mocks
             {
                 var task = Task.Factory.StartNew(() =>
                   {
-                      var items = values.AsQueryable();
+                      //var items = values.AsQueryable()
+                      //  .Select(v => new Value
+                      //  {
+                      //      Id = v.Id
+                      //  });
+
+                      //var test = values.AsQueryable();
+                      //var func = CreateNewStatement("Id");
+
+                      var items = values.Select(CreateNewStatement<Value>("Id, Name")).AsQueryable();
                       var count = values.Count;
 
                       items = items.DynamicSort(s.Sort);
@@ -142,6 +153,39 @@ namespace WebAPI.Mocks
             });
 
             return mock.Object;
+        }
+
+        static Func<T, T> CreateNewStatement<T>(string fields)
+        {
+            // input parameter "o"
+            var xParameter = Expression.Parameter(typeof(T), "o");
+
+            // new statement "new Data()"
+            var xNew = Expression.New(typeof(T));
+
+            // create initializers
+            var bindings = fields.Split(',').Select(o => o.Trim())
+                .Select(o => {
+
+            // property "Field1"
+            var mi = typeof(T).GetProperty(o);
+
+            // original value "o.Field1"
+            var xOriginal = Expression.Property(xParameter, mi);
+
+            // set value "Field1 = o.Field1"
+            return Expression.Bind(mi, xOriginal);
+                }
+            );
+
+            // initialization "new Data { Field1 = o.Field1, Field2 = o.Field2 }"
+            var xInit = Expression.MemberInit(xNew, bindings);
+
+            // expression "o => new Data { Field1 = o.Field1, Field2 = o.Field2 }"
+            var lambda = Expression.Lambda<Func<T, T>>(xInit, xParameter);
+
+            // compile to Func<Data, Data>
+            return lambda.Compile();
         }
     }
 }
