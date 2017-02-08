@@ -16,6 +16,7 @@ namespace WebAPI.BLL.Facades
     public class ValuesFcd : BaseFcd, IValuesFcd
     {
         private readonly IValuesRepository _repo;
+        private BaseSearchParams _searchParams;
 
         public ValuesFcd(IValuesRepository repo)
             : base()
@@ -23,12 +24,13 @@ namespace WebAPI.BLL.Facades
             _repo = repo;
         }
 
-        public async Task<ApiCollection<ValueReadDto>> GetAll(BaseSearchParams searchParams)
+        public async Task<object> GetAll(BaseSearchParams searchParams)
         {
+            _searchParams = searchParams;
             var items = await _repo.Get(searchParams);
-            var dto = _mapper.Map<ApiCollection<ValueReadDto>>(items);
-
-            return dto;
+            var result = GetDtoCollection(items);
+            
+            return result;
         }
 
         public async Task<ValueReadDto> Get(int id)
@@ -75,6 +77,30 @@ namespace WebAPI.BLL.Facades
         public async Task Delete(int id)
         {
             await _repo.Delete(id);
+        }
+
+        private ApiCollection<object> GetDtoCollection(ApiCollection<Value> entityCollection)
+        {
+            if (_searchParams.Fields == null)
+            {
+                var items = _mapper.Map<IEnumerable<ValueReadDto>>(entityCollection.Items);
+
+                return new ApiCollection<object>(items) { TotalCount = entityCollection.TotalCount };
+            }
+            else
+            {
+                var newItems = new List<object>();
+
+                foreach (var item in entityCollection.Items)
+                {
+                    newItems.Add(_mapper.DynamicMap(item, _searchParams.Fields));
+                }
+
+                var result = new ApiCollection<object>(newItems);
+                result.TotalCount = entityCollection.TotalCount;
+
+                return result;
+            }            
         }
     }
 }

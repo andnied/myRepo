@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Dynamic;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace WebAPI.Common.Extensions
 {
@@ -66,6 +68,11 @@ namespace WebAPI.Common.Extensions
             return source.Skip((page - 1) * count).Take(count);
         }
 
+        public static IQueryable<T> Select<T>(this IQueryable<T> source, string fields)
+        {
+            return source.Select(CreateNewStatement<T>(fields)).AsQueryable();
+        }
+
         private static bool AreFieldsValid<T>(IEnumerable<string> fields)
         {
             return fields
@@ -76,7 +83,39 @@ namespace WebAPI.Common.Extensions
                     else
                         return f;
                 })
-                .All(f => typeof(T).GetProperty(f, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance) != null);
+                .All(f => typeof(T).GetProperty(f, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance) != null);
+        }
+
+        private static Func<T, T> CreateNewStatement<T>(string fields)
+        {
+            // input parameter "o"
+            var xParameter = Expression.Parameter(typeof(T), "o");
+
+            // new statement "new Data()"
+            var xNew = Expression.New(typeof(T));
+
+            // create initializers
+            var bindings = fields.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(o => {
+                    // property "Field1"
+                    var mi = typeof(T).GetProperty(o.Trim(), BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
+
+                    // original value "o.Field1"
+                    var xOriginal = Expression.Property(xParameter, mi);
+
+                    // set value "Field1 = o.Field1"
+                    return Expression.Bind(mi, xOriginal);
+                }
+            );
+
+            // initialization "new Data { Field1 = o.Field1, Field2 = o.Field2 }"
+            var xInit = Expression.MemberInit(xNew, bindings);
+
+            // expression "o => new Data { Field1 = o.Field1, Field2 = o.Field2 }"
+            var lambda = Expression.Lambda<Func<T, T>>(xInit, xParameter);
+
+            // compile to Func<Data, Data>
+            return lambda.Compile();
         }
     }
 }

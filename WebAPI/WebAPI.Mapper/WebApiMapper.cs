@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Reflection;
 using WebAPI.Common.Structures;
 using WebAPI.DAL.Models;
 using WebAPI.Model.Dto.Read;
@@ -38,8 +41,6 @@ namespace WebAPI.Mapper
                 c.CreateMap<ValueUpdateDto, Value>()
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
 
-                c.CreateMap<ApiCollection<Value>, ApiCollection<ValueReadDto>>();
-
                 c.CreateMap<ValueWriteDto, Value>();
             });
 
@@ -60,6 +61,24 @@ namespace WebAPI.Mapper
             where TDest : class
         {
             return _mapper.Map(source, dest);
+        }
+
+        public object DynamicMap<TSource>(TSource source, string fields)
+            where TSource : class
+        {
+            var result = new ExpandoObject();
+            var fieldCollection = fields.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var field in fieldCollection)
+            {
+                var value = typeof(TSource)
+                    .GetProperty(field.Trim(), BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase)
+                    .GetValue(source);
+
+                (result as IDictionary<string, object>).Add(field, value);
+            }
+
+            return result;
         }
     }
 }
