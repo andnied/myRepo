@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using WebAPI.Common.Exceptions;
+using WebAPI.Common.Structures;
+using WebAPI.Contracts.BLL;
+using WebAPI.DAL.Models;
+using WebAPI.Mapper;
+using WebAPI.Model.Dto.Read;
+using WebAPI.Model.SearchParams;
+
+namespace WebAPI.BLL.Services
+{
+    public class ValuesService : IValuesService
+    {
+        private readonly WebApiMapper _mapper;
+
+        public ValuesService(WebApiMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
+        public ApiCollection<object> GetDtoCollection(ApiCollection<Value> entityCollection, BaseSearchParams searchParams)
+        {
+            if (searchParams.Fields == null)
+            {
+                var items = _mapper.Map<IEnumerable<ValueReadDto>>(entityCollection.Items);
+
+                return new ApiCollection<object>(items) { TotalCount = entityCollection.TotalCount };
+            }
+            else
+            {
+                var newItems = new List<object>();
+
+                foreach (var item in entityCollection.Items)
+                {
+                    newItems.Add(_mapper.DynamicMap(item, searchParams.Fields));
+                }
+
+                var result = new ApiCollection<object>(newItems);
+                result.TotalCount = entityCollection.TotalCount;
+
+                return result;
+            }
+        }
+
+        public bool AreFieldsValid(string fields)
+        {
+            var fieldCollection = fields.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var field in fieldCollection)
+            {
+                var property = typeof(Value).GetProperty(field, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+
+                if (property == null)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+}

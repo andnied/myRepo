@@ -55,6 +55,7 @@
     <Compile Include="BaseFcd.cs" />
     <Compile Include="Facades\ValuesFcd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ValuesService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebAPI.Common\WebAPI.Common.csproj">

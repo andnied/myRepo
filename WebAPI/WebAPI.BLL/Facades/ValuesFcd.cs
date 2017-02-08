@@ -10,25 +10,31 @@ using System;
 using System.Threading.Tasks;
 using WebAPI.Model.Dto.Write;
 using WebAPI.DAL.Models;
+using WebAPI.Mapper;
 
 namespace WebAPI.BLL.Facades
 {
     public class ValuesFcd : BaseFcd, IValuesFcd
     {
         private readonly IValuesRepository _repo;
-        private BaseSearchParams _searchParams;
+        private readonly IValuesService _service;
 
-        public ValuesFcd(IValuesRepository repo)
-            : base()
+        public ValuesFcd(IValuesRepository repo, IValuesService service, WebApiMapper mapper)
+            : base(mapper)
         {
             _repo = repo;
+            _service = service;
         }
 
-        public async Task<object> GetAll(BaseSearchParams searchParams)
+        public async Task<ApiCollection<object>> GetAll(BaseSearchParams searchParams)
         {
-            _searchParams = searchParams;
+            if (searchParams.Fields != null && !(_service.AreFieldsValid(searchParams.Fields)))
+            {
+                searchParams.Fields = null;
+            }
+
             var items = await _repo.Get(searchParams);
-            var result = GetDtoCollection(items);
+            var result = _service.GetDtoCollection(items, searchParams);
             
             return result;
         }
@@ -77,30 +83,6 @@ namespace WebAPI.BLL.Facades
         public async Task Delete(int id)
         {
             await _repo.Delete(id);
-        }
-
-        private ApiCollection<object> GetDtoCollection(ApiCollection<Value> entityCollection)
-        {
-            if (_searchParams.Fields == null)
-            {
-                var items = _mapper.Map<IEnumerable<ValueReadDto>>(entityCollection.Items);
-
-                return new ApiCollection<object>(items) { TotalCount = entityCollection.TotalCount };
-            }
-            else
-            {
-                var newItems = new List<object>();
-
-                foreach (var item in entityCollection.Items)
-                {
-                    newItems.Add(_mapper.DynamicMap(item, _searchParams.Fields));
-                }
-
-                var result = new ApiCollection<object>(newItems);
-                result.TotalCount = entityCollection.TotalCount;
-
-                return result;
-            }            
         }
     }
 }

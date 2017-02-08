@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\IValuesFcd.cs" />
+    <Compile Include="BLL\IValuesService.cs" />
     <Compile Include="DAL\IRepositoryBase.cs" />
     <Compile Include="DAL\IValuesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

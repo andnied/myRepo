@@ -6,9 +6,9 @@ namespace WebAPI.BLL
     {
         protected readonly WebApiMapper _mapper;
 
-        protected BaseFcd()
+        protected BaseFcd(WebApiMapper mapper)
         {
-            _mapper = WebApiMapper.GetMapper();
+            _mapper = mapper;
         }
     }
 }
