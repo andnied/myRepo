@@ -15,6 +15,7 @@ using System.Net.Http.Headers;
 using WebAPI.Mocks;
 using WebAPI.BLL.Services;
 using WebAPI.Mapper;
+using CacheCow.Server;
 
 namespace WebAPI
 {
@@ -47,6 +48,8 @@ namespace WebAPI
             container.RegisterType<IValuesService, ValuesService>();
 
             config.DependencyResolver = new UnityDependencyResolver(container);
+
+            config.MessageHandlers.Add(new CachingHandler(config));
         }
     }
 }
