@@ -46,22 +46,5 @@ namespace WebAPI.BLL.Services
                 return result;
             }
         }
-
-        public bool AreFieldsValid(string fields)
-        {
-            var fieldCollection = fields.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var field in fieldCollection)
-            {
-                var property = typeof(Value).GetProperty(field, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
-
-                if (property == null)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
     }
 }

@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPI.BLL.Facades;
+using WebAPI.BLL.Services;
 using WebAPI.Common.Exceptions;
 using WebAPI.Contracts.BLL;
 using WebAPI.Contracts.DAL;
+using WebAPI.Mapper;
 using WebAPI.Mocks;
 using WebAPI.Model.Dto.Update;
 using WebAPI.Model.Dto.Write;
@@ -21,6 +23,8 @@ namespace WebAPI.BLL.Tests.Facades
     {
         private readonly IValuesFcd _fcd;
         private readonly IValuesRepository _repo;
+        private readonly IValuesService _service;
+        private readonly WebApiMapper _mapper = WebApiMapper.GetMapper();
         private readonly ValueWriteDto _newValue = new ValueWriteDto
         {
             Name = "new value",
@@ -30,7 +34,8 @@ namespace WebAPI.BLL.Tests.Facades
         public ValuesFcdTests()
         {
             _repo = ValuesMock.GetValueRepositoryMock();
-            _fcd = new ValuesFcd(_repo);
+            _service = new ValuesService(_mapper);
+            _fcd = new ValuesFcd(_repo, _service, _mapper);
         }
 
         [Fact]

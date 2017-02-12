@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Reflection;
+using WebAPI.Common.Utils;
 
 namespace WebAPI.Common.Extensions
 {
@@ -23,13 +24,20 @@ namespace WebAPI.Common.Extensions
                 return source;
             }
 
-            var fields = sort.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(f => f.Trim());
+            Func<string, string> func = (string f) =>
+            {
+                if (f.StartsWith("-"))
+                    return f.Remove(0, 1);
+                else
+                    return f;
+            };
 
-            if (!(AreFieldsValid<T>(fields)))
+            if (!(Helper.AreFieldsValid<T>(sort, func)))
             {
                 return source;
             }
 
+            var fields = sort.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(f => f.Trim());
             var sortExpression = string.Empty;
 
             foreach (var field in fields)
@@ -71,19 +79,6 @@ namespace WebAPI.Common.Extensions
         public static IQueryable<T> Select<T>(this IQueryable<T> source, string fields)
         {
             return source.Select(CreateNewStatement<T>(fields)).AsQueryable();
-        }
-
-        private static bool AreFieldsValid<T>(IEnumerable<string> fields)
-        {
-            return fields
-                .Select(f =>
-                {
-                    if (f.StartsWith("-"))
-                        return f.Remove(0, 1);
-                    else
-                        return f;
-                })
-                .All(f => typeof(T).GetProperty(f, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance) != null);
         }
 
         private static Func<T, T> CreateNewStatement<T>(string fields)

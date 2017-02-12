@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using WebAPI.Model.Dto.Write;
 using WebAPI.DAL.Models;
 using WebAPI.Mapper;
+using WebAPI.Common.Utils;
 
 namespace WebAPI.BLL.Facades
 {
@@ -28,7 +29,7 @@ namespace WebAPI.BLL.Facades
 
         public async Task<ApiCollection<object>> GetAll(BaseSearchParams searchParams)
         {
-            if (searchParams.Fields != null && !(_service.AreFieldsValid(searchParams.Fields)))
+            if (searchParams.Fields != null && !(Helper.AreFieldsValid<Value>(searchParams.Fields)))
             {
                 searchParams.Fields = null;
             }
