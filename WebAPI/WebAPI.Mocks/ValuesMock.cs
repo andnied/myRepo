@@ -13,6 +13,8 @@ using WebAPI.Common.Structures;
 using WebAPI.Model.Dto.Read;
 using WebAPI.DAL;
 using WebAPI.Common.Exceptions;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace WebAPI.Mocks
 {
@@ -77,6 +79,9 @@ namespace WebAPI.Mocks
                       var items = values.AsQueryable();
                       var count = values.Count;
 
+                      if (s.Fields != null)
+                          items = items.Select(s.Fields);
+
                       items = items.DynamicSort(s.Sort);
                       items = items.Page(s.Page.Value, s.Items.Value);
 
@@ -90,13 +95,8 @@ namespace WebAPI.Mocks
 
             mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => Task.Factory.StartNew(() =>
             {
-                var value = values.FirstOrDefault(v => v.Id == i);
-
-                if (value == null)
-                {
-                    throw new NotFoundException(string.Format("Value with id {0} not found.", i));
-                }
-
+                var value = values.First<Value, NotFoundException>(v => v.Id == i, string.Format("Value with id {0} not found.", i));
+                
                 return value;
             }));
 
@@ -108,16 +108,9 @@ namespace WebAPI.Mocks
 
                     if (index == -1)
                     {
-                        var toBeUpdated = values.FirstOrDefault(va => va.Id == i);
-
-                        if (toBeUpdated == null)
-                        {
-                            throw new NotFoundException(string.Format("Value with id {0} not found.", i));
-                        }
-                        else
-                        {
-                            index = values.IndexOf(toBeUpdated);
-                        }
+                        var toBeUpdated = values.First<Value, NotFoundException>(va => va.Id == i, string.Format("Value with id {0} not found.", i));
+                        
+                        index = values.IndexOf(toBeUpdated);
                     }
 
                     values[index] = v;
@@ -145,13 +138,8 @@ namespace WebAPI.Mocks
             {
                 var task = Task.Factory.StartNew(() =>
                 {
-                    var value = values.FirstOrDefault(v => v.Id == i);
-
-                    if (value == null)
-                    {
-                        throw new NotFoundException(string.Format("Value with id {0} not found.", i));
-                    }
-
+                    var value = values.First<Value, NotFoundException>(v => v.Id == i, string.Format("Value with id {0} not found.", i));
+                    
                     values.Remove(value);
                 });
 

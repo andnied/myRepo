@@ -10,25 +10,33 @@ using System;
 using System.Threading.Tasks;
 using WebAPI.Model.Dto.Write;
 using WebAPI.DAL.Models;
+using WebAPI.Mapper;
 
 namespace WebAPI.BLL.Facades
 {
     public class ValuesFcd : BaseFcd, IValuesFcd
     {
         private readonly IValuesRepository _repo;
+        private readonly IValuesService _service;
 
-        public ValuesFcd(IValuesRepository repo)
-            : base()
+        public ValuesFcd(IValuesRepository repo, IValuesService service, WebApiMapper mapper)
+            : base(mapper)
         {
             _repo = repo;
+            _service = service;
         }
 
-        public async Task<ApiCollection<ValueReadDto>> GetAll(BaseSearchParams searchParams)
+        public async Task<ApiCollection<object>> GetAll(BaseSearchParams searchParams)
         {
-            var items = await _repo.Get(searchParams);
-            var dto = _mapper.Map<ApiCollection<ValueReadDto>>(items);
+            if (searchParams.Fields != null && !(_service.AreFieldsValid(searchParams.Fields)))
+            {
+                searchParams.Fields = null;
+            }
 
-            return dto;
+            var items = await _repo.Get(searchParams);
+            var result = _service.GetDtoCollection(items, searchParams);
+            
+            return result;
         }
 
         public async Task<ValueReadDto> Get(int id)

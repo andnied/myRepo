@@ -13,6 +13,9 @@ using Unity.WebApi;
 using JsonPatch.Formatting;
 using System.Net.Http.Headers;
 using WebAPI.Mocks;
+using WebAPI.BLL.Services;
+using WebAPI.Mapper;
+using CacheCow.Server;
 
 namespace WebAPI
 {
@@ -37,13 +40,16 @@ namespace WebAPI
             config.Formatters.Add(new JsonPatchFormatter());
             config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-            //config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             var container = new UnityContainer();
             container.RegisterInstance(ValuesMock.GetValueRepositoryMock());
+            container.RegisterInstance(WebApiMapper.GetMapper());
             container.RegisterType<IValuesFcd, ValuesFcd>();
+            container.RegisterType<IValuesService, ValuesService>();
 
             config.DependencyResolver = new UnityDependencyResolver(container);
+
+            config.MessageHandlers.Add(new CachingHandler(config));
         }
     }
 }

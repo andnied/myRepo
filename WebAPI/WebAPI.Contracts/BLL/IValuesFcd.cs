@@ -14,7 +14,7 @@ namespace WebAPI.Contracts.BLL
 {
     public interface IValuesFcd
     {
-        Task<ApiCollection<ValueReadDto>> GetAll(BaseSearchParams searchParams);
+        Task<ApiCollection<object>> GetAll(BaseSearchParams searchParams);
         Task<ValueReadDto> Get(int id);
         Task<ValueReadDto> Update(int id, JsonPatchDocument<ValueUpdateDto> model);
         Task<ValueReadDto> Update(int id, ValueWriteDto model);

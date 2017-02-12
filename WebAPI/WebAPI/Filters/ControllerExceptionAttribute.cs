@@ -20,6 +20,12 @@ namespace WebAPI.Filters
 
                 return;
             }
+            else if (actionExecutedContext.Exception is BadRequestException)
+            {
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, actionExecutedContext.Exception.Message);
+
+                return;
+            }
 
             // TODO: log
 
