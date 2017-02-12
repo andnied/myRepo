@@ -15,8 +15,9 @@ using WebAPI.Model.SearchParams;
 
 namespace WebAPI.Controllers
 {
-    [WebApiException]
+    [ControllerException]
     [ModelValidation]
+    [Throttling]
     public class ValuesController : ApiController
     {
         private readonly IValuesFcd _valuesFcd;

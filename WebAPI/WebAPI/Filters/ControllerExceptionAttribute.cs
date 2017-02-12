@@ -10,7 +10,7 @@ using WebAPI.Common.Exceptions;
 namespace WebAPI.Filters
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class WebApiExceptionAttribute : ExceptionFilterAttribute
+    public sealed class ControllerExceptionAttribute : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
