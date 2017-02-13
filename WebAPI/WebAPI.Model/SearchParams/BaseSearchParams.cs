@@ -11,7 +11,6 @@ namespace WebAPI.Model.SearchParams
         private string _sort;
         private int? _page;
         private int? _items;
-        private string _fields;
 
         public string Sort
         {
@@ -31,10 +30,6 @@ namespace WebAPI.Model.SearchParams
             set { _items = value; }
         }
 
-        public string Fields
-        {
-            get { return _fields; }
-            set { _fields = value; }
-        }
+        public string Fields { get; set; }
     }
 }

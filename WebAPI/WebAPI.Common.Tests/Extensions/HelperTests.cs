@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shouldly;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,15 +20,27 @@ namespace WebAPI.Common.Tests.Extensions
         [Fact]
         public void AreFieldsValid_returns_true_for_valid_field()
         {
-            Assert.True(Helper.AreFieldsValid<Model>("Name"));
-            Assert.True(Helper.AreFieldsValid<Model>("name"));
-            Assert.True(Helper.AreFieldsValid<Model>("number,Name"));
+            Helper.AreFieldsValid<Model>("Name").ShouldBe(true);
+            Helper.AreFieldsValid<Model>("name").ShouldBe(true);
+            Helper.AreFieldsValid<Model>("number,Name").ShouldBe(true);
         }
 
         [Fact]
         public void AreFieldsValid_returns_false_for_invalid_field()
         {
-            Assert.False(Helper.AreFieldsValid<Model>("invalid"));
+            Helper.AreFieldsValid<Model>("invalid").ShouldBe(false);
+        }
+
+        [Fact]
+        public void CreateDynamicSelectExpression_selects_proper_field()
+        {
+            var col = new List<Model> { new Model { Name = "a", Number = 1 } };
+            var expression = Helper.CreateDynamicSelectExpression<Model>("number");
+            var func = expression.Compile();
+            var result = col.Select(func);
+
+            result.All(r => r.Number.Equals(1)).ShouldBe(true);
+            result.All(r => r.Name == null).ShouldBe(true);
         }
     }
 }

@@ -380,6 +380,10 @@
       <Project>{F0F251FC-5D8B-43F2-A9AF-9C8704FDFA28}</Project>
       <Name>WebAPI.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebAPI.DAL\WebAPI.DAL.csproj">
+      <Project>{2CAFB156-62D5-4B01-81E3-27E93B0C6AE6}</Project>
+      <Name>WebAPI.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebAPI.Mapper\WebAPI.Mapper.csproj">
       <Project>{7780E33E-869D-4CA9-9E05-A3A5C2686C9D}</Project>
       <Name>WebAPI.Mapper</Name>

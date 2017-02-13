@@ -96,7 +96,7 @@ namespace WebAPI.Mocks
             mock.Setup(m => m.Get(It.IsAny<int>())).Returns<int>(i => Task.Factory.StartNew(() =>
             {
                 var value = values.First<Value, NotFoundException>(v => v.Id == i, string.Format("Value with id {0} not found.", i));
-                
+
                 return value;
             }));
 
@@ -109,7 +109,7 @@ namespace WebAPI.Mocks
                     if (index == -1)
                     {
                         var toBeUpdated = values.First<Value, NotFoundException>(va => va.Id == i, string.Format("Value with id {0} not found.", i));
-                        
+
                         index = values.IndexOf(toBeUpdated);
                     }
 
@@ -139,7 +139,7 @@ namespace WebAPI.Mocks
                 var task = Task.Factory.StartNew(() =>
                 {
                     var value = values.First<Value, NotFoundException>(v => v.Id == i, string.Format("Value with id {0} not found.", i));
-                    
+
                     values.Remove(value);
                 });
 

@@ -7,6 +7,7 @@ using System.Linq.Dynamic;
 using System.Linq.Expressions;
 using System.Reflection;
 using WebAPI.Common.Utils;
+using System.Data.Entity;
 
 namespace WebAPI.Common.Extensions
 {
@@ -78,39 +79,27 @@ namespace WebAPI.Common.Extensions
 
         public static IQueryable<T> Select<T>(this IQueryable<T> source, string fields)
         {
-            return source.Select(CreateNewStatement<T>(fields)).AsQueryable();
+            return source.Select(Helper.CreateDynamicSelectExpression<T>(fields));
         }
 
-        private static Func<T, T> CreateNewStatement<T>(string fields)
+        public static IEnumerable<T> SelectAndExecute<T>(this IQueryable<T> source, string fields)
         {
-            // input parameter "o"
-            var xParameter = Expression.Parameter(typeof(T), "o");
-
-            // new statement "new Data()"
-            var xNew = Expression.New(typeof(T));
-
-            // create initializers
-            var bindings = fields.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(o => {
-                    // property "Field1"
-                    var mi = typeof(T).GetProperty(o.Trim(), BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
-
-                    // original value "o.Field1"
-                    var xOriginal = Expression.Property(xParameter, mi);
-
-                    // set value "Field1 = o.Field1"
-                    return Expression.Bind(mi, xOriginal);
-                }
-            );
-
-            // initialization "new Data { Field1 = o.Field1, Field2 = o.Field2 }"
-            var xInit = Expression.MemberInit(xNew, bindings);
-
-            // expression "o => new Data { Field1 = o.Field1, Field2 = o.Field2 }"
-            var lambda = Expression.Lambda<Func<T, T>>(xInit, xParameter);
-
-            // compile to Func<Data, Data>
-            return lambda.Compile();
+            return source.Select(Helper.CreateDynamicSelectExpression<T>(fields).Compile());
         }
+
+        public static async Task<TSource> FirstAsync<TSource, TException>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, string exceptionMessage)
+           where TException : Exception
+        {
+            var result = await source.FirstOrDefaultAsync(predicate);
+
+            if (result == null)
+            {
+                var exception = (TException)Activator.CreateInstance(typeof(TException), new object[] { exceptionMessage });
+
+                throw exception;
+            }
+
+            return result;
+        }        
     }
 }

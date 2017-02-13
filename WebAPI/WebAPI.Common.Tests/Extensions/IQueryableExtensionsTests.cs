@@ -11,6 +11,8 @@ using WebAPI.Model.SearchParams;
 using Xunit;
 using WebAPI.Common.Extensions;
 using WebAPI.Model.Dto.Read;
+using WebAPI.Common.Exceptions;
+using Shouldly;
 
 namespace WebAPI.Common.Tests.Extensions
 {
@@ -102,6 +104,20 @@ namespace WebAPI.Common.Tests.Extensions
             var result = paged.SequenceEqual(selected);
 
             Assert.True(result);
+        }
+
+        [Fact]
+        public void first_incorrect_throws_exception()
+        {
+            var col = new List<string>
+            {
+                "a",
+                "b"
+            }.AsQueryable();
+
+            var func = new Func<Task>(() => col.FirstAsync<string, NotFoundException>(c => c == "c", "not found"));
+
+            Assert.ThrowsAsync<NotFoundException>(func);
         }
     }
 }

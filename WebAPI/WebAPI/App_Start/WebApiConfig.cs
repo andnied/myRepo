@@ -16,6 +16,7 @@ using WebAPI.Mocks;
 using WebAPI.BLL.Services;
 using WebAPI.Mapper;
 using CacheCow.Server;
+using WebAPI.DAL;
 
 namespace WebAPI
 {
@@ -42,10 +43,12 @@ namespace WebAPI
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
 
             var container = new UnityContainer();
-            container.RegisterInstance(ValuesMock.GetValueRepositoryMock());
+            //container.RegisterInstance(ValuesMock.GetValueRepositoryMock());
             container.RegisterInstance(WebApiMapper.GetMapper());
+            container.RegisterInstance(new WebAPIContext());
             container.RegisterType<IValuesFcd, ValuesFcd>();
             container.RegisterType<IValuesService, ValuesService>();
+            container.RegisterType<IValuesRepository, ValuesRepository>();
 
             config.DependencyResolver = new UnityDependencyResolver(container);
 
