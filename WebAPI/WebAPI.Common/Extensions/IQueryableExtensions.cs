@@ -95,6 +95,22 @@ namespace WebAPI.Common.Extensions
             }
 
             return result;
-        }        
+        }
+
+        public static async Task<TSource> FindAsync<TSource, TException>(this DbSet<TSource> source, string exceptionMessage, params object[] keyValues)
+           where TException : Exception
+           where TSource : class
+        {
+            var result = await source.FindAsync(keyValues);
+
+            if (result == null)
+            {
+                var exception = (TException)Activator.CreateInstance(typeof(TException), new object[] { exceptionMessage });
+
+                throw exception;
+            }
+
+            return result;
+        }
     }
 }

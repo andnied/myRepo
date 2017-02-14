@@ -4,18 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebAPI.DAL.Models
+namespace WebAPI.Common.Dto.Read
 {
-    public class Child
+    public class ChildReadDto
     {
         public int Id { get; set; }
-
         public string ChildName { get; set; }
-
-        public string OtherProperty { get; set; }
-
-        public virtual Value Value { get; set; }
-
-        public int ValueId { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPI.Common.Structures;
-using WebAPI.Model.SearchParams;
+using WebAPI.Common.SearchParams;
 
 namespace WebAPI.Contracts.DAL
 {

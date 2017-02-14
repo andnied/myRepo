@@ -13,10 +13,11 @@ using Unity.WebApi;
 using JsonPatch.Formatting;
 using System.Net.Http.Headers;
 using WebAPI.Mocks;
+using WebAPI.DAL;
 using WebAPI.BLL.Services;
 using WebAPI.Mapper;
 using CacheCow.Server;
-using WebAPI.DAL;
+using WebAPI.Model;
 
 namespace WebAPI
 {

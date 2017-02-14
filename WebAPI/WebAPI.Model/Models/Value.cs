@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebAPI.Model.Dto.Read
+namespace WebAPI.Model.Models
 {
-    public class ValueReadDto
+    public class Value
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
+
         public string Description { get; set; }
-        public IEnumerable<ChildReadDto> Children { get; set; }
+
+        public virtual ICollection<Child> Children { get; set; }
     }
 }

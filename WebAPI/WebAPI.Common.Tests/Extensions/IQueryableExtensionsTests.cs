@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Contracts.DAL;
-using WebAPI.DAL.Models;
+using WebAPI.Model.Models;
 using WebAPI.Mocks;
-using WebAPI.Model.SearchParams;
+using WebAPI.Common.SearchParams;
 using Xunit;
 using WebAPI.Common.Extensions;
-using WebAPI.Model.Dto.Read;
+using WebAPI.Common.Dto.Read;
 using WebAPI.Common.Exceptions;
 using Shouldly;
 

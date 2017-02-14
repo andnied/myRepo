@@ -1,6 +1,6 @@
 ﻿using WebAPI.Common.Structures;
-using WebAPI.DAL.Models;
-using WebAPI.Model.SearchParams;
+using WebAPI.Model.Models;
+using WebAPI.Common.SearchParams;
 
 namespace WebAPI.Contracts.BLL
 {

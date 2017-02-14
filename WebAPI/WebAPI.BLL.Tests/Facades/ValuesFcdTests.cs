@@ -10,12 +10,12 @@ using WebAPI.BLL.Services;
 using WebAPI.Common.Exceptions;
 using WebAPI.Contracts.BLL;
 using WebAPI.Contracts.DAL;
-using WebAPI.DAL.Models;
+using WebAPI.Model.Models;
 using WebAPI.Mapper;
 using WebAPI.Mocks;
-using WebAPI.Model.Dto.Update;
-using WebAPI.Model.Dto.Write;
-using WebAPI.Model.SearchParams;
+using WebAPI.Common.Dto.Update;
+using WebAPI.Common.Dto.Write;
+using WebAPI.Common.SearchParams;
 using Xunit;
 
 namespace WebAPI.BLL.Tests.Facades

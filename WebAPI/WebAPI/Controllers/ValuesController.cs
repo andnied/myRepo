@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using WebAPI.Contracts.BLL;
 using WebAPI.Filters;
-using WebAPI.Model.Dto.Read;
-using WebAPI.Model.Dto.Update;
-using WebAPI.Model.Dto.Write;
-using WebAPI.Model.SearchParams;
+using WebAPI.Common.Dto.Update;
+using WebAPI.Common.Dto.Write;
+using WebAPI.Common.SearchParams;
 
 namespace WebAPI.Controllers
 {

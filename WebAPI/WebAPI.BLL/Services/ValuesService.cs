@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using WebAPI.Common.Exceptions;
 using WebAPI.Common.Structures;
 using WebAPI.Contracts.BLL;
-using WebAPI.DAL.Models;
+using WebAPI.Model.Models;
 using WebAPI.Mapper;
-using WebAPI.Model.Dto.Read;
-using WebAPI.Model.SearchParams;
+using WebAPI.Common.Dto.Read;
+using WebAPI.Common.SearchParams;
 
 namespace WebAPI.BLL.Services
 {

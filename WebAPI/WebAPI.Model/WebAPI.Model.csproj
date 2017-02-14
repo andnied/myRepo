@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -41,22 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dto\Read\ChildReadDto.cs" />
-    <Compile Include="Dto\Read\ValueReadDto.cs" />
-    <Compile Include="Dto\Update\ValueUpdateDto.cs" />
-    <Compile Include="Dto\Write\ChildWriteDto.cs" />
-    <Compile Include="Dto\Write\ValueWriteDto.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Child.cs" />
+    <Compile Include="Models\Value.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchParams\BaseSearchParams.cs" />
+    <Compile Include="WebAPIContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WebAPI.DAL\WebAPI.DAL.csproj">
-      <Project>{2CAFB156-62D5-4B01-81E3-27E93B0C6AE6}</Project>
-      <Name>WebAPI.DAL</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

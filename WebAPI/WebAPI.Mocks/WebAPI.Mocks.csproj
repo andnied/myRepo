@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValuesMock.cs" />
-    <Compile Include="ValuesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebAPI.Common\WebAPI.Common.csproj">

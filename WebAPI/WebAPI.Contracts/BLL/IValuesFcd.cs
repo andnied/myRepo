@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Common.Structures;
-using WebAPI.Model.Dto.Read;
-using WebAPI.Model.Dto.Update;
-using WebAPI.Model.Dto.Write;
-using WebAPI.Model.SearchParams;
+using WebAPI.Common.Dto.Read;
+using WebAPI.Common.Dto.Update;
+using WebAPI.Common.Dto.Write;
+using WebAPI.Common.SearchParams;
 
 namespace WebAPI.Contracts.BLL
 {

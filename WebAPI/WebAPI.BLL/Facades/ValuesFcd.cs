@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using WebAPI.Common.Structures;
 using WebAPI.Contracts.BLL;
 using WebAPI.Contracts.DAL;
-using WebAPI.Model.Dto.Read;
-using WebAPI.Model.Dto.Update;
-using WebAPI.Model.SearchParams;
+using WebAPI.Common.Dto.Read;
+using WebAPI.Common.Dto.Update;
+using WebAPI.Common.SearchParams;
 using System;
 using System.Threading.Tasks;
-using WebAPI.Model.Dto.Write;
-using WebAPI.DAL.Models;
+using WebAPI.Common.Dto.Write;
+using WebAPI.Model.Models;
 using WebAPI.Mapper;
 using WebAPI.Common.Utils;
 

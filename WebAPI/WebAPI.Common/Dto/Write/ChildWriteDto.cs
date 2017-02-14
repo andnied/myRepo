@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebAPI.Model.Dto.Update
+namespace WebAPI.Common.Dto.Write
 {
-    public class ValueUpdateDto
+    public class ChildWriteDto
     {
-        public string Name { get; set; }
     }
 }

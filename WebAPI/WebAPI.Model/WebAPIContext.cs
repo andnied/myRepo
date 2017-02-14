@@ -1,4 +1,4 @@
-namespace WebAPI.DAL
+namespace WebAPI.Model
 {
     using Models;
     using System;

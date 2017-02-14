@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Common.Structures;
 using WebAPI.Contracts.DAL;
-using WebAPI.DAL;
-using WebAPI.DAL.Models;
-using WebAPI.Model.SearchParams;
+using WebAPI.Model;
+using WebAPI.Model.Models;
+using WebAPI.Common.SearchParams;
 using WebAPI.Common.Extensions;
-using System.Data.Entity;
 using WebAPI.Common.Exceptions;
 using System.Collections;
 using System.Linq.Dynamic;
 
-namespace WebAPI.Mocks
+namespace WebAPI.DAL
 {
     public class ValuesRepository : IValuesRepository
     {
@@ -34,16 +31,20 @@ namespace WebAPI.Mocks
             return added;
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var value = _context.Values.FindAsync<Value, NotFoundException>(string.Format("Value with id {0} not found.", id), id);
+
+            _context.Values.Remove(await value);
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Value> Get(int id)
         {
-            var value = await _context.Values.FirstAsync<Value, NotFoundException>(v => v.Id == id, string.Format("Value with id {0} not found.", id));
-            
-            return value;
+            var value = _context.Values.FindAsync<Value, NotFoundException>(string.Format("Value with id {0} not found.", id), id);
+
+            return await value;
         }
 
         public Task<ApiCollection> Get(BaseSearchParams s)
@@ -73,9 +74,15 @@ namespace WebAPI.Mocks
             });
         }
 
-        public Task<Value> Update(int id, Value entity)
+        public async Task<Value> Update(int id, Value entity)
         {
-            throw new NotImplementedException();
+            var value = await _context.Values.FindAsync<Value, NotFoundException>(string.Format("Value with id {0} not found.", id), id);
+            
+            _context.Entry(value).CurrentValues.SetValues(entity);
+
+            await _context.SaveChangesAsync();
+
+            return _context.Values.Find(id);
         }
     }
 }

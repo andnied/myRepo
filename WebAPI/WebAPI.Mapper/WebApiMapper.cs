@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Reflection;
 using WebAPI.Common.Structures;
-using WebAPI.DAL.Models;
-using WebAPI.Model.Dto.Read;
-using WebAPI.Model.Dto.Update;
-using WebAPI.Model.Dto.Write;
+using WebAPI.Model.Models;
+using WebAPI.Common.Dto.Read;
+using WebAPI.Common.Dto.Update;
+using WebAPI.Common.Dto.Write;
 
 namespace WebAPI.Mapper
 {

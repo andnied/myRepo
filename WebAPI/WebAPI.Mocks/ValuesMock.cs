@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Contracts.DAL;
 using Moq;
-using WebAPI.DAL.Models;
+using WebAPI.Model.Models;
 using WebAPI.Common.Extensions;
-using WebAPI.Model.Dto.Update;
-using WebAPI.Model.SearchParams;
+using WebAPI.Common.SearchParams;
 using WebAPI.Common.Structures;
-using WebAPI.Model.Dto.Read;
-using WebAPI.DAL;
 using WebAPI.Common.Exceptions;
-using System.Linq.Expressions;
-using System.Reflection;
 
 namespace WebAPI.Mocks
 {
