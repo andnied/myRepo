@@ -71,7 +71,7 @@ namespace WebAPI.Mapper
 
             foreach (var field in fieldCollection)
             {
-                var value = typeof(TSource)
+                var value = source.GetType()
                     .GetProperty(field.Trim(), BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase)
                     .GetValue(source);
 

@@ -77,14 +77,9 @@ namespace WebAPI.Common.Extensions
             return source.Skip((page - 1) * count).Take(count);
         }
 
-        public static IQueryable<T> Select<T>(this IQueryable<T> source, string fields)
+        public static IQueryable<T> DynamicSelect<T>(this IQueryable<T> source, string fields)
         {
             return source.Select(Helper.CreateDynamicSelectExpression<T>(fields));
-        }
-
-        public static IEnumerable<T> SelectAndExecute<T>(this IQueryable<T> source, string fields)
-        {
-            return source.Select(Helper.CreateDynamicSelectExpression<T>(fields).Compile());
         }
 
         public static async Task<TSource> FirstAsync<TSource, TException>(this IQueryable<TSource> source, Expression<Func<TSource, bool>> predicate, string exceptionMessage)

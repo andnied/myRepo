@@ -23,13 +23,13 @@ namespace WebAPI.BLL.Services
             _mapper = mapper;
         }
 
-        public ApiCollection<object> GetDtoCollection(ApiCollection<Value> entityCollection, BaseSearchParams searchParams)
+        public ApiCollection GetDtoCollection(ApiCollection entityCollection, BaseSearchParams searchParams)
         {
             if (searchParams.Fields == null)
             {
                 var items = _mapper.Map<IEnumerable<ValueReadDto>>(entityCollection.Items);
 
-                return new ApiCollection<object>(items) { TotalCount = entityCollection.TotalCount };
+                return new ApiCollection(items) { TotalCount = entityCollection.TotalCount };
             }
             else
             {
@@ -40,7 +40,7 @@ namespace WebAPI.BLL.Services
                     newItems.Add(_mapper.DynamicMap(item, searchParams.Fields));
                 }
 
-                var result = new ApiCollection<object>(newItems);
+                var result = new ApiCollection(newItems);
                 result.TotalCount = entityCollection.TotalCount;
 
                 return result;

@@ -80,12 +80,12 @@ namespace WebAPI.Mocks
                       var count = values.Count;
 
                       if (s.Fields != null)
-                          items = items.Select(s.Fields);
+                          items = items.DynamicSelect(s.Fields);
 
                       items = items.DynamicSort(s.Sort);
                       items = items.Page(s.Page.Value, s.Items.Value);
 
-                      var apiCollection = new ApiCollection<Value>(items.ToList()) { TotalCount = count };
+                      var apiCollection = new ApiCollection(items.ToList()) { TotalCount = count };
 
                       return apiCollection;
                   });

@@ -11,6 +11,8 @@ using WebAPI.Model.SearchParams;
 using WebAPI.Common.Extensions;
 using System.Data.Entity;
 using WebAPI.Common.Exceptions;
+using System.Collections;
+using System.Linq.Dynamic;
 
 namespace WebAPI.Mocks
 {
@@ -44,7 +46,7 @@ namespace WebAPI.Mocks
             return value;
         }
 
-        public Task<ApiCollection<Value>> Get(BaseSearchParams s)
+        public Task<ApiCollection> Get(BaseSearchParams s)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -54,18 +56,18 @@ namespace WebAPI.Mocks
                 items = items.DynamicSort(s.Sort);
                 items = items.Page(s.Page.Value, s.Items.Value);
 
-                IEnumerable<Value> result = null;
+                IEnumerable result = null;
 
                 if (s.Fields != null)
                 {
-                    result = items.SelectAndExecute(s.Fields);
+                    result = items.Select(string.Format("new ({0})", s.Fields));
                 }
                 else
                 {
                     result = items.ToList();
                 }
                 
-                var apiCollection = new ApiCollection<Value>(result) { TotalCount = count };
+                var apiCollection = new ApiCollection(result) { TotalCount = count };
 
                 return apiCollection;
             });

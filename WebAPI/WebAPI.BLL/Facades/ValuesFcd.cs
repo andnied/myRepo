@@ -27,7 +27,7 @@ namespace WebAPI.BLL.Facades
             _service = service;
         }
 
-        public async Task<ApiCollection<object>> GetAll(BaseSearchParams searchParams)
+        public async Task<ApiCollection> GetAll(BaseSearchParams searchParams)
         {
             if (searchParams.Fields != null && !(Helper.AreFieldsValid<Value>(searchParams.Fields)))
             {

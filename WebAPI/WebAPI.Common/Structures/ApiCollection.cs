@@ -20,4 +20,18 @@ namespace WebAPI.Common.Structures
             Items = src;
         }
     }
+
+    public class ApiCollection
+    {
+        public IEnumerable Items { get; set; }
+        public int TotalCount { get; set; }
+
+        public ApiCollection()
+        { }
+
+        public ApiCollection(IEnumerable src)
+        {
+            Items = src;
+        }
+    }
 }

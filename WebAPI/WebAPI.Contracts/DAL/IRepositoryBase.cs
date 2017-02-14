@@ -12,7 +12,7 @@ namespace WebAPI.Contracts.DAL
     public interface IRepositoryBase<T> 
         where T : class, new()
     {
-        Task<ApiCollection<T>> Get(BaseSearchParams searchParams);
+        Task<ApiCollection> Get(BaseSearchParams searchParams);
         Task<T> Get(int id);
         Task<T> Add(T entity);
         Task<T> Update(int id, T entity);

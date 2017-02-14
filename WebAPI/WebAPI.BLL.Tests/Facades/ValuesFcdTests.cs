@@ -10,6 +10,7 @@ using WebAPI.BLL.Services;
 using WebAPI.Common.Exceptions;
 using WebAPI.Contracts.BLL;
 using WebAPI.Contracts.DAL;
+using WebAPI.DAL.Models;
 using WebAPI.Mapper;
 using WebAPI.Mocks;
 using WebAPI.Model.Dto.Update;
@@ -59,9 +60,9 @@ namespace WebAPI.BLL.Tests.Facades
         [Fact]
         public void create_value_adds_value()
         {
-            var initialCount = _repo.Get(new BaseSearchParams()).Result.Items.Count();
+            var initialCount = _repo.Get(new BaseSearchParams()).Result.Items.Cast<Value>().Count();
             var created = _fcd.Create(_newValue).Result;
-            var laterCount = _repo.Get(new BaseSearchParams()).Result.Items.Count();
+            var laterCount = _repo.Get(new BaseSearchParams()).Result.Items.Cast<Value>().Count();
 
             laterCount.ShouldBe(initialCount + 1);
 

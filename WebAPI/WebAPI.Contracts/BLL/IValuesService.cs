@@ -6,6 +6,6 @@ namespace WebAPI.Contracts.BLL
 {
     public interface IValuesService
     {
-        ApiCollection<object> GetDtoCollection(ApiCollection<Value> entityCollection, BaseSearchParams searchParams);
+        ApiCollection GetDtoCollection(ApiCollection entityCollection, BaseSearchParams searchParams);
     }
 }
