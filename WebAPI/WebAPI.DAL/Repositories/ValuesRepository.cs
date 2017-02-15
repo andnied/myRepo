@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using WebAPI.Common.Structures;
 using WebAPI.Contracts.DAL;
@@ -8,8 +7,8 @@ using WebAPI.Model.Models;
 using WebAPI.Common.SearchParams;
 using WebAPI.Common.Extensions;
 using WebAPI.Common.Exceptions;
-using System.Collections;
 using System.Linq.Dynamic;
+using System.Data.Entity;
 
 namespace WebAPI.DAL
 {
@@ -47,31 +46,24 @@ namespace WebAPI.DAL
             return await value;
         }
 
-        public Task<ApiCollection> Get(BaseSearchParams s)
+        public async Task<ApiCollection> Get(BaseSearchParams s)
         {
-            return Task.Factory.StartNew(() =>
+            var items = _context.Values.Include(v => v.Children);
+            var count = items.Count();
+            
+            items = items.DynamicSort(s.Sort);
+            items = items.Page(s.Page.Value, s.Items.Value);
+
+            IQueryable result = items;
+
+            if (s.Fields != null)
             {
-                var items = _context.Values.AsQueryable();
-                var count = items.Count();
+                result = await items.SelectAsync(string.Format("new ({0})", s.Fields));
+            }
+            
+            var apiCollection = new ApiCollection(await result.ToListAsync()) { TotalCount = count };
 
-                items = items.DynamicSort(s.Sort);
-                items = items.Page(s.Page.Value, s.Items.Value);
-
-                IEnumerable result = null;
-
-                if (s.Fields != null)
-                {
-                    result = items.Select(string.Format("new ({0})", s.Fields));
-                }
-                else
-                {
-                    result = items.ToList();
-                }
-                
-                var apiCollection = new ApiCollection(result) { TotalCount = count };
-
-                return apiCollection;
-            });
+            return apiCollection;
         }
 
         public async Task<Value> Update(int id, Value entity)

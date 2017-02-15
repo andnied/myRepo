@@ -10,6 +10,10 @@ namespace WebAPI.Model
         public WebAPIContext()
             : base("name=WebAPIContext")
         {
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
+
+            Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
         public virtual DbSet<Value> Values { get; set; }

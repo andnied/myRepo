@@ -25,7 +25,7 @@ namespace WebAPI.Common.Extensions
                 return source;
             }
 
-            Func<string, string> func = (string f) =>
+            Func<string, string> func = (f) =>
             {
                 if (f.StartsWith("-"))
                     return f.Remove(0, 1);
@@ -111,6 +111,17 @@ namespace WebAPI.Common.Extensions
             }
 
             return result;
+        }
+
+        public static async Task<IQueryable> SelectAsync<TSource>(this IQueryable<TSource> source, string selector)
+            where TSource : class
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                var result = source.Select(selector);
+
+                return result;
+            });
         }
     }
 }
