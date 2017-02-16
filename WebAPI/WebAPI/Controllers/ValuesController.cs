@@ -35,12 +35,9 @@ namespace WebAPI.Controllers
         
         public async Task<IHttpActionResult> Get(int id)
         {
-            var item = await _valuesFcd.Get(id);
-
-            if (item != null)
-                return Ok(item);
-            else
-                return NotFound();
+            var item = _valuesFcd.Get(id);
+            
+            return Ok(await item);
         }
 
         [HttpPost]
