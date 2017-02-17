@@ -1,7 +1,6 @@
 ﻿using CacheCow.Server;
 using JsonPatch.Formatting;
 using Microsoft.Practices.Unity;
-using Owin;
 using System.Web.Http;
 using Unity.WebApi;
 using WebAPI.BLL.Facades;
@@ -9,15 +8,14 @@ using WebAPI.BLL.Services;
 using WebAPI.Contracts.BLL;
 using WebAPI.Contracts.DAL;
 using WebAPI.DAL;
-using WebAPI.Host.Owin;
 using WebAPI.Mapper;
 using WebAPI.Model;
 
-namespace WebAPI.Host
+namespace WebAPI.Host.App_Start
 {
-    public class Startup
+    public class WebApiConfig
     {
-        public void Configuration(IAppBuilder app)
+        public static HttpConfiguration Register()
         {
             var config = new HttpConfiguration();
             config.Routes.MapHttpRoute("default", "api/{controller}/{id}", new { id = RouteParameter.Optional });
@@ -36,8 +34,7 @@ namespace WebAPI.Host
             config.DependencyResolver = new UnityDependencyResolver(container);
             config.MessageHandlers.Add(new CachingHandler(config));
 
-            app.Use(typeof(ApiMiddleware));
-            app.UseWebApi(config);
+            return config;
         }
     }
 }

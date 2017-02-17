@@ -12,7 +12,7 @@ namespace WebAPI.Host.Controllers
     [ControllerException]
     [ModelValidation]
     [Throttling]
-    [Authorize]
+    //[Authorize]
     public class ValuesController : ApiController
     {
         private readonly IValuesFcd _valuesFcd;
@@ -41,7 +41,7 @@ namespace WebAPI.Host.Controllers
         {
             var added = await _valuesFcd.Create(value);
 
-            return CreatedAtRoute("DefaultApi", new { id = added.Id }, added);
+            return CreatedAtRoute("default", new { id = added.Id }, added);
         }
 
         [HttpPut]
