@@ -28,6 +28,7 @@ namespace WebAPI.Host.App_Start
             container.RegisterInstance(WebApiMapper.GetMapper());
             container.RegisterInstance(new WebAPIContext());
             container.RegisterType<IValuesFcd, ValuesFcd>();
+            container.RegisterType<IAccountsFcd, AccountsFcd>();
             container.RegisterType<IValuesService, ValuesService>();
             container.RegisterType<IValuesRepository, ValuesRepository>();
 

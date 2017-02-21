@@ -68,6 +68,7 @@
     <Compile Include="Dto\Read\ChildReadDto.cs" />
     <Compile Include="Dto\Read\ValueReadDto.cs" />
     <Compile Include="Dto\Update\ValueUpdateDto.cs" />
+    <Compile Include="Dto\Write\ApplicationUserWriteDto.cs" />
     <Compile Include="Dto\Write\ChildWriteDto.cs" />
     <Compile Include="Dto\Write\ValueWriteDto.cs" />
     <Compile Include="Exceptions\ApiException.cs" />

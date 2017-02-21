@@ -1,11 +1,13 @@
 namespace WebAPI.Model
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
+    using Models.Identity;
     using System;
     using System.Data.Entity;
     using System.Linq;
 
-    public class WebAPIContext : DbContext
+    public class WebAPIContext : IdentityDbContext<ApplicationUser>
     {
         public WebAPIContext()
             : base("name=WebAPIContext")

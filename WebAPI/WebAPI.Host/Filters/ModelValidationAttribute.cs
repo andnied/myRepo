@@ -11,6 +11,11 @@ namespace WebAPI.Host.Filters
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
+            if (actionContext.ActionArguments.Count == 0)
+            {
+                actionContext.Response = actionContext.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Request body cannot be null");
+            }
+
             if (actionContext.ModelState.IsValid)
             {
                 return;

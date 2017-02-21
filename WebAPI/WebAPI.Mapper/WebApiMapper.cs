@@ -8,6 +8,7 @@ using WebAPI.Model.Models;
 using WebAPI.Common.Dto.Read;
 using WebAPI.Common.Dto.Update;
 using WebAPI.Common.Dto.Write;
+using WebAPI.Model.Models.Identity;
 
 namespace WebAPI.Mapper
 {
@@ -42,6 +43,8 @@ namespace WebAPI.Mapper
                     .ForMember(dto => dto.Name, s => s.MapFrom(model => model.Name));
 
                 c.CreateMap<ValueWriteDto, Value>();
+
+                c.CreateMap<ApplicationUserWriteDto, ApplicationUser>();
             });
 
             var config = new MapperConfiguration(action);

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\IAccountsFcd.cs" />
     <Compile Include="BLL\IValuesFcd.cs" />
     <Compile Include="BLL\IValuesService.cs" />
     <Compile Include="DAL\IRepositoryBase.cs" />
