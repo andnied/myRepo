@@ -1,22 +1,9 @@
-﻿using CacheCow.Server;
-using JsonPatch.Formatting;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Owin;
+using Microsoft.Owin.Security.OAuth;
 using Owin;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web.Http;
-using Unity.WebApi;
-using WebAPI.BLL.Facades;
-using WebAPI.BLL.Services;
-using WebAPI.Contracts.BLL;
-using WebAPI.Contracts.DAL;
-using WebAPI.DAL;
+using System;
 using WebAPI.Host.App_Start;
 using WebAPI.Host.Owin;
-using WebAPI.Host.Owin.Basic_Authentication;
-using WebAPI.Mapper;
-using WebAPI.Model;
 
 namespace WebAPI.Host
 {
@@ -24,24 +11,17 @@ namespace WebAPI.Host
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseBasicAuthentication("webapitestapp", ValidateUsers);
-            app.UseWebApi(WebApiConfig.Register());
-        }
-
-        private Task<IEnumerable<Claim>> ValidateUsers(string id, string secret)
-        {
-            if (id == secret)
+            var options = new OAuthAuthorizationServerOptions
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier, id),
-                    new Claim(ClaimTypes.Role, "foo")
-                };
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromHours(8),
+                Provider = new AuthorizationServerProvider()
+            };
 
-                return Task.FromResult<IEnumerable<Claim>>(claims);
-            }
-
-            return Task.FromResult<IEnumerable<Claim>>(null);
+            app.UseOAuthAuthorizationServer(options);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+            app.UseWebApi(WebApiConfig.Register());
         }
     }
 }

@@ -12,7 +12,7 @@ namespace WebAPI.Host.Controllers
     [ControllerException]
     [ModelValidation]
     [Throttling]
-    //[Authorize]
+    [Authorize]
     public class ValuesController : ApiController
     {
         private readonly IValuesFcd _valuesFcd;
@@ -37,6 +37,7 @@ namespace WebAPI.Host.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "SuperUser")]
         public async Task<IHttpActionResult> Post([FromBody]ValueWriteDto value)
         {
             var added = await _valuesFcd.Create(value);
@@ -45,6 +46,7 @@ namespace WebAPI.Host.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "SuperUser")]
         public async Task<IHttpActionResult> Put(int id, [FromBody]ValueWriteDto value)
         {
             var updated = _valuesFcd.Update(id, value);
@@ -53,6 +55,7 @@ namespace WebAPI.Host.Controllers
         }
 
         [HttpPatch]
+        [Authorize(Roles = "SuperUser")]
         public async Task<IHttpActionResult> Patch(int id, [FromBody]JsonPatchDocument<ValueUpdateDto> value)
         {
             var updated = _valuesFcd.Update(id, value);
@@ -61,6 +64,7 @@ namespace WebAPI.Host.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "SuperUser")]
         public async Task<IHttpActionResult> Delete(int id)
         {
             await _valuesFcd.Delete(id);

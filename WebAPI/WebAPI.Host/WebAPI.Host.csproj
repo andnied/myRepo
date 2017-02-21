@@ -44,8 +44,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CacheCow.Common, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CacheCow.Common.1.2.3\lib\net40\CacheCow.Common.dll</HintPath>
+    <Reference Include="CacheCow.Common, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CacheCow.Common.1.3.0\lib\net40\CacheCow.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="CacheCow.Server, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -79,6 +79,10 @@
     </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -162,11 +166,7 @@
     <Compile Include="Filters\ControllerExceptionAttribute.cs" />
     <Compile Include="Filters\ModelValidationAttribute.cs" />
     <Compile Include="Filters\ThrottlingAttribute.cs" />
-    <Compile Include="Owin\ApiMiddleware.cs" />
-    <Compile Include="Owin\Basic Authentication\BasicAuthenticationExtensions.cs" />
-    <Compile Include="Owin\Basic Authentication\BasicAuthenticationMiddleware.cs" />
-    <Compile Include="Owin\Basic Authentication\BasicAuthenticationOptions.cs" />
-    <Compile Include="Owin\Basic Authentication\BasicAuthenticationHandler.cs" />
+    <Compile Include="Owin\AuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
