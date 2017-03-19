@@ -134,7 +134,6 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -183,7 +182,6 @@
     <Compile Include="Filters\ControllerExceptionAttribute.cs" />
     <Compile Include="Filters\ModelValidationAttribute.cs" />
     <Compile Include="Filters\ThrottlingAttribute.cs" />
-    <Compile Include="Filters\TransactionAttribute.cs" />
     <Compile Include="Owin\AuthorizationServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
