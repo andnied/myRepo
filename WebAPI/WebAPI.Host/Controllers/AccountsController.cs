@@ -20,7 +20,7 @@ namespace WebAPI.Host.Controllers
         {
             _accountsFcd = fcd;
         }
-
+        
         public async Task<IHttpActionResult> Post([FromBody]ApplicationUserWriteDto model)
         {
             var id = await _accountsFcd.Create(model);

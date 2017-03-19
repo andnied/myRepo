@@ -20,7 +20,7 @@ namespace WebAPI.Host.Owin
 
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            context.Validated();
+            await Task.Factory.StartNew(() => context.Validated());
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -33,9 +33,10 @@ namespace WebAPI.Host.Owin
                 return;
             }
 
+            var role = (await _userManager.GetRolesAsync(user.Id)).FirstOrDefault();
             var id = new ClaimsIdentity(context.Options.AuthenticationType);
             id.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            //id.AddClaim(new Claim(ClaimTypes.Role, "SuperUser"));
+            id.AddClaim(new Claim(ClaimTypes.Role, role ?? "User"));
 
             context.Validated(id);
         }

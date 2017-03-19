@@ -29,7 +29,7 @@ namespace WebAPI.Host.Filters
                 return;
             }
 
-            // TODO: log
+            // TODO: LogAsync
 
             actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Internal server error occured.");
         }
